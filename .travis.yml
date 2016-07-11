@@ -1,0 +1,7 @@
+branches:
+  only:
+    - master
+language: objective-c
+osx_image: xcode7.3
+xcode_project: YangMingShanDenmo.xcodeproj
+xcode_scheme: YangMingShanDemo
