@@ -397,7 +397,6 @@
 				TargetAttributes = {
 					5171ACE61CE9A49B00B72748 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 2ARNJY38FW;
 					};
 					5171ACFF1CE9A49C00B72748 = {
 						CreatedOnToolsVersion = 7.3;
@@ -409,7 +408,6 @@
 					};
 					519140CC1D055615002B4C5B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2ARNJY38FW;
 					};
 				};
 			};
