@@ -1,6 +1,6 @@
 branches:
   only:
-    - master
+    - travis-enable
 language: objective-c
 osx_image: xcode7.3
 xcode_project: YangMingShanDenmo.xcodeproj
