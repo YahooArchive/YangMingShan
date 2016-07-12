@@ -20,7 +20,8 @@ The Components
 
 ### YMSPhotoPicker
 
-YMSPhotoPicker is an UIComponent that let you select mutilple photos from your albums. You can also take a photo inside YMSPhotoPicker and select it with other photos. It has the exposed theme YMSPhotoPickerTheme that you can customize several parts of YMSPhotoPicker. 
+YMSPhotoPicker is an UIComponent that let you select mutilple photos from your albums. You can also take a photo inside YMSPhotoPicker and select it with other photos. It has the exposed theme YMSPhotoPickerTheme that you can customize several parts of YMSPhotoPicker.
+ 
 <img src="media/ymsphotopicker-demo.gif" alt="Square Cash Style Bar" width="300"/>
 <img src="media/ymsphotopicker-theme.gif" alt="Square Cash Style Bar" width="300"/>
 
