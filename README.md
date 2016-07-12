@@ -1,4 +1,5 @@
-# YangMingShan
+<img src="media/yangmingshan-banner@2x.png">
+=====
 [![Build Status](https://travis-ci.org/yahoo/YangMingShan.svg?branch=master)](https://travis-ci.org/yahoo/YangMingShan)
 [![CocoaPods](https://img.shields.io/cocoapods/v/YangMingShan.svg?maxAge=2592000?style=flat-square)](https://cocoapods.org/?q=yangmingshan)
  
