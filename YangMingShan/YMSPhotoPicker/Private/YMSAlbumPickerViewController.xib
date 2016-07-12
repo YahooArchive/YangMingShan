@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YMSAlbumPickerViewController">
+            <connections>
+                <outlet property="albumListTableView" destination="cLv-KU-yiY" id="zbG-0p-fUf"/>
+                <outlet property="navigationBar" destination="ACe-re-oFh" id="Rwd-mu-2aw"/>
+                <outlet property="navigationBarBackgroundView" destination="hXU-Ao-dOU" id="2Cv-8c-yVy"/>
+                <outlet property="navigationBarTopLayoutConstraint" destination="61k-oM-FiK" id="dx0-Ep-HBF"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="61" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cLv-KU-yiY">
+                    <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="670-E8-Xue"/>
+                        <outlet property="delegate" destination="-1" id="8Sa-EE-XEX"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXU-Ao-dOU">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ACe-re-oFh">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="pbv-rq-djV">
+                            <variation key="heightClass=compact" constant="32"/>
+                        </constraint>
+                    </constraints>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Title" id="O96-fb-Rj5"/>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="hXU-Ao-dOU" firstAttribute="bottom" secondItem="ACe-re-oFh" secondAttribute="bottom" id="1sq-ne-PH6"/>
+                <constraint firstItem="ACe-re-oFh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="61k-oM-FiK"/>
+                <constraint firstAttribute="trailing" secondItem="ACe-re-oFh" secondAttribute="trailing" id="LbD-x0-voz"/>
+                <constraint firstItem="hXU-Ao-dOU" firstAttribute="leading" secondItem="ACe-re-oFh" secondAttribute="leading" id="OT5-Bz-EGP"/>
+                <constraint firstAttribute="trailing" secondItem="cLv-KU-yiY" secondAttribute="trailing" id="QgX-Ws-X4p"/>
+                <constraint firstItem="hXU-Ao-dOU" firstAttribute="trailing" secondItem="ACe-re-oFh" secondAttribute="trailing" id="Wfb-Xm-Zi4"/>
+                <constraint firstItem="ACe-re-oFh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aIU-rj-GNv"/>
+                <constraint firstItem="ACe-re-oFh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gpl-Jq-zIT"/>
+                <constraint firstItem="cLv-KU-yiY" firstAttribute="top" secondItem="ACe-re-oFh" secondAttribute="bottom" id="k9g-DN-MkA"/>
+                <constraint firstItem="cLv-KU-yiY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kzI-nD-sc9"/>
+                <constraint firstItem="hXU-Ao-dOU" firstAttribute="top" secondItem="ACe-re-oFh" secondAttribute="top" id="oOl-rT-72u"/>
+                <constraint firstAttribute="bottom" secondItem="cLv-KU-yiY" secondAttribute="bottom" id="wB7-Ia-YSG"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="aIU-rj-GNv"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>
