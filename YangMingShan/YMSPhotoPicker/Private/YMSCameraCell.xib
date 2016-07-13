@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="YMSCameraCell" id="gTV-IL-0wX" customClass="YMSCameraCell">
+            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FeD-8l-4Eq" userLabel="CameraView">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hu-T5-ao2">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YMSIconCamera" translatesAutoresizingMaskIntoConstraints="NO" id="983-MO-wus">
+                        <rect key="frame" x="10" y="12" width="29" height="25"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="FeD-8l-4Eq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1VR-lT-1In"/>
+                <constraint firstItem="7hu-T5-ao2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1X8-ZS-HTK"/>
+                <constraint firstItem="7hu-T5-ao2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8Zo-5B-x6i"/>
+                <constraint firstAttribute="bottom" secondItem="FeD-8l-4Eq" secondAttribute="bottom" id="ECh-uk-VKY"/>
+                <constraint firstItem="983-MO-wus" firstAttribute="centerX" secondItem="FeD-8l-4Eq" secondAttribute="centerX" id="EHS-LF-9CC"/>
+                <constraint firstItem="983-MO-wus" firstAttribute="centerY" secondItem="FeD-8l-4Eq" secondAttribute="centerY" id="IBS-mT-sFT"/>
+                <constraint firstItem="FeD-8l-4Eq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="a41-f1-NbA"/>
+                <constraint firstAttribute="trailing" secondItem="7hu-T5-ao2" secondAttribute="trailing" id="bQs-K6-KV4"/>
+                <constraint firstAttribute="bottom" secondItem="7hu-T5-ao2" secondAttribute="bottom" id="hVs-EK-Ss1"/>
+                <constraint firstAttribute="trailing" secondItem="FeD-8l-4Eq" secondAttribute="trailing" id="jdj-11-Vc0"/>
+            </constraints>
+            <connections>
+                <outlet property="cameraImageView" destination="983-MO-wus" id="JT5-YW-g2S"/>
+                <outlet property="cameraPreviewView" destination="FeD-8l-4Eq" id="MZM-7Z-AXP"/>
+                <outlet property="captureVeilView" destination="7hu-T5-ao2" id="YuL-Kf-hLJ"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="YMSIconCamera" width="29" height="25"/>
+    </resources>
+</document>
