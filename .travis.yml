@@ -1,9 +1,0 @@
-branches:
-  only:
-    - travis-enable
-language: objective-c
-osx_image: xcode7.3
-install:
-- gem install xcpretty -N --no-ri --no-rdoc
-script:
-- set -o pipefail && xcodebuild -project YangMingShanDemo.xcodeproj -scheme YangMingShanDemo -sdk iphonesimulator9.3 -destination 'platform=iOS Simulator,name=iPhone 6s,OS=9.3' build test | xcpretty -c
