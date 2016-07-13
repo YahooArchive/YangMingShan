@@ -27,6 +27,9 @@ YMSPhotoPicker is an UIComponent that let you select mutilple photos from your a
 <img src="media/ymsphotopicker-theme.gif" alt="Square Cash Style Bar" width="300"/>
 
 #### Usage
+
+Add ```NSPhotoLibraryUsageDescription``` and ```NSCameraUsageDescription``` to your App Info.plist to specify the reason for accessing photo library and camera. See [Cocoa Keys](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html) for more details.
+
 #####Objective-C
 
 Import
