@@ -1,6 +1,6 @@
 branches:
   only:
-    - travis-enable
+    - master
 language: objective-c
 osx_image: xcode7.3
 install:
