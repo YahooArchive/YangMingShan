@@ -245,7 +245,7 @@ func photoPickerViewController(picker: YMSPhotoPickerViewController!, didFinishP
 ### Instruction
 
   - **Sample Codes** has been written in YangMangShanDemo project. You can read code to know about "How to implement these features in your project". Just use github to clone YangMingShan to your local disk. It should run well with your Xcode. 
-  - **API Reference Documents** > Please refer the [gh-pages](https://yahoo.github.io/YangMingShan/) in YangMingShan project. (Doc/index.html). We use [appledoc](https://github.com/tomaz/appledoc) to generate this document. The command line we generate current document is
+  - **API Reference Documents** > Please refer the [gh-pages](https://yahoo.github.io/YangMingShan/) in YangMingShan project. We use [appledoc](https://github.com/tomaz/appledoc) to generate this document. The command line we generate current document is
 ```shell
 appledoc --output {TARGET_FOLDER} --project-name "YangMingShan" --project-company "Yahoo" --company-id "com.yahoo" --no-warn-undocumented-object --keep-intermediate-files --ignore Private {YANGMINGSHAN_LOCOCAL_ROPOSITORY}
 
