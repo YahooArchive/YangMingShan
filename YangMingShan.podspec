@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary      = 'The collection of useful UI components that inspired by Yahoo apps.'
   s.homepage     = 'https://github.com/yahoo/YangMingShan'
   s.license      = "Yahoo! Inc. BSD license"
-  s.source       = { :git => 'git@github.com:yahoo/YangMingShan.git', :tag => s.version.to_s }
+  s.source       = { :git => 'https://github.com/yahoo/YangMingShan.git', :tag => s.version.to_s }
   s.requires_arc = true
   s.frameworks   = ['Foundation', 'UIKit', 'QuartzCore']
   s.platform     = :ios, '8.0'
