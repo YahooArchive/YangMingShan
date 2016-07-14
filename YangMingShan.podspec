@@ -13,8 +13,8 @@ Pod::Spec.new do |s|
   s.default_subspec = 'YMSPhotoPicker'
 
   s.subspec 'YMSPhotoPicker' do |ss|
-    ss.source_files = ['YangMingShan/YMSPhotoPicker/*.{h,m}', 'YangMingShan/YMSPhotoPicker/**/*.{h,m}']
-    ss.resources    = ['YangMingShan/YMSPhotoPicker/*.xib', 'YangMingShan/YMSPhotoPicker/YMSPhotoPickerAssets.xcassets']
+    ss.source_files = 'YangMingShan/YMSPhotoPicker/**/*.{h,m}'
+    ss.resources    = ['YangMingShan/YMSPhotoPicker/**/*.xib', 'YangMingShan/YMSPhotoPicker/YMSPhotoPickerAssets.xcassets']
     ss.frameworks   = ['Photos', 'AVFoundation']
   end
 
