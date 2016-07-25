@@ -42,10 +42,8 @@ static const CGFloat YMSUnhightedAnimationSpringVelocity = 6.0;
     self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
     [self addGestureRecognizer:self.longPressGestureRecognizer];
 
-    self.selectionOrderLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     self.selectionOrderLabel.textColor = [YMSPhotoPickerTheme sharedInstance].orderLabelTextColor;
 
-    self.selectionOrderLabel.layer.borderWidth = 1.0;
     self.selectionVeil.layer.borderWidth = 4.0;
 
     self.selectionOrderLabel.backgroundColor = [YMSPhotoPickerTheme sharedInstance].orderTintColor;

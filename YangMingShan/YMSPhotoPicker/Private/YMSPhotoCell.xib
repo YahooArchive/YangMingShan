@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,7 +21,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="pHv-Ky-9IK">
-                        <rect key="frame" x="18" y="8" width="24" height="24"/>
+                        <rect key="frame" x="24" y="2" width="24" height="24"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="AHi-eQ-HpO"/>
@@ -30,11 +30,6 @@
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="12"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -43,8 +38,8 @@
                 <constraint firstAttribute="trailing" secondItem="5Nu-Tc-xoT" secondAttribute="trailing" id="7Ow-8j-oyf"/>
                 <constraint firstAttribute="bottom" secondItem="5Nu-Tc-xoT" secondAttribute="bottom" id="Ia0-V1-z0N"/>
                 <constraint firstItem="5Nu-Tc-xoT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="LQI-8J-ihA"/>
-                <constraint firstItem="pHv-Ky-9IK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="MfB-78-YZz"/>
-                <constraint firstAttribute="trailing" secondItem="pHv-Ky-9IK" secondAttribute="trailing" constant="8" id="YnI-6m-rM0"/>
+                <constraint firstItem="pHv-Ky-9IK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="MfB-78-YZz"/>
+                <constraint firstAttribute="trailing" secondItem="pHv-Ky-9IK" secondAttribute="trailing" constant="2" id="YnI-6m-rM0"/>
                 <constraint firstItem="5Nu-Tc-xoT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Zzh-Mj-OTv"/>
                 <constraint firstAttribute="trailing" secondItem="fuA-cX-VUz" secondAttribute="trailing" id="cDk-je-E9K"/>
                 <constraint firstAttribute="bottom" secondItem="fuA-cX-VUz" secondAttribute="bottom" id="kwD-cK-9OX"/>
