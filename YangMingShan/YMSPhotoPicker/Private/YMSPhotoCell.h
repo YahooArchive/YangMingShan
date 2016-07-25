@@ -5,6 +5,7 @@
 //  Copyright 2016 Yahoo Inc.
 //  Licensed under the terms of the BSD license. Please see LICENSE file in the project root for terms.
 //
+//  Part of this code was derived from code authored by David Robles
 
 #import <Photos/Photos.h>
 #import <UIKit/UIKit.h>

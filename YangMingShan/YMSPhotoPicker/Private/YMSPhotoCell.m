@@ -2,9 +2,11 @@
 //  YMSPhotoCell.m
 //  YangMingShan
 //
-// Copyright 2016 Yahoo Inc.
-// Licensed under the terms of the BSD license. Please see LICENSE file in the project root for terms.
+//  Copyright 2016 Yahoo Inc.
+//  Licensed under the terms of the BSD license. Please see LICENSE file in the project root for terms.
 //
+//  Part of this code was derived from code authored by David Robles
+//  This code includes sample code from the following StackOverflow posting: http://stackoverflow.com/questions/10497397/from-catransform3d-to-cgaffinetransform
 
 #import "YMSPhotoCell.h"
 
