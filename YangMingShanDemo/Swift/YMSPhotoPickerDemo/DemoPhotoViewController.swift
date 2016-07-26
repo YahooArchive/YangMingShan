@@ -20,17 +20,16 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
 
             pickerViewController.numberOfPhotoToSelect = UInt(self.numberOfPhotoSelectionTextField.text!)!
 
-            let customColor = UIColor.init(red: 64.0/255.0, green: 0.0, blue: 144.0/255.0, alpha: 1.0)
-            let customCameraColor = UIColor.init(red: 86.0/255.0, green: 1.0/255.0, blue: 236.0/255.0, alpha: 1.0)
+            let customColor = UIColor.init(red:248.0/255.0, green:217.0/255.0, blue:44.0/255.0, alpha:1.0)
 
-            pickerViewController.theme.titleLabelTextColor = UIColor.whiteColor()
+            pickerViewController.theme.titleLabelTextColor = UIColor.blackColor()
             pickerViewController.theme.navigationBarBackgroundColor = customColor
-            pickerViewController.theme.tintColor = UIColor.whiteColor()
-            pickerViewController.theme.orderTintColor = customCameraColor
-            pickerViewController.theme.orderLabelTextColor = UIColor.whiteColor()
-            pickerViewController.theme.cameraVeilColor = customCameraColor
+            pickerViewController.theme.tintColor = UIColor.blackColor()
+            pickerViewController.theme.orderTintColor = customColor
+            pickerViewController.theme.orderLabelTextColor = UIColor.blackColor()
+            pickerViewController.theme.cameraVeilColor = customColor
             pickerViewController.theme.cameraIconColor = UIColor.whiteColor()
-            pickerViewController.theme.statusBarStyle = .LightContent
+            pickerViewController.theme.statusBarStyle = .Default
 
             self.yms_presentCustomAlbumPhotoView(pickerViewController, delegate: self)
         }
