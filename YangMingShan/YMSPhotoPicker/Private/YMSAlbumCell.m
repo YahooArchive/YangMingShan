@@ -46,4 +46,10 @@
     _photosCount = photosCount;    
 }
 
+- (void)setFontForAlbumNameAndCount:(UIFont *)fontForAlbumNameAndCount
+{
+    self.photosCountLabel.font = fontForAlbumNameAndCount;
+    self.albumNameLabel.font = fontForAlbumNameAndCount;
+}
+
 @end

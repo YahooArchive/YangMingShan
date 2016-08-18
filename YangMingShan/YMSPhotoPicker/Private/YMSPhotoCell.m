@@ -83,6 +83,11 @@ static const CGFloat YMSUnhightedAnimationSpringVelocity = 6.0;
     [self cancelImageRequest];
 }
 
+- (void)setFontForSelectionOrder:(UIFont *)fontForSelectionOrder
+{
+    self.selectionOrderLabel.font = fontForSelectionOrder;
+}
+
 #pragma mark - Publics
 
 - (void)loadPhotoWithManager:(PHImageManager *)manager forAsset:(PHAsset *)asset targetSize:(CGSize)size

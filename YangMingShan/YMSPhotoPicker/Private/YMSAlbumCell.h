@@ -36,5 +36,11 @@
  *
  */
 @property (nonatomic, assign) NSUInteger photosCount;
+
+/**
+ *  @brief Set the font used by the two labels displaying album name and the album count
+ *
+ */
+@property (nonatomic, assign) UIFont* fontForAlbumNameAndCount;
  
 @end

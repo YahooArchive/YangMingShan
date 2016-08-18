@@ -126,6 +126,7 @@ static const CGFloat YMSNavigationBarOriginalTopSpace = 0.0;
     PHCollection *collection = collectionItem[@"collection"];
     
     cell.albumName = collection.localizedTitle;
+    cell.fontForAlbumNameAndCount = [YMSPhotoPickerTheme sharedInstance].fontForAlbumNameAndCount ?: [UIFont systemFontOfSize:18.0];
     cell.photosCount = fetchResult.count;
     if ([collectionItem isEqual:self.selectedCollectionItem]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
