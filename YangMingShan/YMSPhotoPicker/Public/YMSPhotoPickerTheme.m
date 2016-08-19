@@ -41,6 +41,10 @@
     self.orderLabelTextColor = self.navigationBarBackgroundColor = self.cameraIconColor = [UIColor whiteColor];
     self.titleLabelTextColor = [UIColor blackColor];
     self.statusBarStyle = UIStatusBarStyleDefault;
+    self.titleLabelFont = [UIFont systemFontOfSize:18.0];
+    self.albumNameLabelFont = [UIFont systemFontOfSize:18.0 weight:UIFontWeightLight];
+    self.photosCountLabelFont = [UIFont systemFontOfSize:18.0 weight:UIFontWeightLight];
+    self.selectionOrderLabelFont = [UIFont systemFontOfSize:17.0];
 }
 
 @end

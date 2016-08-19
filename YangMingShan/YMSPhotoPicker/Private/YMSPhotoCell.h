@@ -34,12 +34,6 @@
 @property (nonatomic, assign) NSUInteger selectionOrder;
 
 /**
- *  @brief Set the font used for the number in the bottom right corner of the cell, specifying which order that photo was picked in
- *
- */
-@property (nonatomic, assign) UIFont *fontForSelectionOrder;
-
-/**
  * @brief Load the photo from photo library and display it on cell.
  *
  * @param manager Reuse current image manager from photo picker.

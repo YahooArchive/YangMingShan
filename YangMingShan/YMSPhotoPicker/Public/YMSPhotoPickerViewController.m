@@ -203,7 +203,6 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         YMSPhotoCell *photoCell = (YMSPhotoCell *)cell;
         [photoCell setNeedsAnimateSelection];
         photoCell.selectionOrder = self.selectedPhotos.count+1;
-        photoCell.fontForSelectionOrder = self.theme.fontForPhotoSelectionOrder;
     }
     return YES;
 }

@@ -28,12 +28,6 @@
 @property (nonatomic, strong) UIColor *titleLabelTextColor;
 
 /**
- * @brief Specify a UIFont that you want to apply on title label text and drop down arrow image in the middle of navigation bar to display current album localized name.
- *
- */
-@property (nonatomic, strong) UIFont *titleLabelFont;
-
-/**
  * @brief Describe a specific UIColor that you want to apply on whole picker view controllers' navigation bar.
  *
  */
@@ -70,15 +64,27 @@
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 
 /**
- * @brief Specify a UIFont that you want to apply to the table view showing album and album count information
+ * @brief Describe a specify UIFont that you want to apply on title label text and drop down arrow image in the middle of navigation bar to display current album localized name.
  *
  */
-@property (nonatomic, assign) UIFont *fontForAlbumNameAndCount;
+@property (nonatomic, strong) UIFont *titleLabelFont;
 
 /**
- *  @brief Specify a UIFont that you want to apply to the number in the bottom right of photo cells after they're selected, denoting order of selection
+ * @brief Describe a specify UIFont that you want to apply to the table view showing album localized name.
+ *
  */
-@property (nonatomic, assign) UIFont *fontForPhotoSelectionOrder;
+@property (nonatomic, strong) UIFont *albumNameLabelFont;
+
+/**
+ * @brief Describe a specify UIFont that you want to apply to the table view showing photo count insdie album.
+ *
+ */
+@property (nonatomic, strong) UIFont *photosCountLabelFont;
+
+/**
+ * @brief Describe a specify UIFont that you want to apply to the number in the bottom right of photo cells after they're selected, denoting order of selection.
+ */
+@property (nonatomic, strong) UIFont *selectionOrderLabelFont;
 
 /**
  * @brief Getting a shared instance of YMSPhotoPickerTheme.
