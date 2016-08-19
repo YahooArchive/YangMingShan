@@ -45,6 +45,7 @@ static const CGFloat YMSUnhightedAnimationSpringVelocity = 6.0;
     [self addGestureRecognizer:self.longPressGestureRecognizer];
 
     self.selectionOrderLabel.textColor = [YMSPhotoPickerTheme sharedInstance].orderLabelTextColor;
+    self.selectionOrderLabel.font = [YMSPhotoPickerTheme sharedInstance].selectionOrderLabelFont;
 
     self.selectionVeil.layer.borderWidth = 4.0;
 

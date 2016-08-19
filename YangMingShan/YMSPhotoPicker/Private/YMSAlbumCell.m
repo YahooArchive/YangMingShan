@@ -7,6 +7,7 @@
 //
 
 #import "YMSAlbumCell.h"
+#import "YMSPhotoPickerTheme.h"
 
 @interface YMSAlbumCell()
 
@@ -17,6 +18,14 @@
 @end
 
 @implementation YMSAlbumCell
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
+    self.photosCountLabel.font = [YMSPhotoPickerTheme sharedInstance].photosCountLabelFont;
+    self.albumNameLabel.font = [YMSPhotoPickerTheme sharedInstance].albumNameLabelFont;
+}
 
 - (NSString *)YMS_cellIdentifier
 {
