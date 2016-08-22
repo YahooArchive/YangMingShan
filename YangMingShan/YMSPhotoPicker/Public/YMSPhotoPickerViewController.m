@@ -260,6 +260,10 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.item == 0) {
+        // Camera cell doesn't need to be deselected
+        return;
+    }
     PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
     PHAsset *asset = fetchResult[indexPath.item-1];
 
