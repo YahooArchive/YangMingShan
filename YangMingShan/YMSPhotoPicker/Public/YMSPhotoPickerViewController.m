@@ -195,10 +195,11 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.canAddPhoto) {
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    if (!self.canAddPhoto
+        || cell.isSelected) {
         return NO;
     }
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     if ([cell isKindOfClass:[YMSPhotoCell class]]) {
         YMSPhotoCell *photoCell = (YMSPhotoCell *)cell;
         [photoCell setNeedsAnimateSelection];

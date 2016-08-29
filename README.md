@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/yahoo/YangMingShan.svg?branch=master)](https://travis-ci.org/yahoo/YangMingShan)
 [![CocoaPods](https://img.shields.io/cocoapods/v/YangMingShan.svg?maxAge=2592000?style=flat-square)](https://cocoapods.org/?q=yangmingshan)
  
-YangMingShan is a collection of iOS UI components that we created while building Yahoo apps. The reason we open source it is to share useful and common componets with the community. Feel free to open the feature request ticket for new UI component you see on Yahoo apps or send pull-request to benefit open source community.
+YangMingShan is a collection of iOS UI components that we created while building Yahoo apps. The reason we open source it is to share useful and common components with the community. Feel free to open the feature request ticket for new UI component you see on Yahoo apps or send pull-request to benefit open source community.
 
 Installation
 -------
