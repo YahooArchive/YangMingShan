@@ -37,6 +37,11 @@
  */
 @property (nonatomic, readonly) YMSPhotoPickerTheme *theme;
 
+/**
+ *  @brief Use this property to customize the returned image size for single selection. Default value is CGSizeZero which mean no limition.
+ */
+@property (nonatomic, assign) CGSize sizeForSingleImage;
+
 @end
 
 /**

@@ -61,6 +61,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     if (self) {
         self.selectedPhotos = [NSMutableArray array];
         self.numberOfPhotoToSelect = 1;
+        self.sizeForSingleImage = CGSizeZero;
     }
     return self;
 }
@@ -224,7 +225,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         options.networkAccessAllowed = YES;
         options.resizeMode = PHImageRequestOptionsResizeModeExact;
         
-        CGSize targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
+        CGSize targetSize = CGSizeEqualToSize(self.sizeForSingleImage, CGSizeZero) ? CGSizeMake(asset.pixelWidth, asset.pixelHeight) : self.sizeForSingleImage;
 
         [self.imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
             if (image && [self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {

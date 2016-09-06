@@ -63,7 +63,9 @@ static NSString * const CellIdentifier = @"imageCellIdentifier";
     }
     else {
         [[YMSPhotoPickerTheme sharedInstance] reset];
-        [self yms_presentAlbumPhotoViewWithDelegate:self];
+        YMSPhotoPickerViewController *pickerViewController = [[YMSPhotoPickerViewController alloc] init];
+        pickerViewController.sizeForSingleImage = CGSizeMake(1280, 1280); // Test for new property
+        [self yms_presentCustomAlbumPhotoView:pickerViewController delegate:self];
     }
 }
 
