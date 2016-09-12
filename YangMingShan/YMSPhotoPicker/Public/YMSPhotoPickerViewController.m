@@ -61,7 +61,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     if (self) {
         self.selectedPhotos = [NSMutableArray array];
         self.numberOfPhotoToSelect = 1;
-        self.sizeForSingleImage = CGSizeZero;
+        self.shouldReturnAssetForSingleSelection = NO;
     }
     return self;
 }
@@ -214,6 +214,12 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     if (indexPath.row == 0) {
         [self yms_presentCameraCaptureViewWithDelegate:self];
     }
+    else if (self.shouldReturnAssetForSingleSelection) {
+        PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
+        PHAsset *asset = fetchResult[indexPath.item-1];
+        [self.selectedPhotos addObject:asset];
+        [self finishPickingPhotos:nil];
+    }
     else if (NO == self.allowsMultipleSelection) {
         
         PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
@@ -225,7 +231,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         options.networkAccessAllowed = YES;
         options.resizeMode = PHImageRequestOptionsResizeModeExact;
         
-        CGSize targetSize = CGSizeEqualToSize(self.sizeForSingleImage, CGSizeZero) ? CGSizeMake(asset.pixelWidth, asset.pixelHeight) : self.sizeForSingleImage;
+        CGSize targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
 
         [self.imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
             if (image && [self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
