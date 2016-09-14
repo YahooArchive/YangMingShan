@@ -13,7 +13,7 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var numberOfPhotoSelectionTextField: UITextField!
 
-    @IBAction func presentPhotoPicker(sender: AnyObject) {
+    @IBAction func presentPhotoPicker(_ sender: AnyObject) {
         if self.numberOfPhotoSelectionTextField.text!.characters.count > 0
         && UInt(self.numberOfPhotoSelectionTextField.text!) != 1 {
             let pickerViewController = YMSPhotoPickerViewController.init()
@@ -22,91 +22,91 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
 
             let customColor = UIColor.init(red:248.0/255.0, green:217.0/255.0, blue:44.0/255.0, alpha:1.0)
 
-            pickerViewController.theme.titleLabelTextColor = UIColor.blackColor()
+            pickerViewController.theme.titleLabelTextColor = UIColor.black
             pickerViewController.theme.navigationBarBackgroundColor = customColor
-            pickerViewController.theme.tintColor = UIColor.blackColor()
+            pickerViewController.theme.tintColor = UIColor.black
             pickerViewController.theme.orderTintColor = customColor
-            pickerViewController.theme.orderLabelTextColor = UIColor.blackColor()
+            pickerViewController.theme.orderLabelTextColor = UIColor.black
             pickerViewController.theme.cameraVeilColor = customColor
-            pickerViewController.theme.cameraIconColor = UIColor.whiteColor()
-            pickerViewController.theme.statusBarStyle = .Default
+            pickerViewController.theme.cameraIconColor = UIColor.white
+            pickerViewController.theme.statusBarStyle = .default
 
             self.yms_presentCustomAlbumPhotoView(pickerViewController, delegate: self)
         }
         else {
-            self.yms_presentAlbumPhotoViewWithDelegate(self)
+            self.yms_presentAlbumPhotoView(with: self)
         }
     }
     
-    func deletePhotoImage(sender: UIButton!) {
+    func deletePhotoImage(_ sender: UIButton!) {
         let mutableImages: NSMutableArray! = NSMutableArray.init(array: images)
-        mutableImages.removeObjectAtIndex(sender.tag)
+        mutableImages.removeObject(at: sender.tag)
 
         self.images = NSArray.init(array: mutableImages)
         self.collectionView.performBatchUpdates({ 
-            self.collectionView.deleteItemsAtIndexPaths([NSIndexPath.init(forItem: sender.tag, inSection: 0)])
+            self.collectionView.deleteItems(at: [IndexPath.init(item: sender.tag, section: 0)])
             }, completion: nil)
     }
 
     override func viewDidLoad() {
-        let barButtonItem: UIBarButtonItem! = UIBarButtonItem.init(barButtonSystemItem: .Organize, target: self, action:#selector(presentPhotoPicker(_:)))
+        let barButtonItem: UIBarButtonItem! = UIBarButtonItem.init(barButtonSystemItem: .organize, target: self, action:#selector(presentPhotoPicker(_:)))
         self.navigationItem.rightBarButtonItem = barButtonItem
 
-        self.collectionView.registerNib(UINib.init(nibName: "DemoImageViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
+        self.collectionView.register(UINib.init(nibName: "DemoImageViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         
     }
 
     // MARK: - YMSPhotoPickerViewControllerDelegate
 
-    func photoPickerViewControllerDidReceivePhotoAlbumAccessDenied(picker: YMSPhotoPickerViewController!) {
-        let alertController = UIAlertController.init(title: "Allow photo album access?", message: "Need your permission to access photo albumbs", preferredStyle: .Alert)
-        let dismissAction = UIAlertAction.init(title: "Cancel", style: .Cancel, handler: nil)
-        let settingsAction = UIAlertAction.init(title: "Settings", style: .Default) { (action) in
-            UIApplication.sharedApplication().openURL(NSURL.init(string: UIApplicationOpenSettingsURLString)!)
+    func photoPickerViewControllerDidReceivePhotoAlbumAccessDenied(_ picker: YMSPhotoPickerViewController!) {
+        let alertController = UIAlertController.init(title: "Allow photo album access?", message: "Need your permission to access photo albumbs", preferredStyle: .alert)
+        let dismissAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        let settingsAction = UIAlertAction.init(title: "Settings", style: .default) { (action) in
+            UIApplication.shared.openURL(URL.init(string: UIApplicationOpenSettingsURLString)!)
         }
         alertController.addAction(dismissAction)
         alertController.addAction(settingsAction)
 
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 
-    func photoPickerViewControllerDidReceiveCameraAccessDenied(picker: YMSPhotoPickerViewController!) {
-        let alertController = UIAlertController.init(title: "Allow camera album access?", message: "Need your permission to take a photo", preferredStyle: .Alert)
-        let dismissAction = UIAlertAction.init(title: "Cancel", style: .Cancel, handler: nil)
-        let settingsAction = UIAlertAction.init(title: "Settings", style: .Default) { (action) in
-            UIApplication.sharedApplication().openURL(NSURL.init(string: UIApplicationOpenSettingsURLString)!)
+    func photoPickerViewControllerDidReceiveCameraAccessDenied(_ picker: YMSPhotoPickerViewController!) {
+        let alertController = UIAlertController.init(title: "Allow camera album access?", message: "Need your permission to take a photo", preferredStyle: .alert)
+        let dismissAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        let settingsAction = UIAlertAction.init(title: "Settings", style: .default) { (action) in
+            UIApplication.shared.openURL(URL.init(string: UIApplicationOpenSettingsURLString)!)
         }
         alertController.addAction(dismissAction)
         alertController.addAction(settingsAction)
 
         // The access denied of camera is always happened on picker, present alert on it to follow the view hierarchy
-        picker.presentViewController(alertController, animated: true, completion: nil)
+        picker.present(alertController, animated: true, completion: nil)
     }
 
-    func photoPickerViewController(picker: YMSPhotoPickerViewController!, didFinishPickingImage image: UIImage!) {
-        picker.dismissViewControllerAnimated(true) {
+    func photoPickerViewController(_ picker: YMSPhotoPickerViewController!, didFinishPicking image: UIImage!) {
+        picker.dismiss(animated: true) {
             self.images = [image]
             self.collectionView.reloadData()
         }
     }
 
-    func photoPickerViewController(picker: YMSPhotoPickerViewController!, didFinishPickingImages photoAssets: [PHAsset]!) {
+    func photoPickerViewController(_ picker: YMSPhotoPickerViewController!, didFinishPickingImages photoAssets: [PHAsset]!) {
 
-        picker.dismissViewControllerAnimated(true) {
+        picker.dismiss(animated: true) {
             let imageManager = PHImageManager.init()
             let options = PHImageRequestOptions.init()
-            options.deliveryMode = .HighQualityFormat
-            options.resizeMode = .Exact
-            options.synchronous = true
+            options.deliveryMode = .highQualityFormat
+            options.resizeMode = .exact
+            options.isSynchronous = true
 
             let mutableImages: NSMutableArray! = []
 
             for asset: PHAsset in photoAssets
             {
-                let scale = UIScreen.mainScreen().scale
-                let targetSize = CGSizeMake((CGRectGetWidth(self.collectionView.bounds) - 20*2) * scale, (CGRectGetHeight(self.collectionView.bounds) - 20*2) * scale)
-                imageManager.requestImageForAsset(asset, targetSize: targetSize, contentMode: .AspectFill, options: options, resultHandler: { (image, info) in
-                    mutableImages.addObject(image!)
+                let scale = UIScreen.main.scale
+                let targetSize = CGSize(width: (self.collectionView.bounds.width - 20*2) * scale, height: (self.collectionView.bounds.height - 20*2) * scale)
+                imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options, resultHandler: { (image, info) in
+                    mutableImages.add(image!)
                 })
             }
 
@@ -117,26 +117,26 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
 
     // MARK: - UICollectionViewDataSource
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.images.count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: DemoImageViewCell! = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! DemoImageViewCell
-        cell.photoImageView.image =  self.images.objectAtIndex(indexPath.item) as? UIImage
-        cell.deleteButton.tag = indexPath.item
-        cell.deleteButton.addTarget(self, action: #selector(DemoPhotoViewController.deletePhotoImage(_:)), forControlEvents: .TouchUpInside)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: DemoImageViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! DemoImageViewCell
+        cell.photoImageView.image =  self.images.object(at: (indexPath as NSIndexPath).item) as? UIImage
+        cell.deleteButton.tag = (indexPath as NSIndexPath).item
+        cell.deleteButton.addTarget(self, action: #selector(DemoPhotoViewController.deletePhotoImage(_:)), for: .touchUpInside)
 
         return cell
     }
 
     // MARK: - UICollectionViewDelegateFlowLayout
     
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                           layout collectionViewLayout: UICollectionViewLayout,
-                                 sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+                                 sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
     {
-        return CGSizeMake(CGRectGetWidth(collectionView.bounds), CGRectGetHeight(collectionView.bounds))
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
 
 }

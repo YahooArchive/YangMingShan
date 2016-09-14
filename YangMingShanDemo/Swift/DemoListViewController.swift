@@ -34,14 +34,14 @@ class DemoListViewController: UITableViewController {
 
     // MARK: - UITableViewDataSources
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.listArray.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
 
-        let cellInfo = self.listArray[indexPath.row]
+        let cellInfo = self.listArray[(indexPath as NSIndexPath).row]
 
         cell.textLabel?.text = cellInfo["title"]
         cell.detailTextLabel?.text = cellInfo["description"]
@@ -51,9 +51,9 @@ class DemoListViewController: UITableViewController {
 
     // MARK: - UITableViewDelegate
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cellInfo = self.listArray[indexPath.row]
-        self.performSegueWithIdentifier(cellInfo["segueIdentifier"]!, sender: self)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellInfo = self.listArray[(indexPath as NSIndexPath).row]
+        self.performSegue(withIdentifier: cellInfo["segueIdentifier"]!, sender: self)
     }
 }
 
