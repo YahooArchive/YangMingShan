@@ -364,13 +364,18 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 #pragma mark - UIImagePickerControllerDelegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     [picker dismissViewControllerAnimated:YES completion:^{
 
         // Enable camera preview when user allow it first time
         if (![self.session isRunning]) {
             [self.photoCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
+        }
+
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        if (![image isKindOfClass:[UIImage class]]) {
+            return;
         }
 
         // Save the image to Photo Album
