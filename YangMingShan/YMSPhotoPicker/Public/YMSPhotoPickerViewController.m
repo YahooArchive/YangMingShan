@@ -61,6 +61,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     if (self) {
         self.selectedPhotos = [NSMutableArray array];
         self.numberOfPhotoToSelect = 1;
+        self.shouldReturnImageForSingleSelection = YES;
     }
     return self;
 }
@@ -214,26 +215,32 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         [self yms_presentCameraCaptureViewWithDelegate:self];
     }
     else if (NO == self.allowsMultipleSelection) {
-        
-        PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
-        PHAsset *asset = fetchResult[indexPath.item-1];
-
-        // Prepare the options to pass when fetching the live photo.
-        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-        options.networkAccessAllowed = YES;
-        options.resizeMode = PHImageRequestOptionsResizeModeExact;
-        
-        CGSize targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
-
-        [self.imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
-            if (image && [self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
-                [self.delegate photoPickerViewController:self didFinishPickingImage:[self yms_orientationNormalizedImage:image]];
-            }
-            else {
-                [self dismiss:nil];
-            }
-        }];
+        if (NO == self.shouldReturnImageForSingleSelection) {
+            PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
+            PHAsset *asset = fetchResult[indexPath.item-1];
+            [self.selectedPhotos addObject:asset];
+            [self finishPickingPhotos:nil];
+        } else {
+            PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
+            PHAsset *asset = fetchResult[indexPath.item-1];
+            
+            // Prepare the options to pass when fetching the live photo.
+            PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+            options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+            options.networkAccessAllowed = YES;
+            options.resizeMode = PHImageRequestOptionsResizeModeExact;
+            
+            CGSize targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
+            
+            [self.imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
+                if (image && [self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
+                    [self.delegate photoPickerViewController:self didFinishPickingImage:[self yms_orientationNormalizedImage:image]];
+                }
+                else {
+                    [self dismiss:nil];
+                }
+            }];
+        }
     }
     else {
         PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];

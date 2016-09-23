@@ -37,6 +37,11 @@
  */
 @property (nonatomic, readonly) YMSPhotoPickerTheme *theme;
 
+/**
+ *  @brief Use this property to customize the returned item type for single selection. YES for UIImage, NO for PHAsset. Default value is YES.
+ */
+@property (nonatomic, assign) BOOL shouldReturnImageForSingleSelection;
+
 @end
 
 /**
