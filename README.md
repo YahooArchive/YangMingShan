@@ -190,29 +190,29 @@ self.yms_presentCustomAlbumPhotoView(pickerViewController, delegate: self)
 Implement photoPickerViewControllerDidReceivePhotoAlbumAccessDenied(picker:) and photoPickerViewControllerDidReceiveCameraAccessDenied(picker:) to obesrve photo album and camera access denied occur
 
 ```swift
-func photoPickerViewControllerDidReceivePhotoAlbumAccessDenied(picker: YMSPhotoPickerViewController!) {
-    let alertController = UIAlertController.init(title: "Allow photo album access?", message: "Need your permission to access photo albumbs", preferredStyle: .Alert)
-    let dismissAction = UIAlertAction.init(title: "Cancel", style: .Cancel, handler: nil)
-    let settingsAction = UIAlertAction.init(title: "Settings", style: .Default) { (action) in
-        UIApplication.sharedApplication().openURL(NSURL.init(string: UIApplicationOpenSettingsURLString)!)
+func photoPickerViewControllerDidReceivePhotoAlbumAccessDenied(_ picker: YMSPhotoPickerViewController!) {
+    let alertController = UIAlertController(title: "Allow photo album access?", message: "Need your permission to access photo albums", preferredStyle: .alert)
+    let dismissAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let settingsAction = UIAlertAction(title: "Settings", style: .default) { (action) in
+        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
     }
     alertController.addAction(dismissAction)
     alertController.addAction(settingsAction)
-
-    self.presentViewController(alertController, animated: true, completion: nil)
+    
+    self.present(alertController, animated: true, completion: nil)
 }
 
-func photoPickerViewControllerDidReceiveCameraAccessDenied(picker: YMSPhotoPickerViewController!) {
-    let alertController = UIAlertController.init(title: "Allow camera album access?", message: "Need your permission to take a photo", preferredStyle: .Alert)
-    let dismissAction = UIAlertAction.init(title: "Cancel", style: .Cancel, handler: nil)
-    let settingsAction = UIAlertAction.init(title: "Settings", style: .Default) { (action) in
-        UIApplication.sharedApplication().openURL(NSURL.init(string: UIApplicationOpenSettingsURLString)!)
+func photoPickerViewControllerDidReceiveCameraAccessDenied(_ picker: YMSPhotoPickerViewController!) {
+    let alertController = UIAlertController(title: "Allow camera album access?", message: "Need your permission to take a photo", preferredStyle: .alert)
+    let dismissAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let settingsAction = UIAlertAction(title: "Settings", style: .default) { (action) in
+        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
     }
     alertController.addAction(dismissAction)
     alertController.addAction(settingsAction)
-
+    
     // The access denied of camera is always happened on picker, present alert on it to follow the view hierarchy
-    picker.presentViewController(alertController, animated: true, completion: nil)
+    picker.present(alertController, animated: true, completion: nil)
 }
 ```
 
