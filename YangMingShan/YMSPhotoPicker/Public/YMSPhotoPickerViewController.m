@@ -19,7 +19,6 @@
 
 static NSString * const YMSCameraCellNibName = @"YMSCameraCell";
 static NSString * const YMSPhotoCellNibName = @"YMSPhotoCell";
-static const NSUInteger YMSNumberOfPhotoColumns = 3;
 static const CGFloat YMSNavigationBarMaxTopSpace = 44.0;
 static const CGFloat YMSNavigationBarOriginalTopSpace = 0.0;
 static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
@@ -137,6 +136,11 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 - (YMSPhotoPickerTheme *)theme
 {
     return [YMSPhotoPickerTheme sharedInstance];
+}
+
+- (YMSPhotoPickerConfiguration *)configuration
+{
+    return [YMSPhotoPickerConfiguration sharedInstance];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -568,11 +572,12 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     CGFloat minimumInteritemSpacing = layout.minimumInteritemSpacing;
     UIEdgeInsets sectionInset = layout.sectionInset;
 
-    CGFloat totalInteritemSpacing = MAX((YMSNumberOfPhotoColumns - 1), 0) * minimumInteritemSpacing;
+    NSUInteger numberOfColumns = self.configuration.numberOfColumns;
+    CGFloat totalInteritemSpacing = MAX((numberOfColumns - 1), 0) * minimumInteritemSpacing;
     CGFloat totalHorizontalSpacing = totalInteritemSpacing + sectionInset.left + sectionInset.right;
 
     // Caculate size for portrait mode
-    CGFloat size = (CGFloat)floor((arrangementLength - totalHorizontalSpacing) / YMSNumberOfPhotoColumns);
+    CGFloat size = (CGFloat)floor((arrangementLength - totalHorizontalSpacing) / numberOfColumns);
     self.cellPortraitSize = CGSizeMake(size, size);
 
     // Caculate size for landsacpe mode

@@ -46,6 +46,7 @@ static NSString * const CellIdentifier = @"imageCellIdentifier";
         && [numberOfPhotoSelectionString integerValue] != 1) {
         // Custom selection number
         YMSPhotoPickerViewController *pickerViewController = [[YMSPhotoPickerViewController alloc] init];
+        pickerViewController.configuration.numberOfColumns = 4;
         pickerViewController.numberOfPhotoToSelect = [numberOfPhotoSelectionString integerValue];
 
         UIColor *customColor = [UIColor colorWithRed:248.0/255.0 green:217.0/255.0 blue:44.0/255.0 alpha:1.0];

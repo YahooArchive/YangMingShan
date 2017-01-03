@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01B081A01E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B0819F1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m */; };
 		511BC6051D13B27400738FD4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BC6021D13B27400738FD4 /* AppDelegate.m */; };
 		511BC6061D13B27400738FD4 /* DemoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BC6041D13B27400738FD4 /* DemoListViewController.m */; };
 		511BC60F1D13B2C400738FD4 /* DemoImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BC60C1D13B2C400738FD4 /* DemoImageViewCell.m */; };
@@ -80,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01B0819E1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSPhotoPickerConfiguration.h; path = Public/YMSPhotoPickerConfiguration.h; sourceTree = "<group>"; };
+		01B0819F1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSPhotoPickerConfiguration.m; path = Public/YMSPhotoPickerConfiguration.m; sourceTree = "<group>"; };
 		511BC6011D13B27400738FD4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ObjC/AppDelegate.h; sourceTree = "<group>"; };
 		511BC6021D13B27400738FD4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ObjC/AppDelegate.m; sourceTree = "<group>"; };
 		511BC6031D13B27400738FD4 /* DemoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoListViewController.h; path = ObjC/DemoListViewController.h; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				51FF31EB1D129B4C0029197B /* Categories */,
 				5130733C1D1B8DC000C98705 /* YMSPhotoPickerTheme.h */,
 				5130733D1D1B8DC000C98705 /* YMSPhotoPickerTheme.m */,
+				01B0819E1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.h */,
+				01B0819F1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m */,
 				5130733E1D1B8DC000C98705 /* YMSPhotoPickerViewController.h */,
 				5130733F1D1B8DC000C98705 /* YMSPhotoPickerViewController.m */,
 				513073401D1B8DC000C98705 /* YMSPhotoPickerViewController.xib */,
@@ -510,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				511BC60F1D13B2C400738FD4 /* DemoImageViewCell.m in Sources */,
+				01B081A01E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m in Sources */,
 				5130732E1D1B8D9000C98705 /* UIScrollView+YMSAdditions.m in Sources */,
 				513073361D1B8D9000C98705 /* YMSPhotoCell.m in Sources */,
 				511BC6051D13B27400738FD4 /* AppDelegate.m in Sources */,

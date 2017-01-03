@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 #import "YMSPhotoPickerTheme.h"
+#import "YMSPhotoPickerConfiguration.h"
 
 @protocol YMSPhotoPickerViewControllerDelegate;
 
@@ -41,6 +42,9 @@
  *  @brief Use this property to customize the returned item type for single selection. YES for UIImage, NO for PHAsset. Default value is YES.
  */
 @property (nonatomic, assign) BOOL shouldReturnImageForSingleSelection;
+
+
+@property (nonatomic, readonly) YMSPhotoPickerConfiguration* configuration;
 
 @end
 
