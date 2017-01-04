@@ -37,6 +37,12 @@ typedef NS_ENUM(NSUInteger, YMSPhotoPickerSourceType) {
 @property (nonatomic, assign) YMSPhotoPickerSourceType sourceType;
 
 /**
+ * @brief Describe if the cells should be selected in an ordered way (displaying the picking order).
+ *
+ */
+@property (nonatomic, assign) BOOL orderedSelection;
+
+/**
  * @brief Getting a shared instance of YMSPhotoPickerConfiguration.
  *
  * @return Instance of YMSPhotoPickerConfiguration.

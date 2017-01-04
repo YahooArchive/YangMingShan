@@ -192,7 +192,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
     [cell.longPressGestureRecognizer addTarget:self action:@selector(presentSinglePhoto:)];
 
-    if ([self.selectedPhotos containsObject:asset]) {
+    if (self.configuration.orderedSelection && [self.selectedPhotos containsObject:asset]) {
         NSUInteger selectionIndex = [self.selectedPhotos indexOfObject:asset];
         cell.selectionOrder = selectionIndex+1;
     }
@@ -219,7 +219,9 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     if ([cell isKindOfClass:[YMSPhotoCell class]]) {
         YMSPhotoCell *photoCell = (YMSPhotoCell *)cell;
         [photoCell setNeedsAnimateSelection];
-        photoCell.selectionOrder = self.selectedPhotos.count+1;
+        if (self.configuration.orderedSelection) {
+            photoCell.selectionOrder = self.selectedPhotos.count+1;
+        }
     }
     return YES;
 }
@@ -290,13 +292,14 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
     PHAsset *asset = fetchResult[indexPath.item-1];
 
-    NSUInteger removedIndex = [self.selectedPhotos indexOfObject:asset];
-
-    // Reload order higher than removed cell
-    for (NSInteger i=removedIndex+1; i<self.selectedPhotos.count; i++) {
-        PHAsset *needReloadAsset = self.selectedPhotos[i];
-        YMSPhotoCell *cell = (YMSPhotoCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:[fetchResult indexOfObject:needReloadAsset]+1 inSection:indexPath.section]];
-        cell.selectionOrder = cell.selectionOrder-1;
+    if (self.configuration.orderedSelection) {
+        NSUInteger removedIndex = [self.selectedPhotos indexOfObject:asset];
+        // Reload order higher than removed cell
+        for (NSInteger i=removedIndex+1; i<self.selectedPhotos.count; i++) {
+            PHAsset *needReloadAsset = self.selectedPhotos[i];
+            YMSPhotoCell *cell = (YMSPhotoCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:[fetchResult indexOfObject:needReloadAsset]+1 inSection:indexPath.section]];
+            cell.selectionOrder = cell.selectionOrder-1;
+        }
     }
 
     [self.selectedPhotos removeObject:asset];
@@ -496,8 +499,10 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
             // Display selection
             [self.photoCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:i+1 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-            YMSPhotoCell *cell = (YMSPhotoCell *)[self.photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i+1 inSection:0]];
-            cell.selectionOrder = [self.selectedPhotos indexOfObject:asset]+1;
+            if (self.configuration.orderedSelection) {
+                YMSPhotoCell *cell = (YMSPhotoCell *)[self.photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i+1 inSection:0]];
+                cell.selectionOrder = [self.selectedPhotos indexOfObject:asset]+1;
+            }
 
             selectionNumber--;
             if (selectionNumber == 0) {

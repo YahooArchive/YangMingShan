@@ -26,6 +26,7 @@
 {
     self.numberOfColumns = 3;
     self.sourceType = YMSPhotoPickerSourceTypePhoto;
+    self.orderedSelection = YES;
 }
 
 @end
