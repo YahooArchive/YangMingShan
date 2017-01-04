@@ -15,10 +15,12 @@
 #import "YMSAlbumPickerViewController.h"
 #import "YMSCameraCell.h"
 #import "YMSPhotoCell.h"
-#import "YMSSinglePhotoViewController.h"
+#import "YMSVideoCell.h"
+#import "YMSSingleMediaViewController.h"
 
 static NSString * const YMSCameraCellNibName = @"YMSCameraCell";
 static NSString * const YMSPhotoCellNibName = @"YMSPhotoCell";
+static NSString * const YMSVideoCellNibName = @"YMSVideoCell";
 static const CGFloat YMSNavigationBarMaxTopSpace = 44.0;
 static const CGFloat YMSNavigationBarOriginalTopSpace = 0.0;
 static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
@@ -81,6 +83,8 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     [self.photoCollectionView registerNib:cellNib forCellWithReuseIdentifier:YMSCameraCellNibName];
     cellNib = [UINib nibWithNibName:YMSPhotoCellNibName bundle:[NSBundle bundleForClass:YMSPhotoCell.class]];
     [self.photoCollectionView registerNib:cellNib forCellWithReuseIdentifier:YMSPhotoCellNibName];
+    cellNib = [UINib nibWithNibName:YMSVideoCellNibName bundle:[NSBundle bundleForClass:YMSVideoCell.class]];
+    [self.photoCollectionView registerNib:cellNib forCellWithReuseIdentifier:YMSVideoCellNibName];
     self.photoCollectionView.allowsMultipleSelection = self.allowsMultipleSelection;
 
     [self fetchCollections];
@@ -165,28 +169,35 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         }
         
         return cameraCell;
-    }    
+    }
     
-    YMSPhotoCell *photoCell = [collectionView dequeueReusableCellWithReuseIdentifier:YMSPhotoCellNibName forIndexPath:indexPath];
-
+    YMSPhotoCell *cell;
+    
     PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
-    
     PHAsset *asset = fetchResult[indexPath.item-1];
-    photoCell.representedAssetIdentifier = asset.localIdentifier;
+    
+    if(asset.mediaType == PHAssetMediaTypeImage) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:YMSPhotoCellNibName forIndexPath:indexPath];
+    }
+    else if(asset.mediaType == PHAssetMediaTypeVideo) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:YMSVideoCellNibName forIndexPath:indexPath];
+    }
+
+    cell.representedAssetIdentifier = asset.localIdentifier;
     
     CGFloat scale = [UIScreen mainScreen].scale * YMSPhotoFetchScaleResizingRatio;
-    CGSize imageSize = CGSizeMake(CGRectGetWidth(photoCell.frame) * scale, CGRectGetHeight(photoCell.frame) * scale);
+    CGSize imageSize = CGSizeMake(CGRectGetWidth(cell.frame) * scale, CGRectGetHeight(cell.frame) * scale);
     
-    [photoCell loadPhotoWithManager:self.imageManager forAsset:asset targetSize:imageSize];
+    [cell loadPhotoWithManager:self.imageManager forAsset:asset targetSize:imageSize];
 
-    [photoCell.longPressGestureRecognizer addTarget:self action:@selector(presentSinglePhoto:)];
+    [cell.longPressGestureRecognizer addTarget:self action:@selector(presentSinglePhoto:)];
 
     if ([self.selectedPhotos containsObject:asset]) {
         NSUInteger selectionIndex = [self.selectedPhotos indexOfObject:asset];
-        photoCell.selectionOrder = selectionIndex+1;
+        cell.selectionOrder = selectionIndex+1;
     }
 
-    return photoCell;
+    return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -361,7 +372,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
         PHAsset *asset = fetchResult[indexPath.item-1];
 
-        YMSSinglePhotoViewController *presentedViewController = [[YMSSinglePhotoViewController alloc] initWithPhotoAsset:asset imageManager:self.imageManager dismissalHandler:^(BOOL selected) {
+        YMSSingleMediaViewController *presentedViewController = [[YMSSingleMediaViewController alloc] initWithAsset:asset imageManager:self.imageManager dismissalHandler:^(BOOL selected) {
             if (selected && [self collectionView:self.photoCollectionView shouldSelectItemAtIndexPath:indexPath]) {
                 [self.photoCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
                 [self collectionView:self.photoCollectionView didSelectItemAtIndexPath:indexPath];
@@ -506,6 +517,18 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 {
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
     fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    
+    NSMutableArray *predicates = [NSMutableArray new];
+    if(self.configuration.sourceType == YMSPhotoPickerSourceTypePhoto || self.configuration.sourceType == YMSPhotoPickerSourceTypeBoth) {
+        NSPredicate *photoPredicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeImage];
+        [predicates addObject:photoPredicate];
+    }
+    if(self.configuration.sourceType == YMSPhotoPickerSourceTypeVideo || self.configuration.sourceType == YMSPhotoPickerSourceTypeBoth) {
+        NSPredicate *videoPredicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeVideo];
+        [predicates addObject:videoPredicate];
+    }
+    NSPredicate *predicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
+    fetchOptions.predicate = predicate;
 
     NSMutableArray *allAblums = [NSMutableArray array];
 
@@ -514,15 +537,10 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     __block __weak void (^weakFetchAlbums)(PHFetchResult *collections);
     void (^fetchAlbums)(PHFetchResult *collections);
     weakFetchAlbums = fetchAlbums = ^void(PHFetchResult *collections) {
-        // create fecth options
-        PHFetchOptions *options = [PHFetchOptions new];
-        options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];
-        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-
         for (PHCollection *collection in collections) {
             if ([collection isKindOfClass:[PHAssetCollection class]]) {
                 PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
-                PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
+                PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:fetchOptions];
                 if (assetsFetchResult.count > 0) {
                     [allAblums addObject:@{@"collection": assetCollection
                                            , @"assets": assetsFetchResult}];
@@ -541,13 +559,8 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     fetchAlbums(topLevelUserCollections);
 
     for (PHAssetCollection *collection in smartAlbums) {
-        PHFetchOptions *options = [PHFetchOptions new];
-        options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];
-        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-
-        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:options];
+        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptions];
         if (assetsFetchResult.count > 0) {
-
             // put the "all photos" in the first index
             if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
                 [allAblums insertObject:@{@"collection": collection

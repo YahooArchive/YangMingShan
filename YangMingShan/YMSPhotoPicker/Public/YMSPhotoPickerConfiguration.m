@@ -25,6 +25,7 @@
 - (void)reset
 {
     self.numberOfColumns = 3;
+    self.sourceType = YMSPhotoPickerSourceTypePhoto;
 }
 
 @end

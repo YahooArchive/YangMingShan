@@ -33,7 +33,7 @@
 @property (nonatomic, assign) NSUInteger numberOfPhotoToSelect;
 
 /**
- * @brief Use YMSPhotoPickerTheme to customize the UI appearance for YMSPhotoPickerViewController, YMSSinglePhotoViewController, and YMSAlbumPickerViewController. See YMSPhotoPickerTheme.h for more details.
+ * @brief Use YMSPhotoPickerTheme to customize the UI appearance for YMSPhotoPickerViewController, YMSSingleMediaViewController, and YMSAlbumPickerViewController. See YMSPhotoPickerTheme.h for more details.
  *
  */
 @property (nonatomic, readonly) YMSPhotoPickerTheme *theme;

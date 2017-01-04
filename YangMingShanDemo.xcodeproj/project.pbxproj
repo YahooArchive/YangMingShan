@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		01B081A01E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B0819F1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m */; };
+		01B081A71E1BF28300137F96 /* YMSVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B081A61E1BF28300137F96 /* YMSVideoCell.m */; };
+		01B081A81E1BF28300137F96 /* YMSVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B081A61E1BF28300137F96 /* YMSVideoCell.m */; };
+		01B081AA1E1BF2A000137F96 /* YMSVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B081A91E1BF2A000137F96 /* YMSVideoCell.xib */; };
+		01B081AB1E1BF2A000137F96 /* YMSVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01B081A91E1BF2A000137F96 /* YMSVideoCell.xib */; };
+		01B081AC1E1BF2F600137F96 /* YMSPhotoPickerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B0819F1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m */; };
+		01B081AF1E1D501000137F96 /* PlayerPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B081AE1E1D501000137F96 /* PlayerPreviewView.m */; };
 		511BC6051D13B27400738FD4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BC6021D13B27400738FD4 /* AppDelegate.m */; };
 		511BC6061D13B27400738FD4 /* DemoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BC6041D13B27400738FD4 /* DemoListViewController.m */; };
 		511BC60F1D13B2C400738FD4 /* DemoImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BC60C1D13B2C400738FD4 /* DemoImageViewCell.m */; };
@@ -36,8 +42,8 @@
 		513073351D1B8D9000C98705 /* YMSCameraCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513073271D1B8D9000C98705 /* YMSCameraCell.xib */; };
 		513073361D1B8D9000C98705 /* YMSPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073291D1B8D9000C98705 /* YMSPhotoCell.m */; };
 		513073371D1B8D9000C98705 /* YMSPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130732A1D1B8D9000C98705 /* YMSPhotoCell.xib */; };
-		513073381D1B8D9000C98705 /* YMSSinglePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130732C1D1B8D9000C98705 /* YMSSinglePhotoViewController.m */; };
-		513073391D1B8D9000C98705 /* YMSSinglePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130732D1D1B8D9000C98705 /* YMSSinglePhotoViewController.xib */; };
+		513073381D1B8D9000C98705 /* YMSSingleMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130732C1D1B8D9000C98705 /* YMSSingleMediaViewController.m */; };
+		513073391D1B8D9000C98705 /* YMSSingleMediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130732D1D1B8D9000C98705 /* YMSSingleMediaViewController.xib */; };
 		513073411D1B8DC000C98705 /* UIViewController+YMSPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130733B1D1B8DC000C98705 /* UIViewController+YMSPhotoHelper.m */; };
 		513073421D1B8DC000C98705 /* YMSPhotoPickerTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130733D1D1B8DC000C98705 /* YMSPhotoPickerTheme.m */; };
 		513073431D1B8DC000C98705 /* YMSPhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130733F1D1B8DC000C98705 /* YMSPhotoPickerViewController.m */; };
@@ -56,8 +62,8 @@
 		51687A2C1D335D080071643B /* YMSCameraCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513073271D1B8D9000C98705 /* YMSCameraCell.xib */; };
 		51687A2D1D335D080071643B /* YMSPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073291D1B8D9000C98705 /* YMSPhotoCell.m */; };
 		51687A2E1D335D080071643B /* YMSPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130732A1D1B8D9000C98705 /* YMSPhotoCell.xib */; };
-		51687A2F1D335D080071643B /* YMSSinglePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130732C1D1B8D9000C98705 /* YMSSinglePhotoViewController.m */; };
-		51687A301D335D080071643B /* YMSSinglePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130732D1D1B8D9000C98705 /* YMSSinglePhotoViewController.xib */; };
+		51687A2F1D335D080071643B /* YMSSingleMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130732C1D1B8D9000C98705 /* YMSSingleMediaViewController.m */; };
+		51687A301D335D080071643B /* YMSSingleMediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130732D1D1B8D9000C98705 /* YMSSingleMediaViewController.xib */; };
 		519140DF1D05571A002B4C5B /* YMSPhotoPickerAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51F2EEE81CEC4D5F006DFC4B /* YMSPhotoPickerAssets.xcassets */; };
 		51F2EEE91CEC4D5F006DFC4B /* YMSPhotoPickerAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51F2EEE81CEC4D5F006DFC4B /* YMSPhotoPickerAssets.xcassets */; };
 		51FF32391D129D020029197B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51FF32291D129D020029197B /* Assets.xcassets */; };
@@ -83,6 +89,11 @@
 /* Begin PBXFileReference section */
 		01B0819E1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSPhotoPickerConfiguration.h; path = Public/YMSPhotoPickerConfiguration.h; sourceTree = "<group>"; };
 		01B0819F1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSPhotoPickerConfiguration.m; path = Public/YMSPhotoPickerConfiguration.m; sourceTree = "<group>"; };
+		01B081A51E1BF28300137F96 /* YMSVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSVideoCell.h; path = Private/YMSVideoCell.h; sourceTree = "<group>"; };
+		01B081A61E1BF28300137F96 /* YMSVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSVideoCell.m; path = Private/YMSVideoCell.m; sourceTree = "<group>"; };
+		01B081A91E1BF2A000137F96 /* YMSVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YMSVideoCell.xib; path = Private/YMSVideoCell.xib; sourceTree = "<group>"; };
+		01B081AD1E1D501000137F96 /* PlayerPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerPreviewView.h; path = Private/PlayerPreviewView.h; sourceTree = "<group>"; };
+		01B081AE1E1D501000137F96 /* PlayerPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerPreviewView.m; path = Private/PlayerPreviewView.m; sourceTree = "<group>"; };
 		511BC6011D13B27400738FD4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ObjC/AppDelegate.h; sourceTree = "<group>"; };
 		511BC6021D13B27400738FD4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ObjC/AppDelegate.m; sourceTree = "<group>"; };
 		511BC6031D13B27400738FD4 /* DemoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoListViewController.h; path = ObjC/DemoListViewController.h; sourceTree = "<group>"; };
@@ -123,9 +134,9 @@
 		513073281D1B8D9000C98705 /* YMSPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSPhotoCell.h; path = YangMingShan/YMSPhotoPicker/Private/YMSPhotoCell.h; sourceTree = SOURCE_ROOT; };
 		513073291D1B8D9000C98705 /* YMSPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSPhotoCell.m; path = YangMingShan/YMSPhotoPicker/Private/YMSPhotoCell.m; sourceTree = SOURCE_ROOT; };
 		5130732A1D1B8D9000C98705 /* YMSPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YMSPhotoCell.xib; path = YangMingShan/YMSPhotoPicker/Private/YMSPhotoCell.xib; sourceTree = SOURCE_ROOT; };
-		5130732B1D1B8D9000C98705 /* YMSSinglePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSSinglePhotoViewController.h; path = YangMingShan/YMSPhotoPicker/Private/YMSSinglePhotoViewController.h; sourceTree = SOURCE_ROOT; };
-		5130732C1D1B8D9000C98705 /* YMSSinglePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSSinglePhotoViewController.m; path = YangMingShan/YMSPhotoPicker/Private/YMSSinglePhotoViewController.m; sourceTree = SOURCE_ROOT; };
-		5130732D1D1B8D9000C98705 /* YMSSinglePhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YMSSinglePhotoViewController.xib; path = YangMingShan/YMSPhotoPicker/Private/YMSSinglePhotoViewController.xib; sourceTree = SOURCE_ROOT; };
+		5130732B1D1B8D9000C98705 /* YMSSingleMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSSingleMediaViewController.h; path = YangMingShan/YMSPhotoPicker/Private/YMSSingleMediaViewController.h; sourceTree = SOURCE_ROOT; };
+		5130732C1D1B8D9000C98705 /* YMSSingleMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSSingleMediaViewController.m; path = YangMingShan/YMSPhotoPicker/Private/YMSSingleMediaViewController.m; sourceTree = SOURCE_ROOT; };
+		5130732D1D1B8D9000C98705 /* YMSSingleMediaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YMSSingleMediaViewController.xib; path = YangMingShan/YMSPhotoPicker/Private/YMSSingleMediaViewController.xib; sourceTree = SOURCE_ROOT; };
 		5130733A1D1B8DC000C98705 /* UIViewController+YMSPhotoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+YMSPhotoHelper.h"; path = "YangMingShan/YMSPhotoPicker/Public/UIViewController+YMSPhotoHelper.h"; sourceTree = SOURCE_ROOT; };
 		5130733B1D1B8DC000C98705 /* UIViewController+YMSPhotoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+YMSPhotoHelper.m"; path = "YangMingShan/YMSPhotoPicker/Public/UIViewController+YMSPhotoHelper.m"; sourceTree = SOURCE_ROOT; };
 		5130733C1D1B8DC000C98705 /* YMSPhotoPickerTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSPhotoPickerTheme.h; path = YangMingShan/YMSPhotoPicker/Public/YMSPhotoPickerTheme.h; sourceTree = SOURCE_ROOT; };
@@ -300,9 +311,14 @@
 				513073281D1B8D9000C98705 /* YMSPhotoCell.h */,
 				513073291D1B8D9000C98705 /* YMSPhotoCell.m */,
 				5130732A1D1B8D9000C98705 /* YMSPhotoCell.xib */,
-				5130732B1D1B8D9000C98705 /* YMSSinglePhotoViewController.h */,
-				5130732C1D1B8D9000C98705 /* YMSSinglePhotoViewController.m */,
-				5130732D1D1B8D9000C98705 /* YMSSinglePhotoViewController.xib */,
+				01B081A51E1BF28300137F96 /* YMSVideoCell.h */,
+				01B081A61E1BF28300137F96 /* YMSVideoCell.m */,
+				01B081A91E1BF2A000137F96 /* YMSVideoCell.xib */,
+				5130732B1D1B8D9000C98705 /* YMSSingleMediaViewController.h */,
+				5130732C1D1B8D9000C98705 /* YMSSingleMediaViewController.m */,
+				5130732D1D1B8D9000C98705 /* YMSSingleMediaViewController.xib */,
+				01B081AD1E1D501000137F96 /* PlayerPreviewView.h */,
+				01B081AE1E1D501000137F96 /* PlayerPreviewView.m */,
 			);
 			name = YMSPhotoPicker;
 			path = YangMingShan/YMSPhotoPicker;
@@ -467,9 +483,10 @@
 				513073351D1B8D9000C98705 /* YMSCameraCell.xib in Resources */,
 				513073441D1B8DC000C98705 /* YMSPhotoPickerViewController.xib in Resources */,
 				513073371D1B8D9000C98705 /* YMSPhotoCell.xib in Resources */,
-				513073391D1B8D9000C98705 /* YMSSinglePhotoViewController.xib in Resources */,
+				513073391D1B8D9000C98705 /* YMSSingleMediaViewController.xib in Resources */,
 				513073311D1B8D9000C98705 /* YMSAlbumCell.xib in Resources */,
 				51F2EEE91CEC4D5F006DFC4B /* YMSPhotoPickerAssets.xcassets in Resources */,
+				01B081AA1E1BF2A000137F96 /* YMSVideoCell.xib in Resources */,
 				51FF32391D129D020029197B /* Assets.xcassets in Resources */,
 				5130730D1D13D45800C98705 /* DemoImageViewCell.xib in Resources */,
 			);
@@ -498,10 +515,11 @@
 				51687A2E1D335D080071643B /* YMSPhotoCell.xib in Resources */,
 				513073011D13D03500C98705 /* Main-swift.storyboard in Resources */,
 				519140DF1D05571A002B4C5B /* YMSPhotoPickerAssets.xcassets in Resources */,
-				51687A301D335D080071643B /* YMSSinglePhotoViewController.xib in Resources */,
+				51687A301D335D080071643B /* YMSSingleMediaViewController.xib in Resources */,
 				51687A2C1D335D080071643B /* YMSCameraCell.xib in Resources */,
 				511BC6231D13B3B600738FD4 /* LaunchScreen.storyboard in Resources */,
 				51687A221D335CE80071643B /* YMSPhotoPickerViewController.xib in Resources */,
+				01B081AB1E1BF2A000137F96 /* YMSVideoCell.xib in Resources */,
 				513073101D13D46E00C98705 /* DemoImageViewCell.xib in Resources */,
 				51687A281D335D080071643B /* YMSAlbumCell.xib in Resources */,
 			);
@@ -519,9 +537,11 @@
 				5130732E1D1B8D9000C98705 /* UIScrollView+YMSAdditions.m in Sources */,
 				513073361D1B8D9000C98705 /* YMSPhotoCell.m in Sources */,
 				511BC6051D13B27400738FD4 /* AppDelegate.m in Sources */,
+				01B081A71E1BF28300137F96 /* YMSVideoCell.m in Sources */,
+				01B081AF1E1D501000137F96 /* PlayerPreviewView.m in Sources */,
 				511BC6101D13B2C400738FD4 /* DemoPhotoViewController.m in Sources */,
 				5130732F1D1B8D9000C98705 /* UITableViewCell+YMSConfig.m in Sources */,
-				513073381D1B8D9000C98705 /* YMSSinglePhotoViewController.m in Sources */,
+				513073381D1B8D9000C98705 /* YMSSingleMediaViewController.m in Sources */,
 				511BC6201D13B39E00738FD4 /* main.m in Sources */,
 				513073411D1B8DC000C98705 /* UIViewController+YMSPhotoHelper.m in Sources */,
 				511BC6061D13B27400738FD4 /* DemoListViewController.m in Sources */,
@@ -554,6 +574,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51687A241D335D080071643B /* UIScrollView+YMSAdditions.m in Sources */,
+				01B081AC1E1BF2F600137F96 /* YMSPhotoPickerConfiguration.m in Sources */,
 				51687A251D335D080071643B /* UITableViewCell+YMSConfig.m in Sources */,
 				51687A211D335CDD0071643B /* YMSPhotoPickerViewController.m in Sources */,
 				511BC6181D13B33D00738FD4 /* AppDelegate.swift in Sources */,
@@ -561,8 +582,9 @@
 				51687A261D335D080071643B /* YMSPhotoPickerTheme.m in Sources */,
 				51687A291D335D080071643B /* YMSAlbumPickerViewController.m in Sources */,
 				51687A271D335D080071643B /* YMSAlbumCell.m in Sources */,
+				01B081A81E1BF28300137F96 /* YMSVideoCell.m in Sources */,
 				511BC61B1D13B33D00738FD4 /* DemoImageViewCell.swift in Sources */,
-				51687A2F1D335D080071643B /* YMSSinglePhotoViewController.m in Sources */,
+				51687A2F1D335D080071643B /* YMSSingleMediaViewController.m in Sources */,
 				51687A2B1D335D080071643B /* YMSCameraCell.m in Sources */,
 				51687A231D335D080071643B /* UIViewController+YMSPhotoHelper.m in Sources */,
 				511BC6191D13B33D00738FD4 /* DemoListViewController.swift in Sources */,

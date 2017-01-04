@@ -1,5 +1,5 @@
 //
-//  YMSSinglePhotoViewController.h
+//  YMSSingleMediaViewController.h
 //  YangMingShan
 //
 //  Copyright 2016 Yahoo Inc.
@@ -10,18 +10,18 @@
 #import <UIKit/UIKit.h>
 
 /**
- * This is a subclass of UIViewController for displaying single photo view.
+ * This is a subclass of UIViewController for displaying single media (photo or video) view.
  */
-@interface YMSSinglePhotoViewController : UIViewController
+@interface YMSSingleMediaViewController : UIViewController
 
 /**
- * @brief Initialize YMSSinglePhotoViewController with photo asset, image manager, and dismissalHandler block.
+ * @brief Initialize YMSSingleMediaViewController with asset (photo or video), image manager, and dismissalHandler block.
  *
- * @param asset The photo asset for displaying.
+ * @param asset The asset for displaying.
  * @param manager Reuse current image manager from photo picker.
  * @param dismissalHandler The block object which is invoked before single photo view will disapear.
  */
-- (instancetype)initWithPhotoAsset:(PHAsset *)asset
+- (instancetype)initWithAsset:(PHAsset *)asset
                       imageManager:(PHImageManager *)manager
                   dismissalHandler:(void (^)(BOOL selected))dismissalHandler NS_DESIGNATED_INITIALIZER;
 

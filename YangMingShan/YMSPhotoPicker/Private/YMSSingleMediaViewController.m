@@ -1,21 +1,23 @@
 //
-//  YMSSinglePhotoViewController.m
+//  YMSSingleMediaViewController.m
 //  YangMingShan
 //
 //  Copyright 2016 Yahoo Inc.
 //  Licensed under the terms of the BSD license. Please see LICENSE file in the project root for terms.
 //
 
-#import "YMSSinglePhotoViewController.h"
+#import "YMSSingleMediaViewController.h"
+#import "PlayerPreviewView.h"
 
 #import "YMSPhotoPickerTheme.h"
+
 
 typedef NS_ENUM(NSUInteger, PresentationStyle) {
     PresentationStyleDefault,
     PresentationStyleDark
 };
 
-@interface YMSSinglePhotoViewController ()
+@interface YMSSingleMediaViewController ()
 
 @property (nonatomic, copy) void (^dismissalHandler)(BOOL);
 @property (nonatomic, strong) PHAsset *currentAsset;
@@ -24,6 +26,7 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
 @property (nonatomic, weak) IBOutlet UIView *navigationBarBackgroundView;
 @property (nonatomic, weak) IBOutlet UIImageView *photoImageView;
 @property (nonatomic, weak) IBOutlet UIScrollView *imageContainerView;
+@property (weak, nonatomic) IBOutlet PlayerPreviewView *videoPreviewView;
 @property (nonatomic, assign) PresentationStyle presentationStyle;
 
 - (IBAction)dismiss:(id)sender;
@@ -32,9 +35,9 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
 
 @end
 
-@implementation YMSSinglePhotoViewController
+@implementation YMSSingleMediaViewController
 
-- (instancetype)initWithPhotoAsset:(PHAsset *)asset imageManager:(PHImageManager *)manager dismissalHandler:(void (^)(BOOL))dismissalHandler
+- (instancetype)initWithAsset:(PHAsset *)asset imageManager:(PHImageManager *)manager dismissalHandler:(void (^)(BOOL))dismissalHandler
 {
     self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle bundleForClass:self.class]];
     if (self) {
@@ -59,14 +62,8 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
         [self.navigationBar setShadowImage:[UIImage new]];
         self.navigationBarBackgroundView.backgroundColor = [YMSPhotoPickerTheme sharedInstance].navigationBarBackgroundColor;
     }
-
-    CGFloat scale = [UIScreen mainScreen].scale;
-    CGSize imageSize = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds) * scale, (CGRectGetHeight([UIScreen mainScreen].bounds) - CGRectGetHeight(self.navigationBar.bounds)) * scale);
-
-    CGSize targetSize = CGSizeMake(imageSize.width * scale, imageSize.height * scale);
-    [self.imageManager requestImageForAsset:self.currentAsset targetSize:targetSize contentMode:PHImageContentModeDefault options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-        self.photoImageView.image = result;
-    }];
+    
+    [self loadContent];
 
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(switchPresentationStyle:)];
     [self.imageContainerView addGestureRecognizer:tapGestureRecognizer];
@@ -86,6 +83,32 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
         return NO;
     }
     return YES;
+}
+
+- (void)loadContent
+{
+    if(self.currentAsset.mediaType == PHAssetMediaTypeImage) {
+        [self.videoPreviewView setHidden:YES];
+        
+        CGFloat scale = [UIScreen mainScreen].scale;
+        CGSize imageSize = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds) * scale, (CGRectGetHeight([UIScreen mainScreen].bounds) - CGRectGetHeight(self.navigationBar.bounds)) * scale);
+        
+        CGSize targetSize = CGSizeMake(imageSize.width * scale, imageSize.height * scale);
+        [self.imageManager requestImageForAsset:self.currentAsset targetSize:targetSize contentMode:PHImageContentModeDefault options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            self.photoImageView.image = result;
+        }];
+    }
+    else if(self.currentAsset.mediaType == PHAssetMediaTypeVideo) {
+        [self.imageContainerView setHidden:YES];
+        
+        [self.imageManager requestPlayerItemForVideo:self.currentAsset options:nil resultHandler:^(AVPlayerItem * _Nullable playerItem, NSDictionary * _Nullable info) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
+                [(AVPlayerLayer*)self.videoPreviewView.layer setPlayer:player];
+                [player play];
+            });
+        }];
+    }
 }
 
 #pragma mark - IBActions
