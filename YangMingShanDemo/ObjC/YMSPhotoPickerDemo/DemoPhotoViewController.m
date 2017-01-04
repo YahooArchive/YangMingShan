@@ -134,7 +134,6 @@ static NSString * const CellIdentifier = @"imageCellIdentifier";
         NSMutableArray *mutableImages = [NSMutableArray array];
 
         for (PHAsset *asset in photoAssets) {
-            NSLog(@"%li", (long)asset.mediaType);
             CGSize targetSize = CGSizeMake((CGRectGetWidth(self.collectionView.bounds) - 20*2) * [UIScreen mainScreen].scale, (CGRectGetHeight(self.collectionView.bounds) - 20*2) * [UIScreen mainScreen].scale);
             [imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
                 [mutableImages addObject:image];
