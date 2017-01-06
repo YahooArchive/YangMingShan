@@ -500,9 +500,6 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (void)fetchCollections
 {
-    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
-    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-
     NSMutableArray *allAblums = [NSMutableArray array];
 
     PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
