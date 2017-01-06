@@ -18,8 +18,11 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
         && UInt(self.numberOfPhotoSelectionTextField.text!) != 1 {
             let pickerViewController = YMSPhotoPickerViewController.init()
 
-            pickerViewController.numberOfPhotoToSelect = UInt(self.numberOfPhotoSelectionTextField.text!)!
-
+            pickerViewController.numberOfMediaToSelect = UInt(self.numberOfPhotoSelectionTextField.text!)!
+            pickerViewController.configuration.numberOfColumns = 3;
+            pickerViewController.configuration.sourceType = .both;
+            pickerViewController.configuration.orderedSelection = false;
+            
             let customColor = UIColor.init(red:248.0/255.0, green:217.0/255.0, blue:44.0/255.0, alpha:1.0)
 
             pickerViewController.theme.titleLabelTextColor = UIColor.black
@@ -83,14 +86,22 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
         picker.present(alertController, animated: true, completion: nil)
     }
 
-    func photoPickerViewController(_ picker: YMSPhotoPickerViewController!, didFinishPicking image: UIImage!) {
+    func photoPickerViewController(_ picker: YMSPhotoPickerViewController!, didFinishPickingMedia asset: PHAsset!) {
         picker.dismiss(animated: true) {
-            self.images = [image]
-            self.collectionView.reloadData()
+            let imageManager = PHImageManager.init()
+            let options = PHImageRequestOptions.init()
+            options.deliveryMode = .highQualityFormat
+            options.resizeMode = .exact
+            
+            let targetSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
+            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options, resultHandler: { (image, info) in
+                self.images = [image]
+                self.collectionView.reloadData()
+            })
         }
     }
 
-    func photoPickerViewController(_ picker: YMSPhotoPickerViewController!, didFinishPickingImages photoAssets: [PHAsset]!) {
+    func photoPickerViewController(_ picker: YMSPhotoPickerViewController!, didFinishPickingMedias assets: [PHAsset]!) {
 
         picker.dismiss(animated: true) {
             let imageManager = PHImageManager.init()
@@ -101,7 +112,7 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
 
             let mutableImages: NSMutableArray! = []
 
-            for asset: PHAsset in photoAssets
+            for asset: PHAsset in assets
             {
                 let scale = UIScreen.main.scale
                 let targetSize = CGSize(width: (self.collectionView.bounds.width - 20*2) * scale, height: (self.collectionView.bounds.height - 20*2) * scale)

@@ -22,6 +22,11 @@
             UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
             imagePickerController.delegate = delegate;
             imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            if ([delegate isKindOfClass:[YMSPhotoPickerViewController class]]) {
+                YMSPhotoPickerViewController *pickerViewController = (YMSPhotoPickerViewController *)delegate;
+                YMSPhotoPickerSourceType sourceType = pickerViewController.configuration.sourceType;
+                imagePickerController.mediaTypes = [self mediaTypesForConfigurationSourceType:sourceType];
+            }
             [self presentViewController:imagePickerController animated:YES completion:nil];
         }
         else if(status == AVAuthorizationStatusDenied
@@ -97,6 +102,21 @@
     else {
         // Cannot recognize current status. Do nothing here.
     }
+}
+
+
+#pragma mark - Privates
+
+- (NSArray*) mediaTypesForConfigurationSourceType:(YMSPhotoPickerSourceType)sourceType
+{
+    NSMutableArray *mediaTypes = [NSMutableArray new];
+    if(sourceType == YMSPhotoPickerSourceTypePhoto || sourceType == YMSPhotoPickerSourceTypeBoth) {
+        [mediaTypes addObject:(NSString*)kUTTypeImage];
+    }
+    if(sourceType == YMSPhotoPickerSourceTypeVideo || sourceType == YMSPhotoPickerSourceTypeBoth) {
+        [mediaTypes addObject:(NSString*)kUTTypeMovie];
+    }
+    return mediaTypes;
 }
 
 @end

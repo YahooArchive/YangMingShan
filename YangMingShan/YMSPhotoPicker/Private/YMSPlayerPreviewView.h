@@ -1,5 +1,5 @@
 //
-//  PlayerPreviewView.h
+//  YMSPlayerPreviewView.h
 //  YangMingShanDemo
 //
 //  Created by Paul Ulric on 04/01/2017.
@@ -9,6 +9,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 
-@interface PlayerPreviewView : UIView
+@interface YMSPlayerPreviewView : UIView
 
 @end

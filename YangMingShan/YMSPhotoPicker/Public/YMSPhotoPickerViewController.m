@@ -61,7 +61,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle bundleForClass:self.class]];
     if (self) {
         self.selectedPhotos = [NSMutableArray array];
-        self.numberOfPhotoToSelect = 1;
+        self.numberOfMediaToSelect = 1;
         self.shouldReturnImageForSingleSelection = YES;
     }
     return self;
@@ -241,22 +241,12 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
             PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
             PHAsset *asset = fetchResult[indexPath.item-1];
             
-            // Prepare the options to pass when fetching the live photo.
-            PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-            options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-            options.networkAccessAllowed = YES;
-            options.resizeMode = PHImageRequestOptionsResizeModeExact;
-            
-            CGSize targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
-            
-            [self.imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
-                if (image && [self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
-                    [self.delegate photoPickerViewController:self didFinishPickingImage:[self yms_orientationNormalizedImage:image]];
-                }
-                else {
-                    [self dismiss:nil];
-                }
-            }];
+            if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingMedia:)]) {
+                [self.delegate photoPickerViewController:self didFinishPickingMedia:asset];
+            }
+            else {
+                [self dismiss:nil];
+            }
         }
     }
     else {
@@ -354,8 +344,8 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (IBAction)finishPickingPhotos:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImages:)]) {
-        [self.delegate photoPickerViewController:self didFinishPickingImages:[self.selectedPhotos copy]];
+    if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingMedias:)]) {
+        [self.delegate photoPickerViewController:self didFinishPickingMedias:[self.selectedPhotos copy]];
     }
     else {
         [self dismiss:nil];
@@ -397,33 +387,51 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         if (![self.session isRunning]) {
             [self.photoCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
         }
-
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        if (![image isKindOfClass:[UIImage class]]) {
-            return;
-        }
-
+        
         // Save the image to Photo Album
+        __block PHObjectPlaceholder *assetPlaceholder = nil;
         [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            
+            // Create a PHAssetChangeRequest with the newly taken media
+            PHAssetChangeRequest *assetRequest = nil;
+            NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+            if (UTTypeConformsTo((__bridge CFStringRef)mediaType, kUTTypeImage)) {
+                UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+                assetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+            }
+            else if (UTTypeConformsTo((__bridge CFStringRef)mediaType, kUTTypeMovie)) {
+                NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+                assetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:videoURL];
+            }
+            
+            if (!assetRequest) {
+                return;
+            }
+            
+            // Create an asset placeholder. It will be used:
+            // - to add the new asset into the current Photo Album (only needed for the non-smart albums)
+            // - the fetch the resulting PHAsset at the end of the changes, to pass it to the delegate if needed
+            assetPlaceholder = [assetRequest placeholderForCreatedAsset];
+            
             PHAssetCollection *collection = self.currentCollectionItem[@"collection"];
-            if (collection.assetCollectionType == PHAssetCollectionTypeSmartAlbum) {
-                // Cannot save to smart albums other than "all photos", pick it and dismiss
-                [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-            }
-            else {
-                PHAssetChangeRequest *assetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-                PHObjectPlaceholder *placeholder = [assetRequest placeholderForCreatedAsset];
+            if (collection.assetCollectionType != PHAssetCollectionTypeSmartAlbum) {
                 PHAssetCollectionChangeRequest *albumChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:collection assets:self.currentCollectionItem[@"assets"]];
-                [albumChangeRequest addAssets:@[placeholder]];
+                [albumChangeRequest addAssets:@[assetPlaceholder]];
             }
+            
         } completionHandler:^(BOOL success, NSError *error) {
             if (success) {
                 self.needToSelectFirstPhoto = YES;
             }
 
             if (!self.allowsMultipleSelection) {
-                if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
-                    [self.delegate photoPickerViewController:self didFinishPickingImage:image];
+                if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingMedia:)]) {
+                    // Fetch the newly created PHAsset
+                    PHFetchResult *assets = [PHAsset fetchAssetsWithLocalIdentifiers:@[assetPlaceholder.localIdentifier] options:nil];
+                    PHAsset *createdAsset = assets.firstObject;
+                    if (createdAsset) {
+                        [self.delegate photoPickerViewController:self didFinishPickingMedia:createdAsset];
+                    }
                 }
                 else {
                     [self dismiss:nil];
@@ -485,7 +493,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (BOOL)allowsMultipleSelection
 {
-    return (self.numberOfPhotoToSelect != 1);
+    return (self.numberOfMediaToSelect != 1);
 }
 
 - (void)refreshPhotoSelection
@@ -514,8 +522,8 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (BOOL)canAddPhoto
 {
-    return (self.selectedPhotos.count < self.numberOfPhotoToSelect
-            || self.numberOfPhotoToSelect == 0);
+    return (self.selectedPhotos.count < self.numberOfMediaToSelect
+            || self.numberOfMediaToSelect == 0);
 }
 
 - (void)fetchCollections

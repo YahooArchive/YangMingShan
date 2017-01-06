@@ -126,7 +126,7 @@ static const CGFloat YMSNavigationBarOriginalTopSpace = 0.0;
     PHCollection *collection = collectionItem[@"collection"];
     
     cell.albumName = collection.localizedTitle;
-    cell.photosCount = fetchResult.count;
+    cell.mediasCount = fetchResult.count;
     if ([collectionItem isEqual:self.selectedCollectionItem]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }

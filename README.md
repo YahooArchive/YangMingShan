@@ -2,7 +2,7 @@
 =====
 [![Build Status](https://travis-ci.org/yahoo/YangMingShan.svg?branch=master)](https://travis-ci.org/yahoo/YangMingShan)
 [![CocoaPods](https://img.shields.io/cocoapods/v/YangMingShan.svg?maxAge=2592000?style=flat-square)](https://cocoapods.org/?q=yangmingshan)
- 
+
 YangMingShan is a collection of iOS UI components that we created while building Yahoo apps. The reason we open source it is to share useful and common components with the community. Feel free to open the feature request ticket for new UI component you see on Yahoo apps or send pull-request to benefit open source community.
 
 Installation
@@ -21,16 +21,16 @@ The Components
 
 ### YMSPhotoPicker
 
-YMSPhotoPicker is an UIComponent that let you select mutilple photos from your albums. You can also take a photo inside YMSPhotoPicker and select it with other photos. It has the exposed theme YMSPhotoPickerTheme that you can customize several parts of YMSPhotoPicker.
+YMSPhotoPicker is an UIComponent that let you select mutilple medias (photos or videos) from your albums. You can also take a photo or a video inside YMSPhotoPicker and select it with other medias. It has the exposed theme YMSPhotoPickerTheme that you can customize several parts of YMSPhotoPicker.
 
 Part of the code in this package was derived from Yahoo Messenger and Yahoo Taiwan Auctions.
- 
+
 <img src="media/ymsphotopicker-demo.gif" alt="Square Cash Style Bar" width="300"/>
 <img src="media/ymsphotopicker-theme.gif" alt="Square Cash Style Bar" width="300"/>
 
 #### Usage
 
-Add ```NSPhotoLibraryUsageDescription``` and ```NSCameraUsageDescription``` to your App Info.plist to specify the reason for accessing photo library and camera. See [Cocoa Keys](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html) for more details.
+Add ```NSPhotoLibraryUsageDescription``` and ```NSCameraUsageDescription``` to your App Info.plist to specify the reason for accessing photo library and camera. You will also need to add ```NSMicrophoneUsageDescription``` to be able to take videos. See [Cocoa Keys](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html) for more details.
 
 #####Objective-C
 
@@ -57,6 +57,18 @@ Or init picker with limited photo selection of 10
 ```objective-c
 YMSPhotoPickerViewController *pickerViewController = [[YMSPhotoPickerViewController alloc] init];
 pickerViewController.numberOfPhotoToSelect = 10;
+```
+
+You can customize some options via the `YMSPhotoPickerConfiguration` object
+```objective-c
+// The number of thumbnails columns when browsing the medias albums.
+pickerViewController.configuration.numberOfColumns = 4;
+
+// The source type of the picker, to allow the user to only choose from their photos, their videos or both.
+pickerViewController.configuration.sourceType = YMSPhotoPickerSourceTypeBoth;
+
+// Display an ordered label on every selected media, or just a check mark.
+pickerViewController.configuration.orderedSelection = NO;
 ```
 
 With customized theme
@@ -109,13 +121,13 @@ Implement photoPickerViewControllerDidReceivePhotoAlbumAccessDenied: and photoPi
 }
 ```
 
-Implement photoPickerViewController:didFinishPickingImages: while you expect there are mutiple photo selections
+Implement photoPickerViewController:didFinishPickingMedias: while you expect there are mutiple medias selections
 
 ```objective-c
-- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingImages:(NSArray *)photoAssets
+- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingMedias:(NSArray *)assets
 {
     [picker dismissViewControllerAnimated:YES completion:^() {
-        // Remember images you get here is PHAsset array, you need to implement PHImageManager to get UIImage data by yourself
+        // Remember medias you get here is PHAsset array, you need to implement PHImageManager to get UIImage data by yourself
         PHImageManager *imageManager = [[PHImageManager alloc] init];
 
         PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
@@ -126,7 +138,7 @@ Implement photoPickerViewController:didFinishPickingImages: while you expect the
 
         NSMutableArray *mutableImages = [NSMutableArray array];
 
-        for (PHAsset *asset in photoAssets) {
+        for (PHAsset *asset in assets) {
             CGSize targetSize = CGSizeMake((CGRectGetWidth(self.collectionView.bounds) - 20*2) * [UIScreen mainScreen].scale, (CGRectGetHeight(self.collectionView.bounds) - 20*2) * [UIScreen mainScreen].scale);
             [imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
                 [mutableImages addObject:image];
@@ -166,6 +178,18 @@ let pickerViewController = YMSPhotoPickerViewController.init()
 pickerViewController.numberOfPhotoToSelect = 10
 ```
 
+You can customize some options via the `YMSPhotoPickerConfiguration` object
+```objective-c
+// The number of thumbnails columns when browsing the medias albums.
+pickerViewController.configuration.numberOfColumns = 4
+
+// The source type of the picker, to allow the user to only choose from their photos, their videos or both.
+pickerViewController.configuration.sourceType = .both
+
+// Display an ordered label on every selected media, or just a check mark.
+pickerViewController.configuration.orderedSelection = false
+```
+
 With customized theme
 
 ```swift
@@ -198,7 +222,7 @@ func photoPickerViewControllerDidReceivePhotoAlbumAccessDenied(_ picker: YMSPhot
     }
     alertController.addAction(dismissAction)
     alertController.addAction(settingsAction)
-    
+
     self.present(alertController, animated: true, completion: nil)
 }
 
@@ -210,18 +234,18 @@ func photoPickerViewControllerDidReceiveCameraAccessDenied(_ picker: YMSPhotoPic
     }
     alertController.addAction(dismissAction)
     alertController.addAction(settingsAction)
-    
+
     // The access denied of camera is always happened on picker, present alert on it to follow the view hierarchy
     picker.present(alertController, animated: true, completion: nil)
 }
 ```
 
-Implement photoPickerViewController(picker:didFinishPickingImages:) while you expect there are mutiple photo selections
+Implement photoPickerViewController(picker:didFinishPickingMedias:) while you expect there are mutiple medias selections
 
 ```swift
-func photoPickerViewController(picker: YMSPhotoPickerViewController!, didFinishPickingImages photoAssets: [PHAsset]!) {
-    // Remember images you get here is PHAsset array, you need to implement PHImageManager to get UIImage data by yourself
-    picker.dismissViewControllerAnimated(true) { 
+func photoPickerViewController(picker: YMSPhotoPickerViewController!, didFinishPickingMedias assets: [PHAsset]!) {
+    // Remember medias you get here is PHAsset array, you need to implement PHImageManager to get UIImage data by yourself
+    picker.dismissViewControllerAnimated(true) {
         let imageManager = PHImageManager.init()
         let options = PHImageRequestOptions.init()
         options.deliveryMode = .HighQualityFormat
@@ -230,7 +254,7 @@ func photoPickerViewController(picker: YMSPhotoPickerViewController!, didFinishP
 
         let mutableImages: NSMutableArray! = []
 
-        for asset: PHAsset in photoAssets
+        for asset: PHAsset in assets
         {
             let scale = UIScreen.mainScreen().scale
             let targetSize = CGSizeMake((CGRectGetWidth(self.collectionView.bounds) - 20*2) * scale, (CGRectGetHeight(self.collectionView.bounds) - 20*2) * scale)
@@ -246,12 +270,12 @@ func photoPickerViewController(picker: YMSPhotoPickerViewController!, didFinishP
 
 ### Instruction
 
-  - **Sample Codes** has been written in YangMangShanDemo project. You can read code to know about "How to implement these features in your project". Just use github to clone YangMingShan to your local disk. It should run well with your Xcode. 
+  - **Sample Codes** has been written in YangMangShanDemo project. You can read code to know about "How to implement these features in your project". Just use github to clone YangMingShan to your local disk. It should run well with your Xcode.
   - **API Reference Documents** > Please refer the [gh-pages](https://yahoo.github.io/YangMingShan/) in YangMingShan project. We use [appledoc](https://github.com/tomaz/appledoc) to generate this document. The command line we generate current document is
 ```shell
 appledoc --output {TARGET_FOLDER} --project-name "YangMingShan" --project-company "Yahoo" --company-id "com.yahoo" --no-warn-undocumented-object --keep-intermediate-files --ignore Private {YANGMINGSHAN_LOCOCAL_ROPOSITORY}
 
-```  
+```
 
 ### License
 

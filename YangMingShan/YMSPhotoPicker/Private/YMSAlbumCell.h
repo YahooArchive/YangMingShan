@@ -32,9 +32,9 @@
 @property (nonatomic, strong) NSString *albumName;
 
 /**
- * @brief Set photos count to this to display on the photos count UILabel.
+ * @brief Set medias count to this to display on the medias count UILabel.
  *
  */
-@property (nonatomic, assign) NSUInteger photosCount;
+@property (nonatomic, assign) NSUInteger mediasCount;
  
 @end

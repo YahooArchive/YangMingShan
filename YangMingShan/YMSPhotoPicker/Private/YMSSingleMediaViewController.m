@@ -7,7 +7,7 @@
 //
 
 #import "YMSSingleMediaViewController.h"
-#import "PlayerPreviewView.h"
+#import "YMSPlayerPreviewView.h"
 
 #import "YMSPhotoPickerTheme.h"
 
@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
 @property (nonatomic, weak) IBOutlet UIView *navigationBarBackgroundView;
 @property (nonatomic, weak) IBOutlet UIImageView *photoImageView;
 @property (nonatomic, weak) IBOutlet UIScrollView *imageContainerView;
-@property (weak, nonatomic) IBOutlet PlayerPreviewView *videoPreviewView;
+@property (weak, nonatomic) IBOutlet YMSPlayerPreviewView *videoPreviewView;
 @property (nonatomic, assign) PresentationStyle presentationStyle;
 
 - (IBAction)dismiss:(id)sender;

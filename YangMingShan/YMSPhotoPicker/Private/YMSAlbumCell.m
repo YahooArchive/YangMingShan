@@ -13,7 +13,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
 @property (nonatomic, weak) IBOutlet UILabel *albumNameLabel;
-@property (nonatomic, weak) IBOutlet UILabel *photosCountLabel;
+@property (nonatomic, weak) IBOutlet UILabel *mediasCountLabel;
 
 @end
 
@@ -23,7 +23,7 @@
 {
     [super awakeFromNib];
 
-    self.photosCountLabel.font = [YMSPhotoPickerTheme sharedInstance].photosCountLabelFont;
+    self.mediasCountLabel.font = [YMSPhotoPickerTheme sharedInstance].mediasCountLabelFont;
     self.albumNameLabel.font = [YMSPhotoPickerTheme sharedInstance].albumNameLabelFont;
 }
 
@@ -44,15 +44,15 @@
     _albumName = albumName;
 }
 
-- (void)setPhotosCount:(NSUInteger)photosCount
+- (void)setMediasCount:(NSUInteger)mediasCount
 {
-    if (photosCount > 0) {
-        self.photosCountLabel.text = [NSString stringWithFormat:@"(%zd)", photosCount];
+    if (mediasCount > 0) {
+        self.mediasCountLabel.text = [NSString stringWithFormat:@"(%zd)", mediasCount];
     }
     else {
-        self.photosCountLabel.text = @"";
+        self.mediasCountLabel.text = @"";
     }
-    _photosCount = photosCount;    
+    _mediasCount = mediasCount;
 }
 
 @end
