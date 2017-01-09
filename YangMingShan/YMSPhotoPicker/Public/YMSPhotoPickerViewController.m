@@ -192,7 +192,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
     [cell.longPressGestureRecognizer addTarget:self action:@selector(presentSinglePhoto:)];
 
-    if (self.configuration.orderedSelection && [self.selectedPhotos containsObject:asset]) {
+    if ([self shouldOrderSelection] && [self.selectedPhotos containsObject:asset]) {
         NSUInteger selectionIndex = [self.selectedPhotos indexOfObject:asset];
         cell.selectionOrder = selectionIndex+1;
     }
@@ -219,7 +219,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     if ([cell isKindOfClass:[YMSPhotoCell class]]) {
         YMSPhotoCell *photoCell = (YMSPhotoCell *)cell;
         [photoCell setNeedsAnimateSelection];
-        if (self.configuration.orderedSelection) {
+        if ([self shouldOrderSelection]) {
             photoCell.selectionOrder = self.selectedPhotos.count+1;
         }
     }
@@ -282,7 +282,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
     PHAsset *asset = fetchResult[indexPath.item-1];
 
-    if (self.configuration.orderedSelection) {
+    if ([self shouldOrderSelection]) {
         NSUInteger removedIndex = [self.selectedPhotos indexOfObject:asset];
         // Reload order higher than removed cell
         for (NSInteger i=removedIndex+1; i<self.selectedPhotos.count; i++) {
@@ -345,7 +345,15 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 - (IBAction)finishPickingPhotos:(id)sender
 {
     if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingMedias:)]) {
-        [self.delegate photoPickerViewController:self didFinishPickingMedias:[self.selectedPhotos copy]];
+        NSArray *finalMedias = nil;
+        if (self.configuration.sortingType == YMSPhotoPickerSortingTypeSelection) {
+            finalMedias = [self.selectedPhotos copy];
+        } else {
+            BOOL ascending = self.configuration.sortingType == YMSPhotoPickerSortingTypeCreationAscending;
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:ascending];
+            finalMedias = [self.selectedPhotos sortedArrayUsingDescriptors:@[sortDescriptor]];
+        }
+        [self.delegate photoPickerViewController:self didFinishPickingMedias:finalMedias];
     }
     else {
         [self dismiss:nil];
@@ -507,7 +515,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
             // Display selection
             [self.photoCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:i+1 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-            if (self.configuration.orderedSelection) {
+            if ([self shouldOrderSelection]) {
                 YMSPhotoCell *cell = (YMSPhotoCell *)[self.photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i+1 inSection:0]];
                 cell.selectionOrder = [self.selectedPhotos indexOfObject:asset]+1;
             }
@@ -613,6 +621,11 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     totalHorizontalSpacing = totalInteritemSpacing + sectionInset.left + sectionInset.right;
     size = (CGFloat)floor((arrangementLength - totalHorizontalSpacing) / numberOfPhotoColumnsInLandscape);
     self.cellLandscapeSize = CGSizeMake(size, size);
+}
+
+- (BOOL)shouldOrderSelection
+{
+    return self.configuration.sortingType == YMSPhotoPickerSortingTypeSelection;
 }
 
 #pragma mark - PHPhotoLibraryChangeObserver

@@ -67,8 +67,9 @@ pickerViewController.configuration.numberOfColumns = 4;
 // The source type of the picker, to allow the user to only choose from their photos, their videos or both.
 pickerViewController.configuration.sourceType = YMSPhotoPickerSourceTypeBoth;
 
-// Display an ordered label on every selected media, or just a check mark.
-pickerViewController.configuration.orderedSelection = NO;
+// Choose how to sort the picked medias.
+// YMSPhotoPickerSortingTypeSelection will display an ordered label on every selected media.
+pickerViewController.configuration.sortingType = YMSPhotoPickerSortingTypeCreationDescending;
 ```
 
 With customized theme
@@ -186,8 +187,9 @@ pickerViewController.configuration.numberOfColumns = 4
 // The source type of the picker, to allow the user to only choose from their photos, their videos or both.
 pickerViewController.configuration.sourceType = .both
 
-// Display an ordered label on every selected media, or just a check mark.
-pickerViewController.configuration.orderedSelection = false
+// Choose how to sort the picked medias.
+// .selection will display an ordered label on every selected media.
+pickerViewController.configuration.sortingType = .creationDescending
 ```
 
 With customized theme

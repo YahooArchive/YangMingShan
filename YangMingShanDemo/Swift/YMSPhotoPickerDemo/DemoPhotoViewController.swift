@@ -19,9 +19,9 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
             let pickerViewController = YMSPhotoPickerViewController.init()
 
             pickerViewController.numberOfMediaToSelect = UInt(self.numberOfPhotoSelectionTextField.text!)!
-            pickerViewController.configuration.numberOfColumns = 3;
-            pickerViewController.configuration.sourceType = .both;
-            pickerViewController.configuration.orderedSelection = false;
+            pickerViewController.configuration.numberOfColumns = 3
+            pickerViewController.configuration.sourceType = .both
+            pickerViewController.configuration.sortingType = .creationDescending
             
             let customColor = UIColor.init(red:248.0/255.0, green:217.0/255.0, blue:44.0/255.0, alpha:1.0)
 

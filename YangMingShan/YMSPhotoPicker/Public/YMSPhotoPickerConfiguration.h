@@ -17,6 +17,15 @@ typedef NS_ENUM(NSUInteger, YMSPhotoPickerSourceType) {
     YMSPhotoPickerSourceTypeBoth
 };
 
+/**
+ * These are the available sorting methods for the selected medias.
+ */
+typedef NS_ENUM(NSUInteger, YMSPhotoPickerSortingType) {
+    YMSPhotoPickerSortingTypeSelection,
+    YMSPhotoPickerSortingTypeCreationAscending,
+    YMSPhotoPickerSortingTypeCreationDescending
+};
+
 
 /**
  * This is the centralized configuration for photo picker. This is a singleton class, so remember use sharedInstance to access it instead of init method.
@@ -37,10 +46,10 @@ typedef NS_ENUM(NSUInteger, YMSPhotoPickerSourceType) {
 @property (nonatomic, assign) YMSPhotoPickerSourceType sourceType;
 
 /**
- * @brief Describe if the cells should be selected in an ordered way (displaying the picking order).
+ * @brief Describe how the selected medias should be sorted.
  *
  */
-@property (nonatomic, assign) BOOL orderedSelection;
+@property (nonatomic, assign) YMSPhotoPickerSortingType sortingType;
 
 /**
  * @brief Getting a shared instance of YMSPhotoPickerConfiguration.
