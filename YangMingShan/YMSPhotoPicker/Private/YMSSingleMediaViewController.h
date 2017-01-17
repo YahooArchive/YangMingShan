@@ -15,15 +15,19 @@
 @interface YMSSingleMediaViewController : UIViewController
 
 /**
+ * @brief Describe the frame the preview will be using.
+ *
+ */
+@property (nonatomic, readonly) CGRect mediaPreviewFrame;
+
+/**
  * @brief Initialize YMSSingleMediaViewController with asset (photo or video), image manager, and dismissalHandler block.
  *
  * @param asset The asset for displaying.
  * @param manager Reuse current image manager from photo picker.
- * @param dismissalHandler The block object which is invoked before single photo view will disapear.
  */
 - (instancetype)initWithAsset:(PHAsset *)asset
-                      imageManager:(PHImageManager *)manager
-                  dismissalHandler:(void (^)(BOOL selected))dismissalHandler NS_DESIGNATED_INITIALIZER;
+                      imageManager:(PHImageManager *)manager NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;

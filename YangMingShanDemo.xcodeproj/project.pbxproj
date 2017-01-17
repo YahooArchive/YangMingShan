@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0101D5171E268E3D00DBA946 /* YMSSingleMediaTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0101D5161E268E3D00DBA946 /* YMSSingleMediaTransition.m */; };
+		0101D5181E268E3D00DBA946 /* YMSSingleMediaTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0101D5161E268E3D00DBA946 /* YMSSingleMediaTransition.m */; };
 		01B081A01E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B0819F1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m */; };
 		01B081A71E1BF28300137F96 /* YMSVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B081A61E1BF28300137F96 /* YMSVideoCell.m */; };
 		01B081A81E1BF28300137F96 /* YMSVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B081A61E1BF28300137F96 /* YMSVideoCell.m */; };
@@ -87,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0101D5151E268E3D00DBA946 /* YMSSingleMediaTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSSingleMediaTransition.h; path = Private/YMSSingleMediaTransition.h; sourceTree = "<group>"; };
+		0101D5161E268E3D00DBA946 /* YMSSingleMediaTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSSingleMediaTransition.m; path = Private/YMSSingleMediaTransition.m; sourceTree = "<group>"; };
 		01B0819E1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSPhotoPickerConfiguration.h; path = Public/YMSPhotoPickerConfiguration.h; sourceTree = "<group>"; };
 		01B0819F1E1BBCA600137F96 /* YMSPhotoPickerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSPhotoPickerConfiguration.m; path = Public/YMSPhotoPickerConfiguration.m; sourceTree = "<group>"; };
 		01B081A51E1BF28300137F96 /* YMSVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSVideoCell.h; path = Private/YMSVideoCell.h; sourceTree = "<group>"; };
@@ -319,6 +323,8 @@
 				5130732D1D1B8D9000C98705 /* YMSSingleMediaViewController.xib */,
 				01B081AD1E1D501000137F96 /* YMSPlayerPreviewView.h */,
 				01B081AE1E1D501000137F96 /* YMSPlayerPreviewView.m */,
+				0101D5151E268E3D00DBA946 /* YMSSingleMediaTransition.h */,
+				0101D5161E268E3D00DBA946 /* YMSSingleMediaTransition.m */,
 			);
 			name = YMSPhotoPicker;
 			path = YangMingShan/YMSPhotoPicker;
@@ -552,6 +558,7 @@
 				513073321D1B8D9000C98705 /* YMSAlbumPickerViewController.m in Sources */,
 				513073341D1B8D9000C98705 /* YMSCameraCell.m in Sources */,
 				513073301D1B8D9000C98705 /* YMSAlbumCell.m in Sources */,
+				0101D5171E268E3D00DBA946 /* YMSSingleMediaTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +594,7 @@
 				01B081A81E1BF28300137F96 /* YMSVideoCell.m in Sources */,
 				511BC61B1D13B33D00738FD4 /* DemoImageViewCell.swift in Sources */,
 				51687A2F1D335D080071643B /* YMSSingleMediaViewController.m in Sources */,
+				0101D5181E268E3D00DBA946 /* YMSSingleMediaTransition.m in Sources */,
 				51687A2B1D335D080071643B /* YMSCameraCell.m in Sources */,
 				51687A231D335D080071643B /* UIViewController+YMSPhotoHelper.m in Sources */,
 				511BC6191D13B33D00738FD4 /* DemoListViewController.swift in Sources */,

@@ -11,9 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YMSSingleMediaViewController">
             <connections>
-                <outlet property="imageContainerView" destination="eT2-qL-aPg" id="KI3-18-JyT"/>
-                <outlet property="navigationBar" destination="E7Z-Wo-Xkq" id="7UM-5K-cVl"/>
-                <outlet property="navigationBarBackgroundView" destination="8ns-Xd-1JA" id="zdW-13-Nid"/>
                 <outlet property="photoImageView" destination="UCj-Aa-8PT" id="b0Y-wO-qLL"/>
                 <outlet property="videoPreviewView" destination="hdm-4P-2fi" id="fd8-lM-lht"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,64 +21,44 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdm-4P-2fi" customClass="YMSPlayerPreviewView">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="eT2-qL-aPg">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UCj-Aa-8PT">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                            <color key="backgroundColor" red="1" green="0.098216860201068568" blue="0.066027806799566102" alpha="0.0" colorSpace="calibratedRGB"/>
-                        </imageView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="UCj-Aa-8PT" firstAttribute="centerY" secondItem="eT2-qL-aPg" secondAttribute="centerY" id="6jH-Xm-OcW"/>
-                        <constraint firstItem="UCj-Aa-8PT" firstAttribute="centerX" secondItem="eT2-qL-aPg" secondAttribute="centerX" id="S3H-mc-2yw"/>
-                        <constraint firstItem="UCj-Aa-8PT" firstAttribute="top" secondItem="eT2-qL-aPg" secondAttribute="top" id="XoY-rQ-jIa"/>
-                        <constraint firstItem="UCj-Aa-8PT" firstAttribute="leading" secondItem="eT2-qL-aPg" secondAttribute="leading" id="gIT-NE-vrf"/>
-                        <constraint firstAttribute="bottom" secondItem="UCj-Aa-8PT" secondAttribute="bottom" id="n4a-q7-gYp"/>
-                        <constraint firstAttribute="trailing" secondItem="UCj-Aa-8PT" secondAttribute="trailing" id="owz-Yd-agF"/>
-                    </constraints>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="cGl-dV-dqm"/>
-                    </connections>
-                </scrollView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ns-Xd-1JA">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7Z-Wo-Xkq">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="64" id="Udo-Dl-J0F">
-                            <variation key="heightClass=compact" constant="32"/>
-                        </constraint>
-                    </constraints>
-                    <items>
-                        <navigationItem id="QSQ-6O-8Rn"/>
-                    </items>
-                </navigationBar>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlU-u3-gc1">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9GQ-Np-1as">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdm-4P-2fi" customClass="YMSPlayerPreviewView">
+                                <rect key="frame" x="20" y="60" width="335" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UCj-Aa-8PT">
+                                <rect key="frame" x="20" y="60" width="335" height="547"/>
+                                <color key="backgroundColor" red="1" green="0.098216860201068568" blue="0.066027806799566102" alpha="0.0" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="UCj-Aa-8PT" firstAttribute="top" secondItem="9GQ-Np-1as" secondAttribute="top" constant="60" id="0OG-gD-cjh"/>
+                            <constraint firstAttribute="trailing" secondItem="UCj-Aa-8PT" secondAttribute="trailing" constant="20" id="0PW-eb-7gs"/>
+                            <constraint firstItem="hdm-4P-2fi" firstAttribute="leading" secondItem="9GQ-Np-1as" secondAttribute="leading" constant="20" id="UEu-Bi-vbL"/>
+                            <constraint firstItem="hdm-4P-2fi" firstAttribute="top" secondItem="9GQ-Np-1as" secondAttribute="top" constant="60" id="V5S-Lv-LWe"/>
+                            <constraint firstItem="UCj-Aa-8PT" firstAttribute="leading" secondItem="9GQ-Np-1as" secondAttribute="leading" constant="20" id="eQr-1B-raT"/>
+                            <constraint firstAttribute="bottom" secondItem="hdm-4P-2fi" secondAttribute="bottom" constant="60" id="je3-6l-IZd"/>
+                            <constraint firstAttribute="bottom" secondItem="UCj-Aa-8PT" secondAttribute="bottom" constant="60" id="mRu-yu-JcX"/>
+                            <constraint firstAttribute="trailing" secondItem="hdm-4P-2fi" secondAttribute="trailing" constant="20" id="pKd-4B-yN1"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="8ns-Xd-1JA" firstAttribute="top" secondItem="E7Z-Wo-Xkq" secondAttribute="top" id="1GY-gn-bVp"/>
-                <constraint firstItem="E7Z-Wo-Xkq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4pX-5U-QPG"/>
-                <constraint firstAttribute="trailing" secondItem="E7Z-Wo-Xkq" secondAttribute="trailing" id="8mx-0o-oVN"/>
-                <constraint firstAttribute="bottom" secondItem="hdm-4P-2fi" secondAttribute="bottom" id="Ffw-4w-E6z"/>
-                <constraint firstItem="8ns-Xd-1JA" firstAttribute="leading" secondItem="E7Z-Wo-Xkq" secondAttribute="leading" id="ICR-r3-VNr"/>
-                <constraint firstItem="hdm-4P-2fi" firstAttribute="top" secondItem="E7Z-Wo-Xkq" secondAttribute="bottom" id="K7l-Ek-wRW"/>
-                <constraint firstItem="hdm-4P-2fi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="P8e-7n-bvQ"/>
-                <constraint firstItem="eT2-qL-aPg" firstAttribute="top" secondItem="E7Z-Wo-Xkq" secondAttribute="bottom" id="Rhc-25-16K"/>
-                <constraint firstAttribute="trailing" secondItem="hdm-4P-2fi" secondAttribute="trailing" id="VLs-bt-Rmv"/>
-                <constraint firstItem="8ns-Xd-1JA" firstAttribute="trailing" secondItem="E7Z-Wo-Xkq" secondAttribute="trailing" id="YY4-lh-3uB"/>
-                <constraint firstAttribute="trailing" secondItem="eT2-qL-aPg" secondAttribute="trailing" id="mAe-0S-h8m"/>
-                <constraint firstItem="eT2-qL-aPg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nOf-tD-Xu8"/>
-                <constraint firstItem="8ns-Xd-1JA" firstAttribute="bottom" secondItem="E7Z-Wo-Xkq" secondAttribute="bottom" id="poi-XS-uU0"/>
-                <constraint firstItem="E7Z-Wo-Xkq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rTW-SY-I5h"/>
-                <constraint firstAttribute="bottom" secondItem="eT2-qL-aPg" secondAttribute="bottom" id="yUL-dS-p46"/>
+                <constraint firstAttribute="bottom" secondItem="JlU-u3-gc1" secondAttribute="bottom" id="A7Z-N5-doz"/>
+                <constraint firstAttribute="trailing" secondItem="JlU-u3-gc1" secondAttribute="trailing" id="Hzc-HU-vOn"/>
+                <constraint firstItem="JlU-u3-gc1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="e6o-A0-DDw"/>
+                <constraint firstItem="JlU-u3-gc1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="k0g-vv-hB9"/>
             </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <point key="canvasLocation" x="-346" y="40"/>
         </view>
     </objects>
 </document>

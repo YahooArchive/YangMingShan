@@ -17,6 +17,7 @@
 #import "YMSPhotoCell.h"
 #import "YMSVideoCell.h"
 #import "YMSSingleMediaViewController.h"
+#import "YMSSingleMediaTransition.h"
 
 static NSString * const YMSCameraCellNibName = @"YMSCameraCell";
 static NSString * const YMSPhotoCellNibName = @"YMSPhotoCell";
@@ -25,7 +26,10 @@ static const CGFloat YMSNavigationBarMaxTopSpace = 44.0;
 static const CGFloat YMSNavigationBarOriginalTopSpace = 0.0;
 static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
-@interface YMSPhotoPickerViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPhotoLibraryChangeObserver>
+@interface YMSPhotoPickerViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPhotoLibraryChangeObserver> {
+    YMSSingleMediaViewController *_previewViewController;
+    YMSSingleMediaTransition *_previewTransition;
+}
 
 @property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UIView *navigationBarBackgroundView;
@@ -369,26 +373,45 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (IBAction)presentSinglePhoto:(id)sender
 {
-    if ([sender isKindOfClass:[UILongPressGestureRecognizer class]]) {
-        UILongPressGestureRecognizer *gesture = sender;
-        if (gesture.state != UIGestureRecognizerStateBegan) {
+    if (![sender isKindOfClass:[UILongPressGestureRecognizer class]]) {
+        return;
+    }
+    
+    UILongPressGestureRecognizer *gesture = sender;
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        if (_previewViewController) {
             return;
         }
-        NSIndexPath *indexPath = [self.photoCollectionView indexPathForCell:(YMSPhotoCell *)gesture.view];
-
+        YMSPhotoCell *cell = (YMSPhotoCell*)gesture.view;
+        NSIndexPath *indexPath = [self.photoCollectionView indexPathForCell:cell];
+        
         PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
-
         PHAsset *asset = fetchResult[indexPath.item-1];
-
-        YMSSingleMediaViewController *presentedViewController = [[YMSSingleMediaViewController alloc] initWithAsset:asset imageManager:self.imageManager dismissalHandler:^(BOOL selected) {
-            if (selected && [self collectionView:self.photoCollectionView shouldSelectItemAtIndexPath:indexPath]) {
-                [self.photoCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-                [self collectionView:self.photoCollectionView didSelectItemAtIndexPath:indexPath];
-            }
-        }];
-        presentedViewController.view.tintColor = self.theme.tintColor;
-
-        [self presentViewController:presentedViewController animated:YES completion:nil];
+        
+        _previewViewController = [[YMSSingleMediaViewController alloc] initWithAsset:asset imageManager:self.imageManager];
+        _previewViewController.view.tintColor = self.theme.tintColor;
+        
+        if (!_previewTransition) {
+            _previewTransition = [YMSSingleMediaTransition new];
+        }
+        _previewTransition.sourceImage = cell.thumbnailImage;
+        _previewTransition.detailFrame = _previewViewController.mediaPreviewFrame;
+        CGRect convertedFrame = [self.photoCollectionView convertRect:cell.frame toView:self.photoCollectionView.superview];
+        _previewTransition.thumbnailFrame = convertedFrame;
+        
+        _previewViewController.transitioningDelegate = _previewTransition;
+        _previewViewController.modalPresentationStyle = UIModalPresentationCustom;
+        [self presentViewController:_previewViewController animated:YES completion:nil];
+    }
+    else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
+        if (!_previewViewController) {
+            return;
+        }
+        UIView *cell = gesture.view;
+        CGRect convertedFrame = [self.photoCollectionView convertRect:cell.frame toView:self.photoCollectionView.superview];
+        _previewTransition.thumbnailFrame = convertedFrame;
+        [_previewViewController dismissViewControllerAnimated:YES completion:nil];
+        _previewViewController = nil;
     }
 }
 
