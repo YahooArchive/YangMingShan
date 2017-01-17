@@ -70,6 +70,9 @@ pickerViewController.configuration.sourceType = YMSPhotoPickerSourceTypeBoth;
 // Choose how to sort the picked medias.
 // YMSPhotoPickerSortingTypeSelection will display an ordered label on every selected media.
 pickerViewController.configuration.sortingType = YMSPhotoPickerSortingTypeCreationDescending;
+
+// Choose the allowed orientation
+pickerViewController.configuration.allowedOrientation = UIInterfaceOrientationMaskPortrait;
 ```
 
 With customized theme
@@ -190,6 +193,9 @@ pickerViewController.configuration.sourceType = .both
 // Choose how to sort the picked medias.
 // .selection will display an ordered label on every selected media.
 pickerViewController.configuration.sortingType = .creationDescending
+
+// Choose the allowed orientation
+pickerViewController.configuration.allowedOrientation = .portrait
 ```
 
 With customized theme

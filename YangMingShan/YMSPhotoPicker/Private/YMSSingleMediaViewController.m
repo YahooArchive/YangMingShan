@@ -10,6 +10,7 @@
 #import "YMSPlayerPreviewView.h"
 
 #import "YMSPhotoPickerTheme.h"
+#import "YMSPhotoPickerConfiguration.h"
 
 
 typedef NS_ENUM(NSUInteger, PresentationStyle) {
@@ -84,6 +85,13 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
     }
     return YES;
 }
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return [YMSPhotoPickerConfiguration sharedInstance].allowedOrientation;
+}
+
+#pragma mark - Private Helpers
 
 - (void)loadContent
 {

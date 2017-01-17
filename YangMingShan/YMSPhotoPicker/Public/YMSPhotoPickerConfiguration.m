@@ -27,6 +27,7 @@
     self.numberOfColumns = 3;
     self.sourceType = YMSPhotoPickerSourceTypePhoto;
     self.sortingType = YMSPhotoPickerSortingTypeSelection;
+    self.allowedOrientation = UIInterfaceOrientationMaskAll;
 }
 
 @end

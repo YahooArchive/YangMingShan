@@ -14,6 +14,7 @@
 #import "UITableViewCell+YMSConfig.h"
 #import "YMSAlbumCell.h"
 #import "YMSPhotoPickerTheme.h"
+#import "YMSPhotoPickerConfiguration.h"
 
 static const CGFloat YMSNavigationBarMaxTopSpace = 44.0;
 static const CGFloat YMSNavigationBarOriginalTopSpace = 0.0;
@@ -97,6 +98,11 @@ static const CGFloat YMSNavigationBarOriginalTopSpace = 0.0;
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return [YMSPhotoPickerTheme sharedInstance].statusBarStyle;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return [YMSPhotoPickerConfiguration sharedInstance].allowedOrientation;
 }
 
 #pragma mark - IBActions

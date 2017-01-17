@@ -135,6 +135,11 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     return [YMSPhotoPickerTheme sharedInstance].statusBarStyle;
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return [YMSPhotoPickerConfiguration sharedInstance].allowedOrientation;
+}
+
 #pragma mark - Getters
 
 - (YMSPhotoPickerTheme *)theme

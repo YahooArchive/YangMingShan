@@ -6,7 +6,7 @@
 //  Copyright © 2017 Yahoo. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * These are the available source types the photo picker will allow the user to select.
@@ -50,6 +50,12 @@ typedef NS_ENUM(NSUInteger, YMSPhotoPickerSortingType) {
  *
  */
 @property (nonatomic, assign) YMSPhotoPickerSortingType sortingType;
+
+/**
+ * @brief Describe the orientations allowed.
+ *
+ */
+@property (nonatomic, assign) UIInterfaceOrientationMask allowedOrientation;
 
 /**
  * @brief Getting a shared instance of YMSPhotoPickerConfiguration.
