@@ -15,12 +15,6 @@
 @interface YMSSingleMediaViewController : UIViewController
 
 /**
- * @brief Describe the frame the preview will be using.
- *
- */
-@property (nonatomic, readonly) CGRect mediaPreviewFrame;
-
-/**
  * @brief Initialize YMSSingleMediaViewController with asset (photo or video), image manager, and dismissalHandler block.
  *
  * @param asset The asset for displaying.
@@ -31,5 +25,11 @@
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
+
+/**
+ * @brief Compute and return the frame the preview will be using.
+ *
+ */
+- (CGRect)mediaPreviewFrame;
 
 @end

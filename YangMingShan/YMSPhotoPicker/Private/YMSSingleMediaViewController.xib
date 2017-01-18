@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YMSSingleMediaViewController">
             <connections>
+                <outlet property="containerLeftConstraint" destination="ixv-Ps-rde" id="yvj-jr-56W"/>
+                <outlet property="containerTopConstraint" destination="OoQ-x8-YvI" id="H9K-v9-Yrz"/>
                 <outlet property="photoImageView" destination="UCj-Aa-8PT" id="b0Y-wO-qLL"/>
                 <outlet property="videoPreviewView" destination="hdm-4P-2fi" id="fd8-lM-lht"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -27,24 +29,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdm-4P-2fi" customClass="YMSPlayerPreviewView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMH-kN-CqQ">
                                 <rect key="frame" x="20" y="60" width="335" height="547"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdm-4P-2fi" customClass="YMSPlayerPreviewView">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="547"/>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UCj-Aa-8PT">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="547"/>
+                                        <color key="backgroundColor" red="1" green="0.098216860201068568" blue="0.066027806799566102" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hdm-4P-2fi" secondAttribute="bottom" id="6cp-nv-FTT"/>
+                                    <constraint firstItem="hdm-4P-2fi" firstAttribute="top" secondItem="GMH-kN-CqQ" secondAttribute="top" id="FCh-5o-fRh"/>
+                                    <constraint firstItem="UCj-Aa-8PT" firstAttribute="leading" secondItem="GMH-kN-CqQ" secondAttribute="leading" id="KOX-gX-P27"/>
+                                    <constraint firstAttribute="bottom" secondItem="UCj-Aa-8PT" secondAttribute="bottom" id="Nrc-N3-rar"/>
+                                    <constraint firstItem="UCj-Aa-8PT" firstAttribute="top" secondItem="GMH-kN-CqQ" secondAttribute="top" id="OfH-CJ-4Yp"/>
+                                    <constraint firstAttribute="trailing" secondItem="UCj-Aa-8PT" secondAttribute="trailing" id="To3-bf-0tu"/>
+                                    <constraint firstItem="hdm-4P-2fi" firstAttribute="leading" secondItem="GMH-kN-CqQ" secondAttribute="leading" id="dXm-oe-y5I"/>
+                                    <constraint firstAttribute="trailing" secondItem="hdm-4P-2fi" secondAttribute="trailing" id="t7E-tN-s3f"/>
+                                </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UCj-Aa-8PT">
-                                <rect key="frame" x="20" y="60" width="335" height="547"/>
-                                <color key="backgroundColor" red="1" green="0.098216860201068568" blue="0.066027806799566102" alpha="0.0" colorSpace="calibratedRGB"/>
-                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="UCj-Aa-8PT" firstAttribute="top" secondItem="9GQ-Np-1as" secondAttribute="top" constant="60" id="0OG-gD-cjh"/>
-                            <constraint firstAttribute="trailing" secondItem="UCj-Aa-8PT" secondAttribute="trailing" constant="20" id="0PW-eb-7gs"/>
-                            <constraint firstItem="hdm-4P-2fi" firstAttribute="leading" secondItem="9GQ-Np-1as" secondAttribute="leading" constant="20" id="UEu-Bi-vbL"/>
-                            <constraint firstItem="hdm-4P-2fi" firstAttribute="top" secondItem="9GQ-Np-1as" secondAttribute="top" constant="60" id="V5S-Lv-LWe"/>
-                            <constraint firstItem="UCj-Aa-8PT" firstAttribute="leading" secondItem="9GQ-Np-1as" secondAttribute="leading" constant="20" id="eQr-1B-raT"/>
-                            <constraint firstAttribute="bottom" secondItem="hdm-4P-2fi" secondAttribute="bottom" constant="60" id="je3-6l-IZd"/>
-                            <constraint firstAttribute="bottom" secondItem="UCj-Aa-8PT" secondAttribute="bottom" constant="60" id="mRu-yu-JcX"/>
-                            <constraint firstAttribute="trailing" secondItem="hdm-4P-2fi" secondAttribute="trailing" constant="20" id="pKd-4B-yN1"/>
+                            <constraint firstAttribute="trailing" secondItem="GMH-kN-CqQ" secondAttribute="trailing" constant="20" id="0QU-Nz-fJ2"/>
+                            <constraint firstItem="GMH-kN-CqQ" firstAttribute="top" secondItem="9GQ-Np-1as" secondAttribute="top" constant="60" id="OoQ-x8-YvI"/>
+                            <constraint firstAttribute="bottom" secondItem="GMH-kN-CqQ" secondAttribute="bottom" constant="60" id="UUx-Sx-rOZ"/>
+                            <constraint firstItem="GMH-kN-CqQ" firstAttribute="leading" secondItem="9GQ-Np-1as" secondAttribute="leading" constant="20" id="ixv-Ps-rde"/>
                         </constraints>
                     </view>
                     <blurEffect style="dark"/>

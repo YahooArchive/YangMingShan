@@ -389,6 +389,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         PHAsset *asset = fetchResult[indexPath.item-1];
         
         _previewViewController = [[YMSSingleMediaViewController alloc] initWithAsset:asset imageManager:self.imageManager];
+        _previewViewController.view.frame = self.view.frame;
         _previewViewController.view.tintColor = self.theme.tintColor;
         
         if (!_previewTransition) {

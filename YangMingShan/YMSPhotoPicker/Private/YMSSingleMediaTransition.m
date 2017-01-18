@@ -14,11 +14,11 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
+    NSTimeInterval animationDuration = [self transitionDuration:transitionContext];
+    
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView = [transitionContext containerView];
-    
-    NSTimeInterval animationDuration = [self transitionDuration:transitionContext];
     
     UIVisualEffectView *blurredBackgroundView = [[UIVisualEffectView alloc] initWithFrame:toViewController.view.frame];
     [containerView addSubview:blurredBackgroundView];
