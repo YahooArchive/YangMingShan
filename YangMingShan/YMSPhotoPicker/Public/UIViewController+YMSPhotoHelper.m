@@ -45,6 +45,11 @@
                         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
                         imagePickerController.delegate = delegate;
                         imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                        if ([delegate isKindOfClass:[YMSPhotoPickerViewController class]]) {
+                            YMSPhotoPickerViewController *pickerViewController = (YMSPhotoPickerViewController *)delegate;
+                            YMSPhotoPickerSourceType sourceType = pickerViewController.configuration.sourceType;
+                            imagePickerController.mediaTypes = [self mediaTypesForConfigurationSourceType:sourceType];
+                        }
                         [self presentViewController:imagePickerController animated:YES completion:nil];
                     }
                     else {
