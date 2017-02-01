@@ -234,6 +234,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
+        [self.photoCollectionView deselectItemAtIndexPath:indexPath animated:NO];
         [self yms_presentCameraCaptureViewWithDelegate:self];
     }
     else if (NO == self.allowsMultipleSelection) {
@@ -457,8 +458,6 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:^(){
-        [self.photoCollectionView deselectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO];
-
         // Enable camera preview when user allow it first time
         if (![self.session isRunning]) {
             [self.photoCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
