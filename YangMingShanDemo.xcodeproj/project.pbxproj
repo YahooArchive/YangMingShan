@@ -54,8 +54,6 @@
 		513073041D13D04000C98705 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 513073021D13D04000C98705 /* Main.storyboard */; };
 		5130730D1D13D45800C98705 /* DemoImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130730C1D13D45800C98705 /* DemoImageViewCell.xib */; };
 		513073101D13D46E00C98705 /* DemoImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130730E1D13D46700C98705 /* DemoImageViewCell.xib */; };
-		513073151D13D59100C98705 /* YangMingShanDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073121D13D58400C98705 /* YangMingShanDemoTests.m */; };
-		5130731A1D13D5A400C98705 /* YangMingShanDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073171D13D59D00C98705 /* YangMingShanDemoUITests.m */; };
 		5130732E1D1B8D9000C98705 /* UIScrollView+YMSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130731C1D1B8D9000C98705 /* UIScrollView+YMSAdditions.m */; };
 		5130732F1D1B8D9000C98705 /* UITableViewCell+YMSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130731E1D1B8D9000C98705 /* UITableViewCell+YMSConfig.m */; };
 		513073301D1B8D9000C98705 /* YMSAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073201D1B8D9000C98705 /* YMSAlbumCell.m */; };
@@ -100,20 +98,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3EFA1F691E927DAE00FD8984;
 			remoteInfo = YangMingShan;
-		};
-		5171AD011CE9A49C00B72748 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5171ACDF1CE9A49B00B72748 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5171ACE61CE9A49B00B72748;
-			remoteInfo = YahooUIKitDemo;
-		};
-		5171AD0C1CE9A49C00B72748 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5171ACDF1CE9A49B00B72748 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5171ACE61CE9A49B00B72748;
-			remoteInfo = YahooUIKitDemo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -187,8 +171,6 @@
 		5130733F1D1B8DC000C98705 /* YMSPhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSPhotoPickerViewController.m; path = YangMingShan/YMSPhotoPicker/Public/YMSPhotoPickerViewController.m; sourceTree = SOURCE_ROOT; };
 		513073401D1B8DC000C98705 /* YMSPhotoPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YMSPhotoPickerViewController.xib; path = YangMingShan/YMSPhotoPicker/Public/YMSPhotoPickerViewController.xib; sourceTree = SOURCE_ROOT; };
 		5171ACE71CE9A49B00B72748 /* YangMingShanDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YangMingShanDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5171AD001CE9A49C00B72748 /* YangMingShanDemo.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YangMingShanDemo.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5171AD0B1CE9A49C00B72748 /* YangMingShanDemo.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YangMingShanDemo.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		519140CD1D055615002B4C5B /* YangMingShanDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YangMingShanDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51F2EEE81CEC4D5F006DFC4B /* YMSPhotoPickerAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = YMSPhotoPickerAssets.xcassets; sourceTree = "<group>"; };
 		51FF32291D129D020029197B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -209,20 +191,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EFA1F711E927DAE00FD8984 /* YangMingShan.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5171ACFD1CE9A49C00B72748 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5171AD081CE9A49C00B72748 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,8 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				5171ACE71CE9A49B00B72748 /* YangMingShanDemo.app */,
-				5171AD001CE9A49C00B72748 /* YangMingShanDemo.xctest */,
-				5171AD0B1CE9A49C00B72748 /* YangMingShanDemo.xctest */,
 				519140CD1D055615002B4C5B /* YangMingShanDemo.app */,
 				3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */,
 			);
@@ -474,42 +440,6 @@
 			productReference = 5171ACE71CE9A49B00B72748 /* YangMingShanDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5171ACFF1CE9A49C00B72748 /* YangMingShanDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5171AD171CE9A49C00B72748 /* Build configuration list for PBXNativeTarget "YangMingShanDemoTests" */;
-			buildPhases = (
-				5171ACFC1CE9A49C00B72748 /* Sources */,
-				5171ACFD1CE9A49C00B72748 /* Frameworks */,
-				5171ACFE1CE9A49C00B72748 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5171AD021CE9A49C00B72748 /* PBXTargetDependency */,
-			);
-			name = YangMingShanDemoTests;
-			productName = YahooUIKitDemoTests;
-			productReference = 5171AD001CE9A49C00B72748 /* YangMingShanDemo.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		5171AD0A1CE9A49C00B72748 /* YangMingShanDemoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5171AD1A1CE9A49C00B72748 /* Build configuration list for PBXNativeTarget "YangMingShanDemoUITests" */;
-			buildPhases = (
-				5171AD071CE9A49C00B72748 /* Sources */,
-				5171AD081CE9A49C00B72748 /* Frameworks */,
-				5171AD091CE9A49C00B72748 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5171AD0D1CE9A49C00B72748 /* PBXTargetDependency */,
-			);
-			name = YangMingShanDemoUITests;
-			productName = YahooUIKitDemoUITests;
-			productReference = 5171AD0B1CE9A49C00B72748 /* YangMingShanDemo.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		519140CC1D055615002B4C5B /* YangMingShanDemo-Swift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 519140DC1D055617002B4C5B /* Build configuration list for PBXNativeTarget "YangMingShanDemo-Swift" */;
@@ -545,15 +475,6 @@
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0800;
 					};
-					5171ACFF1CE9A49C00B72748 = {
-						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
-						TestTargetID = 5171ACE61CE9A49B00B72748;
-					};
-					5171AD0A1CE9A49C00B72748 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = 5171ACE61CE9A49B00B72748;
-					};
 					519140CC1D055615002B4C5B = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0800;
@@ -575,8 +496,6 @@
 			targets = (
 				5171ACE61CE9A49B00B72748 /* YangMingShanDemo */,
 				519140CC1D055615002B4C5B /* YangMingShanDemo-Swift */,
-				5171ACFF1CE9A49C00B72748 /* YangMingShanDemoTests */,
-				5171AD0A1CE9A49C00B72748 /* YangMingShanDemoUITests */,
 				3EFA1F691E927DAE00FD8984 /* YangMingShan */,
 			);
 		};
@@ -612,20 +531,6 @@
 				51F2EEE91CEC4D5F006DFC4B /* YMSPhotoPickerAssets.xcassets in Resources */,
 				51FF32391D129D020029197B /* Assets.xcassets in Resources */,
 				5130730D1D13D45800C98705 /* DemoImageViewCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5171ACFE1CE9A49C00B72748 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5171AD091CE9A49C00B72748 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,22 +594,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5171ACFC1CE9A49C00B72748 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				513073151D13D59100C98705 /* YangMingShanDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5171AD071CE9A49C00B72748 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5130731A1D13D5A400C98705 /* YangMingShanDemoUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		519140C91D055615002B4C5B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -733,16 +622,6 @@
 			isa = PBXTargetDependency;
 			target = 3EFA1F691E927DAE00FD8984 /* YangMingShan */;
 			targetProxy = 3EFA1F6F1E927DAE00FD8984 /* PBXContainerItemProxy */;
-		};
-		5171AD021CE9A49C00B72748 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5171ACE61CE9A49B00B72748 /* YangMingShanDemo */;
-			targetProxy = 5171AD011CE9A49C00B72748 /* PBXContainerItemProxy */;
-		};
-		5171AD0D1CE9A49C00B72748 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5171ACE61CE9A49B00B72748 /* YangMingShanDemo */;
-			targetProxy = 5171AD0C1CE9A49C00B72748 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -935,54 +814,6 @@
 			};
 			name = Release;
 		};
-		5171AD181CE9A49C00B72748 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = YangMingShanDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemoTests;
-				PRODUCT_NAME = YangMingShanDemo;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YangMingShanDemo.app/YangMingShanDemo";
-			};
-			name = Debug;
-		};
-		5171AD191CE9A49C00B72748 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = YangMingShanDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemoTests;
-				PRODUCT_NAME = YangMingShanDemo;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YangMingShanDemo.app/YangMingShanDemo";
-			};
-			name = Release;
-		};
-		5171AD1B1CE9A49C00B72748 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = YangMingShanDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemoUITests;
-				PRODUCT_NAME = YangMingShanDemo;
-				TEST_TARGET_NAME = YangMingShanDemo;
-			};
-			name = Debug;
-		};
-		5171AD1C1CE9A49C00B72748 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = YangMingShanDemoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemoUITests;
-				PRODUCT_NAME = YangMingShanDemo;
-				TEST_TARGET_NAME = YangMingShanDemo;
-			};
-			name = Release;
-		};
 		519140DD1D055617002B4C5B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1022,6 +853,7 @@
 				3EFA1F741E927DAE00FD8984 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5171ACE21CE9A49B00B72748 /* Build configuration list for PBXProject "YangMingShanDemo" */ = {
 			isa = XCConfigurationList;
@@ -1037,24 +869,6 @@
 			buildConfigurations = (
 				5171AD151CE9A49C00B72748 /* Debug */,
 				5171AD161CE9A49C00B72748 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5171AD171CE9A49C00B72748 /* Build configuration list for PBXNativeTarget "YangMingShanDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5171AD181CE9A49C00B72748 /* Debug */,
-				5171AD191CE9A49C00B72748 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5171AD1A1CE9A49C00B72748 /* Build configuration list for PBXNativeTarget "YangMingShanDemoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5171AD1B1CE9A49C00B72748 /* Debug */,
-				5171AD1C1CE9A49C00B72748 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
