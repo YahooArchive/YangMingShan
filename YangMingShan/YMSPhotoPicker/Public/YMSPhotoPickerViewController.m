@@ -579,8 +579,6 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
     NSMutableArray *allAblums = [NSMutableArray array];
 
-    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-
     __block __weak void (^weakFetchAlbums)(PHFetchResult *collections);
     void (^fetchAlbums)(PHFetchResult *collections);
     weakFetchAlbums = fetchAlbums = ^void(PHFetchResult *collections) {
@@ -602,22 +600,18 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         }
     };
 
+    // Manually choose all the smart albums to show
     PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
-    fetchAlbums(topLevelUserCollections);
-
-    for (PHAssetCollection *collection in smartAlbums) {
-        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptions];
-        if (assetsFetchResult.count > 0) {
-            // put the "all photos" in the first index
-            if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
-                [allAblums insertObject:@{@"collection": collection
-                                          , @"assets": assetsFetchResult} atIndex:0];
-            }
-            else {
-                [allAblums addObject:@{@"collection": collection
-                                       , @"assets": assetsFetchResult}];
-            }
-        }
+    PHFetchResult *userLibrary = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+    PHFetchResult *favorites = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumFavorites options:nil];
+    PHFetchResult *videos = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumVideos options:nil];
+    PHFetchResult *screenshots = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumScreenshots options:nil];
+    PHFetchResult *selfPortraits = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumSelfPortraits options:nil];
+    PHFetchResult *albums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
+    NSArray *collections = @[topLevelUserCollections, userLibrary, favorites, videos, screenshots, selfPortraits, albums];
+    
+    for (PHFetchResult *collection in collections) {
+        fetchAlbums(collection);
     }
     self.collectionItems = [allAblums copy];
 }
