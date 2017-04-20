@@ -8,8 +8,10 @@
 
 #import <Photos/Photos.h>
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 #import "YMSPhotoPickerTheme.h"
+#import "YMSPhotoPickerConfiguration.h"
 
 @protocol YMSPhotoPickerViewControllerDelegate;
 
@@ -26,13 +28,13 @@
 @property (nonatomic, weak) id<YMSPhotoPickerViewControllerDelegate> delegate;
 
 /**
- * @brief Set numberOfPhotoToSelect to limit maximum number of photo selections. Default value is 1 and you can set it to 0 for unlimited selections.
+ * @brief Set numberOfMediaToSelect to limit maximum number of media selections. Default value is 1 and you can set it to 0 for unlimited selections.
  *
  */
-@property (nonatomic, assign) NSUInteger numberOfPhotoToSelect;
+@property (nonatomic, assign) NSUInteger numberOfMediaToSelect;
 
 /**
- * @brief Use YMSPhotoPickerTheme to customize the UI appearance for YMSPhotoPickerViewController, YMSSinglePhotoViewController, and YMSAlbumPickerViewController. See YMSPhotoPickerTheme.h for more details.
+ * @brief Use YMSPhotoPickerTheme to customize the UI appearance for YMSPhotoPickerViewController, YMSSingleMediaViewController, and YMSAlbumPickerViewController. See YMSPhotoPickerTheme.h for more details.
  *
  */
 @property (nonatomic, readonly) YMSPhotoPickerTheme *theme;
@@ -41,6 +43,9 @@
  *  @brief Use this property to customize the returned item type for single selection. YES for UIImage, NO for PHAsset. Default value is YES.
  */
 @property (nonatomic, assign) BOOL shouldReturnImageForSingleSelection;
+
+
+@property (nonatomic, readonly) YMSPhotoPickerConfiguration* configuration;
 
 @end
 
@@ -67,20 +72,20 @@
 
 @optional
 /**
- * @brief Invoked when view controller finish picking single image from camera or photo album. The picker does not dismiss itself; the client dismisses it in this callback.
+ * @brief Invoked when view controller finish picking single media from camera or photo album. The picker does not dismiss itself; the client dismisses it in this callback.
  *
  * @param picker The view controller invoking the delegate method.
- * @param image The UIImage object user picked.
+ * @param asset The PHAsset object user picked.
  */
-- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingImage:(UIImage *)image;
+- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingMedia:(PHAsset *)asset;
 
 /**
- * @brief Invoked when user press done button with greater than or equal to one image(s) from camera or photo album. The picker does not dismiss itself; the client dismisses it in this callback.
+ * @brief Invoked when user press done button with greater than or equal to one media(s) from camera or photo album. The picker does not dismiss itself; the client dismisses it in this callback.
  *
  * @param picker The view controller invoking the delegate method.
- * @param photoAssets The NSArray object contains PHAsset object(s) user picked.
+ * @param assets The NSArray object contains PHAsset object(s) user picked.
  */
-- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingImages:(NSArray<PHAsset*> *)photoAssets;
+- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingMedias:(NSArray<PHAsset*> *)assets;
 
 /**
  * @brief Invoked when user press cancel button. The picker does not dismiss itself; the client dismisses it in this callback.

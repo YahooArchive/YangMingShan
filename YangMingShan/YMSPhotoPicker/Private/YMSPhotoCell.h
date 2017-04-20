@@ -16,6 +16,12 @@
 @interface YMSPhotoCell : UICollectionViewCell
 
 /**
+ * @brief Set thumbnail image to this to display on cell.
+ *
+ */
+@property (nonatomic, strong) UIImage *thumbnailImage;
+
+/**
  * @brief It is the identifier for photo picker to display single photo in current album.
  *
  */

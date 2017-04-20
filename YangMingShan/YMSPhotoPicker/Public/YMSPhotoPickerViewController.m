@@ -15,16 +15,19 @@
 #import "YMSAlbumPickerViewController.h"
 #import "YMSCameraCell.h"
 #import "YMSPhotoCell.h"
-#import "YMSSinglePhotoViewController.h"
+#import "YMSVideoCell.h"
+#import "YMSSingleMediaViewController.h"
+#import "YMSSingleMediaTransition.h"
 
 static NSString * const YMSCameraCellNibName = @"YMSCameraCell";
 static NSString * const YMSPhotoCellNibName = @"YMSPhotoCell";
-static const NSUInteger YMSNumberOfPhotoColumns = 3;
-static const CGFloat YMSNavigationBarMaxTopSpace = 44.0;
-static const CGFloat YMSNavigationBarOriginalTopSpace = 0.0;
+static NSString * const YMSVideoCellNibName = @"YMSVideoCell";
 static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
-@interface YMSPhotoPickerViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPhotoLibraryChangeObserver>
+@interface YMSPhotoPickerViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPhotoLibraryChangeObserver> {
+    YMSSingleMediaViewController *_previewViewController;
+    YMSSingleMediaTransition *_previewTransition;
+}
 
 @property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UIView *navigationBarBackgroundView;
@@ -33,7 +36,6 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 @property (nonatomic, weak) AVCaptureSession *session;
 @property (nonatomic, strong) NSArray *collectionItems;
 @property (nonatomic, strong) NSDictionary *currentCollectionItem;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *navigationBarTopLayoutConstraint;
 @property (nonatomic, strong) NSMutableArray *selectedPhotos;
 @property (nonatomic, strong) UIBarButtonItem *doneItem;
 @property (nonatomic, assign) BOOL needToSelectFirstPhoto;
@@ -60,7 +62,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     self = [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle bundleForClass:self.class]];
     if (self) {
         self.selectedPhotos = [NSMutableArray array];
-        self.numberOfPhotoToSelect = 1;
+        self.numberOfMediaToSelect = 1;
         self.shouldReturnImageForSingleSelection = YES;
     }
     return self;
@@ -82,6 +84,8 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     [self.photoCollectionView registerNib:cellNib forCellWithReuseIdentifier:YMSCameraCellNibName];
     cellNib = [UINib nibWithNibName:YMSPhotoCellNibName bundle:[NSBundle bundleForClass:YMSPhotoCell.class]];
     [self.photoCollectionView registerNib:cellNib forCellWithReuseIdentifier:YMSPhotoCellNibName];
+    cellNib = [UINib nibWithNibName:YMSVideoCellNibName bundle:[NSBundle bundleForClass:YMSVideoCell.class]];
+    [self.photoCollectionView registerNib:cellNib forCellWithReuseIdentifier:YMSVideoCellNibName];
     self.photoCollectionView.allowsMultipleSelection = self.allowsMultipleSelection;
 
     [self fetchCollections];
@@ -132,11 +136,21 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     return [YMSPhotoPickerTheme sharedInstance].statusBarStyle;
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return [YMSPhotoPickerConfiguration sharedInstance].allowedOrientation;
+}
+
 #pragma mark - Getters
 
 - (YMSPhotoPickerTheme *)theme
 {
     return [YMSPhotoPickerTheme sharedInstance];
+}
+
+- (YMSPhotoPickerConfiguration *)configuration
+{
+    return [YMSPhotoPickerConfiguration sharedInstance];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -161,28 +175,35 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         }
         
         return cameraCell;
-    }    
+    }
     
-    YMSPhotoCell *photoCell = [collectionView dequeueReusableCellWithReuseIdentifier:YMSPhotoCellNibName forIndexPath:indexPath];
-
+    YMSPhotoCell *cell;
+    
     PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
-    
     PHAsset *asset = fetchResult[indexPath.item-1];
-    photoCell.representedAssetIdentifier = asset.localIdentifier;
     
-    CGFloat scale = [UIScreen mainScreen].scale * YMSPhotoFetchScaleResizingRatio;
-    CGSize imageSize = CGSizeMake(CGRectGetWidth(photoCell.frame) * scale, CGRectGetHeight(photoCell.frame) * scale);
-    
-    [photoCell loadPhotoWithManager:self.imageManager forAsset:asset targetSize:imageSize];
-
-    [photoCell.longPressGestureRecognizer addTarget:self action:@selector(presentSinglePhoto:)];
-
-    if ([self.selectedPhotos containsObject:asset]) {
-        NSUInteger selectionIndex = [self.selectedPhotos indexOfObject:asset];
-        photoCell.selectionOrder = selectionIndex+1;
+    if(asset.mediaType == PHAssetMediaTypeImage) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:YMSPhotoCellNibName forIndexPath:indexPath];
+    }
+    else if(asset.mediaType == PHAssetMediaTypeVideo) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:YMSVideoCellNibName forIndexPath:indexPath];
     }
 
-    return photoCell;
+    cell.representedAssetIdentifier = asset.localIdentifier;
+    
+    CGFloat scale = [UIScreen mainScreen].scale * YMSPhotoFetchScaleResizingRatio;
+    CGSize imageSize = CGSizeMake(CGRectGetWidth(cell.frame) * scale, CGRectGetHeight(cell.frame) * scale);
+    
+    [cell loadPhotoWithManager:self.imageManager forAsset:asset targetSize:imageSize];
+
+    [cell.longPressGestureRecognizer addTarget:self action:@selector(presentSinglePhoto:)];
+
+    if ([self shouldOrderSelection] && [self.selectedPhotos containsObject:asset]) {
+        NSUInteger selectionIndex = [self.selectedPhotos indexOfObject:asset];
+        cell.selectionOrder = selectionIndex+1;
+    }
+
+    return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -204,7 +225,9 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     if ([cell isKindOfClass:[YMSPhotoCell class]]) {
         YMSPhotoCell *photoCell = (YMSPhotoCell *)cell;
         [photoCell setNeedsAnimateSelection];
-        photoCell.selectionOrder = self.selectedPhotos.count+1;
+        if ([self shouldOrderSelection]) {
+            photoCell.selectionOrder = self.selectedPhotos.count+1;
+        }
     }
     return YES;
 }
@@ -212,6 +235,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
+        [self.photoCollectionView deselectItemAtIndexPath:indexPath animated:NO];
         [self yms_presentCameraCaptureViewWithDelegate:self];
     }
     else if (NO == self.allowsMultipleSelection) {
@@ -224,22 +248,12 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
             PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
             PHAsset *asset = fetchResult[indexPath.item-1];
             
-            // Prepare the options to pass when fetching the live photo.
-            PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-            options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-            options.networkAccessAllowed = YES;
-            options.resizeMode = PHImageRequestOptionsResizeModeExact;
-            
-            CGSize targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
-            
-            [self.imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
-                if (image && [self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
-                    [self.delegate photoPickerViewController:self didFinishPickingImage:[self yms_orientationNormalizedImage:image]];
-                }
-                else {
-                    [self dismiss:nil];
-                }
-            }];
+            if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingMedia:)]) {
+                [self.delegate photoPickerViewController:self didFinishPickingMedia:asset];
+            }
+            else {
+                [self dismiss:nil];
+            }
         }
     }
     else {
@@ -269,19 +283,21 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.item == 0) {
-        // Camera cell doesn't need to be deselected
+        // The camera cell has no selected/deselected state, so we should present the camera on every touch on the cell
+        [self yms_presentCameraCaptureViewWithDelegate:self];
         return;
     }
     PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
     PHAsset *asset = fetchResult[indexPath.item-1];
 
-    NSUInteger removedIndex = [self.selectedPhotos indexOfObject:asset];
-
-    // Reload order higher than removed cell
-    for (NSInteger i=removedIndex+1; i<self.selectedPhotos.count; i++) {
-        PHAsset *needReloadAsset = self.selectedPhotos[i];
-        YMSPhotoCell *cell = (YMSPhotoCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:[fetchResult indexOfObject:needReloadAsset]+1 inSection:indexPath.section]];
-        cell.selectionOrder = cell.selectionOrder-1;
+    if ([self shouldOrderSelection]) {
+        NSUInteger removedIndex = [self.selectedPhotos indexOfObject:asset];
+        // Reload order higher than removed cell
+        for (NSInteger i=removedIndex+1; i<self.selectedPhotos.count; i++) {
+            PHAsset *needReloadAsset = self.selectedPhotos[i];
+            YMSPhotoCell *cell = (YMSPhotoCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:[fetchResult indexOfObject:needReloadAsset]+1 inSection:indexPath.section]];
+            cell.selectionOrder = cell.selectionOrder-1;
+        }
     }
 
     [self.selectedPhotos removeObject:asset];
@@ -336,8 +352,16 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (IBAction)finishPickingPhotos:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImages:)]) {
-        [self.delegate photoPickerViewController:self didFinishPickingImages:[self.selectedPhotos copy]];
+    if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingMedias:)]) {
+        NSArray *finalMedias = nil;
+        if (self.configuration.sortingType == YMSPhotoPickerSortingTypeSelection) {
+            finalMedias = [self.selectedPhotos copy];
+        } else {
+            BOOL ascending = self.configuration.sortingType == YMSPhotoPickerSortingTypeCreationAscending;
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:ascending];
+            finalMedias = [self.selectedPhotos sortedArrayUsingDescriptors:@[sortDescriptor]];
+        }
+        [self.delegate photoPickerViewController:self didFinishPickingMedias:finalMedias];
     }
     else {
         [self dismiss:nil];
@@ -346,26 +370,46 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (IBAction)presentSinglePhoto:(id)sender
 {
-    if ([sender isKindOfClass:[UILongPressGestureRecognizer class]]) {
-        UILongPressGestureRecognizer *gesture = sender;
-        if (gesture.state != UIGestureRecognizerStateBegan) {
+    if (![sender isKindOfClass:[UILongPressGestureRecognizer class]]) {
+        return;
+    }
+    
+    UILongPressGestureRecognizer *gesture = sender;
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        if (_previewViewController) {
             return;
         }
-        NSIndexPath *indexPath = [self.photoCollectionView indexPathForCell:(YMSPhotoCell *)gesture.view];
-
+        YMSPhotoCell *cell = (YMSPhotoCell*)gesture.view;
+        NSIndexPath *indexPath = [self.photoCollectionView indexPathForCell:cell];
+        
         PHFetchResult *fetchResult = self.currentCollectionItem[@"assets"];
-
         PHAsset *asset = fetchResult[indexPath.item-1];
-
-        YMSSinglePhotoViewController *presentedViewController = [[YMSSinglePhotoViewController alloc] initWithPhotoAsset:asset imageManager:self.imageManager dismissalHandler:^(BOOL selected) {
-            if (selected && [self collectionView:self.photoCollectionView shouldSelectItemAtIndexPath:indexPath]) {
-                [self.photoCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-                [self collectionView:self.photoCollectionView didSelectItemAtIndexPath:indexPath];
-            }
-        }];
-        presentedViewController.view.tintColor = self.theme.tintColor;
-
-        [self presentViewController:presentedViewController animated:YES completion:nil];
+        
+        _previewViewController = [[YMSSingleMediaViewController alloc] initWithAsset:asset imageManager:self.imageManager];
+        _previewViewController.view.frame = self.view.frame;
+        _previewViewController.view.tintColor = self.theme.tintColor;
+        
+        if (!_previewTransition) {
+            _previewTransition = [YMSSingleMediaTransition new];
+        }
+        _previewTransition.sourceImage = cell.thumbnailImage;
+        _previewTransition.detailFrame = _previewViewController.mediaPreviewFrame;
+        CGRect convertedFrame = [self.photoCollectionView convertRect:cell.frame toView:self.photoCollectionView.superview];
+        _previewTransition.thumbnailFrame = convertedFrame;
+        
+        _previewViewController.transitioningDelegate = _previewTransition;
+        _previewViewController.modalPresentationStyle = UIModalPresentationCustom;
+        [self presentViewController:_previewViewController animated:YES completion:nil];
+    }
+    else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
+        if (!_previewViewController) {
+            return;
+        }
+        UIView *cell = gesture.view;
+        CGRect convertedFrame = [self.photoCollectionView convertRect:cell.frame toView:self.photoCollectionView.superview];
+        _previewTransition.thumbnailFrame = convertedFrame;
+        [_previewViewController dismissViewControllerAnimated:YES completion:nil];
+        _previewViewController = nil;
     }
 }
 
@@ -379,33 +423,51 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         if (![self.session isRunning]) {
             [self.photoCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
         }
-
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        if (![image isKindOfClass:[UIImage class]]) {
-            return;
-        }
-
+        
         // Save the image to Photo Album
+        __block PHObjectPlaceholder *assetPlaceholder = nil;
         [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            
+            // Create a PHAssetChangeRequest with the newly taken media
+            PHAssetChangeRequest *assetRequest = nil;
+            NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+            if (UTTypeConformsTo((__bridge CFStringRef)mediaType, kUTTypeImage)) {
+                UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+                assetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+            }
+            else if (UTTypeConformsTo((__bridge CFStringRef)mediaType, kUTTypeMovie)) {
+                NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+                assetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:videoURL];
+            }
+            
+            if (!assetRequest) {
+                return;
+            }
+            
+            // Create an asset placeholder. It will be used:
+            // - to add the new asset into the current Photo Album (only needed for the non-smart albums)
+            // - the fetch the resulting PHAsset at the end of the changes, to pass it to the delegate if needed
+            assetPlaceholder = [assetRequest placeholderForCreatedAsset];
+            
             PHAssetCollection *collection = self.currentCollectionItem[@"collection"];
-            if (collection.assetCollectionType == PHAssetCollectionTypeSmartAlbum) {
-                // Cannot save to smart albums other than "all photos", pick it and dismiss
-                [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-            }
-            else {
-                PHAssetChangeRequest *assetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-                PHObjectPlaceholder *placeholder = [assetRequest placeholderForCreatedAsset];
+            if (collection.assetCollectionType != PHAssetCollectionTypeSmartAlbum) {
                 PHAssetCollectionChangeRequest *albumChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:collection assets:self.currentCollectionItem[@"assets"]];
-                [albumChangeRequest addAssets:@[placeholder]];
+                [albumChangeRequest addAssets:@[assetPlaceholder]];
             }
+            
         } completionHandler:^(BOOL success, NSError *error) {
             if (success) {
                 self.needToSelectFirstPhoto = YES;
             }
 
             if (!self.allowsMultipleSelection) {
-                if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
-                    [self.delegate photoPickerViewController:self didFinishPickingImage:image];
+                if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingMedia:)]) {
+                    // Fetch the newly created PHAsset
+                    PHFetchResult *assets = [PHAsset fetchAssetsWithLocalIdentifiers:@[assetPlaceholder.localIdentifier] options:nil];
+                    PHAsset *createdAsset = assets.firstObject;
+                    if (createdAsset) {
+                        [self.delegate photoPickerViewController:self didFinishPickingMedia:createdAsset];
+                    }
                 }
                 else {
                     [self dismiss:nil];
@@ -418,8 +480,6 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:^(){
-        [self.photoCollectionView deselectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO];
-
         // Enable camera preview when user allow it first time
         if (![self.session isRunning]) {
             [self.photoCollectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]]];
@@ -467,7 +527,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (BOOL)allowsMultipleSelection
 {
-    return (self.numberOfPhotoToSelect != 1);
+    return (self.numberOfMediaToSelect != 1);
 }
 
 - (void)refreshPhotoSelection
@@ -481,8 +541,10 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
             // Display selection
             [self.photoCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:i+1 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-            YMSPhotoCell *cell = (YMSPhotoCell *)[self.photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i+1 inSection:0]];
-            cell.selectionOrder = [self.selectedPhotos indexOfObject:asset]+1;
+            if ([self shouldOrderSelection]) {
+                YMSPhotoCell *cell = (YMSPhotoCell *)[self.photoCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i+1 inSection:0]];
+                cell.selectionOrder = [self.selectedPhotos indexOfObject:asset]+1;
+            }
 
             selectionNumber--;
             if (selectionNumber == 0) {
@@ -494,28 +556,36 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
 - (BOOL)canAddPhoto
 {
-    return (self.selectedPhotos.count < self.numberOfPhotoToSelect
-            || self.numberOfPhotoToSelect == 0);
+    return (self.selectedPhotos.count < self.numberOfMediaToSelect
+            || self.numberOfMediaToSelect == 0);
 }
 
 - (void)fetchCollections
 {
-    NSMutableArray *allAblums = [NSMutableArray array];
+    PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];
+    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    
+    NSMutableArray *predicates = [NSMutableArray new];
+    if(self.configuration.sourceType == YMSPhotoPickerSourceTypePhoto || self.configuration.sourceType == YMSPhotoPickerSourceTypeBoth) {
+        NSPredicate *photoPredicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeImage];
+        [predicates addObject:photoPredicate];
+    }
+    if(self.configuration.sourceType == YMSPhotoPickerSourceTypeVideo || self.configuration.sourceType == YMSPhotoPickerSourceTypeBoth) {
+        NSPredicate *videoPredicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeVideo];
+        [predicates addObject:videoPredicate];
+    }
+    NSPredicate *predicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicates];
+    fetchOptions.predicate = predicate;
 
-    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    NSMutableArray *allAblums = [NSMutableArray array];
 
     __block __weak void (^weakFetchAlbums)(PHFetchResult *collections);
     void (^fetchAlbums)(PHFetchResult *collections);
     weakFetchAlbums = fetchAlbums = ^void(PHFetchResult *collections) {
-        // create fecth options
-        PHFetchOptions *options = [PHFetchOptions new];
-        options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];
-        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-
         for (PHCollection *collection in collections) {
             if ([collection isKindOfClass:[PHAssetCollection class]]) {
                 PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
-                PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
+                PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:fetchOptions];
                 if (assetsFetchResult.count > 0) {
                     [allAblums addObject:@{@"collection": assetCollection
                                            , @"assets": assetsFetchResult}];
@@ -530,27 +600,17 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         }
     };
 
-    PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
-    fetchAlbums(topLevelUserCollections);
-
-    for (PHAssetCollection *collection in smartAlbums) {
-        PHFetchOptions *options = [PHFetchOptions new];
-        options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];
-        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-
-        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:options];
-        if (assetsFetchResult.count > 0) {
-
-            // put the "all photos" in the first index
-            if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
-                [allAblums insertObject:@{@"collection": collection
-                                          , @"assets": assetsFetchResult} atIndex:0];
-            }
-            else {
-                [allAblums addObject:@{@"collection": collection
-                                       , @"assets": assetsFetchResult}];
-            }
-        }
+    // Manually choose all the smart albums to show
+    PHFetchResult *userLibrary = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+    PHFetchResult *favorites = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumFavorites options:nil];
+    PHFetchResult *videos = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumVideos options:nil];
+    PHFetchResult *screenshots = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumScreenshots options:nil];
+    PHFetchResult *selfPortraits = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumSelfPortraits options:nil];
+    PHFetchResult *albums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
+    NSArray *collections = @[userLibrary, favorites, videos, screenshots, selfPortraits, albums];
+    
+    for (PHFetchResult *collection in collections) {
+        fetchAlbums(collection);
     }
     self.collectionItems = [allAblums copy];
 }
@@ -565,11 +625,12 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     CGFloat minimumInteritemSpacing = layout.minimumInteritemSpacing;
     UIEdgeInsets sectionInset = layout.sectionInset;
 
-    CGFloat totalInteritemSpacing = MAX((YMSNumberOfPhotoColumns - 1), 0) * minimumInteritemSpacing;
+    NSUInteger numberOfColumns = self.configuration.numberOfColumns;
+    CGFloat totalInteritemSpacing = MAX((numberOfColumns - 1), 0) * minimumInteritemSpacing;
     CGFloat totalHorizontalSpacing = totalInteritemSpacing + sectionInset.left + sectionInset.right;
 
     // Caculate size for portrait mode
-    CGFloat size = (CGFloat)floor((arrangementLength - totalHorizontalSpacing) / YMSNumberOfPhotoColumns);
+    CGFloat size = (CGFloat)floor((arrangementLength - totalHorizontalSpacing) / numberOfColumns);
     self.cellPortraitSize = CGSizeMake(size, size);
 
     // Caculate size for landsacpe mode
@@ -579,6 +640,11 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     totalHorizontalSpacing = totalInteritemSpacing + sectionInset.left + sectionInset.right;
     size = (CGFloat)floor((arrangementLength - totalHorizontalSpacing) / numberOfPhotoColumnsInLandscape);
     self.cellLandscapeSize = CGSizeMake(size, size);
+}
+
+- (BOOL)shouldOrderSelection
+{
+    return self.configuration.sortingType == YMSPhotoPickerSortingTypeSelection;
 }
 
 #pragma mark - PHPhotoLibraryChangeObserver
@@ -685,58 +751,6 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
             }];
         }
     });
-}
-
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    // Measure table view scolling position is between the expectation
-    if (scrollView.contentOffset.y > YMSNavigationBarOriginalTopSpace
-        && scrollView.contentOffset.y + CGRectGetHeight(scrollView.bounds) < scrollView.contentSize.height - 1) {
-        CGFloat topLayoutConstraintConstant = self.navigationBarTopLayoutConstraint.constant - (scrollView.contentOffset.y - scrollView.lastContentOffset.y);
-
-        // When next top constant is longer than maximum
-        if (topLayoutConstraintConstant < -YMSNavigationBarMaxTopSpace) {
-            self.navigationBarTopLayoutConstraint.constant = -YMSNavigationBarMaxTopSpace;
-        }
-        // When next top constant is smaller than the minimum
-        else if (topLayoutConstraintConstant > YMSNavigationBarOriginalTopSpace) {
-            self.navigationBarTopLayoutConstraint.constant = YMSNavigationBarOriginalTopSpace;
-        }
-        // Adjust navigation bar top space
-        else {
-            self.navigationBarTopLayoutConstraint.constant = topLayoutConstraintConstant;
-        }
-
-        CGFloat navigationBarAlphaStatus = 1.0 - self.navigationBarTopLayoutConstraint.constant/(YMSNavigationBarOriginalTopSpace - YMSNavigationBarMaxTopSpace);
-        self.navigationBar.alpha = navigationBarAlphaStatus;
-    }
-
-    // Measure the scroll direction for adating animation in scrollViewDidEndDragging:
-    [scrollView yms_scrollViewDidScroll];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    // measure the end point to add animation
-    if (self.navigationBarTopLayoutConstraint.constant > -YMSNavigationBarMaxTopSpace
-        && self.navigationBarTopLayoutConstraint.constant < YMSNavigationBarOriginalTopSpace) {
-
-        [UIView animateWithDuration:0.3 animations:^{
-            if (scrollView.scrollDirection == YMSScrollViewScrollDirectionUp) {
-                self.navigationBarTopLayoutConstraint.constant = -YMSNavigationBarMaxTopSpace;
-            }
-            else if (scrollView.scrollDirection == YMSScrollViewScrollDirectionDown) {
-                self.navigationBarTopLayoutConstraint.constant = YMSNavigationBarOriginalTopSpace;
-            }
-
-            CGFloat navigationBarAlphaStatus = 1.0 - self.navigationBarTopLayoutConstraint.constant/(YMSNavigationBarOriginalTopSpace - YMSNavigationBarMaxTopSpace);
-            self.navigationBar.alpha = navigationBarAlphaStatus;
-
-            [self.view layoutIfNeeded];
-        }];
-    }
 }
 
 @end

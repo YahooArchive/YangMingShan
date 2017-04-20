@@ -28,7 +28,6 @@ static const CGFloat YMSUnhightedAnimationSpringVelocity = 6.0;
 @property (nonatomic, assign) BOOL animateSelection;
 @property (nonatomic, assign, getter=isAnimatingHighlight) BOOL animateHighlight;
 @property (nonatomic, weak) IBOutlet UILabel *selectionOrderLabel;
-@property (nonatomic, strong) UIImage *thumbnailImage;
 
 - (void)cancelImageRequest;
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated;
@@ -91,7 +90,7 @@ static const CGFloat YMSUnhightedAnimationSpringVelocity = 6.0;
     self.imageManager = manager;
     self.imageRequestID = [self.imageManager requestImageForAsset:asset
                                                        targetSize:size
-                                                      contentMode:PHImageContentModeAspectFill
+                                                      contentMode:PHImageContentModeDefault
                                                           options:nil
                                                     resultHandler:^(UIImage *result, NSDictionary *info) {
                                                         // Set the cell's thumbnail image if it's still showing the same asset.

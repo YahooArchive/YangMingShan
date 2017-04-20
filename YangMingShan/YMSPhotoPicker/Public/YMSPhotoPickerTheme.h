@@ -79,7 +79,7 @@
  * @brief Describe a specify UIFont that you want to apply to the table view showing photo count insdie album.
  *
  */
-@property (nonatomic, strong) UIFont *photosCountLabelFont;
+@property (nonatomic, strong) UIFont *mediasCountLabelFont;
 
 /**
  * @brief Describe a specify UIFont that you want to apply to the number in the bottom right of photo cells after they're selected, denoting order of selection.

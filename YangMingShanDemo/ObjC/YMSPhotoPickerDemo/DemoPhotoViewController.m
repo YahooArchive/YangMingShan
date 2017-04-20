@@ -46,7 +46,11 @@ static NSString * const CellIdentifier = @"imageCellIdentifier";
         && [numberOfPhotoSelectionString integerValue] != 1) {
         // Custom selection number
         YMSPhotoPickerViewController *pickerViewController = [[YMSPhotoPickerViewController alloc] init];
-        pickerViewController.numberOfPhotoToSelect = [numberOfPhotoSelectionString integerValue];
+        pickerViewController.configuration.numberOfColumns = 4;
+        pickerViewController.configuration.sourceType = YMSPhotoPickerSourceTypeBoth;
+        pickerViewController.configuration.sortingType = YMSPhotoPickerSortingTypeCreationDescending;
+        pickerViewController.configuration.allowedOrientation = UIInterfaceOrientationMaskPortrait;
+        pickerViewController.numberOfMediaToSelect = [numberOfPhotoSelectionString integerValue];
 
         UIColor *customColor = [UIColor colorWithRed:248.0/255.0 green:217.0/255.0 blue:44.0/255.0 alpha:1.0];
 
@@ -109,15 +113,28 @@ static NSString * const CellIdentifier = @"imageCellIdentifier";
     [picker presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingImage:(UIImage *)image
+- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingMedia:(PHAsset *)asset
 {
     [picker dismissViewControllerAnimated:YES completion:^() {
-        self.images = @[image];
-        [self.collectionView reloadData];
+        
+        PHImageManager *imageManager = [[PHImageManager alloc] init];
+        
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        options.networkAccessAllowed = YES;
+        options.resizeMode = PHImageRequestOptionsResizeModeExact;
+        
+        CGSize targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
+        
+        [imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
+            self.images = @[image];
+            [self.collectionView reloadData];
+        }];
+        
     }];
 }
 
-- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingImages:(NSArray *)photoAssets
+- (void)photoPickerViewController:(YMSPhotoPickerViewController *)picker didFinishPickingMedias:(NSArray *)assets
 {
     [picker dismissViewControllerAnimated:YES completion:^() {
 
@@ -131,7 +148,7 @@ static NSString * const CellIdentifier = @"imageCellIdentifier";
 
         NSMutableArray *mutableImages = [NSMutableArray array];
 
-        for (PHAsset *asset in photoAssets) {
+        for (PHAsset *asset in assets) {
             CGSize targetSize = CGSizeMake((CGRectGetWidth(self.collectionView.bounds) - 20*2) * [UIScreen mainScreen].scale, (CGRectGetHeight(self.collectionView.bounds) - 20*2) * [UIScreen mainScreen].scale);
             [imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage *image, NSDictionary *info) {
                 [mutableImages addObject:image];
