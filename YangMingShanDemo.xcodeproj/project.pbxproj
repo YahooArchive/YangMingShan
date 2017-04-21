@@ -153,8 +153,8 @@
 
 /* Begin PBXFileReference section */
 		3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YangMingShan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3EFA1F6C1E927DAE00FD8984 /* YangMingShan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YangMingShan.h; sourceTree = "<group>"; };
-		3EFA1F6D1E927DAE00FD8984 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EFA1F6C1E927DAE00FD8984 /* YangMingShan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YangMingShan.h; path = YangMingShan/YangMingShan.h; sourceTree = "<group>"; };
+		3EFA1F6D1E927DAE00FD8984 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = YangMingShan/Info.plist; sourceTree = "<group>"; };
 		3EFA1F931E927E7E00FD8984 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		511BC6011D13B27400738FD4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ObjC/AppDelegate.h; sourceTree = "<group>"; };
 		511BC6021D13B27400738FD4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ObjC/AppDelegate.m; sourceTree = "<group>"; };
@@ -256,15 +256,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3EFA1F6B1E927DAE00FD8984 /* YangMingShan */ = {
-			isa = PBXGroup;
-			children = (
-				3EFA1F6C1E927DAE00FD8984 /* YangMingShan.h */,
-				3EFA1F6D1E927DAE00FD8984 /* Info.plist */,
-			);
-			path = YangMingShan;
-			sourceTree = "<group>";
-		};
 		3EFA1F921E927E7E00FD8984 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,7 +322,6 @@
 				51FF32261D129D020029197B /* YangMingShanDemo */,
 				5171AD031CE9A49C00B72748 /* YangMingShanDemoTests */,
 				5171AD0E1CE9A49C00B72748 /* YangMingShanDemoUITests */,
-				3EFA1F6B1E927DAE00FD8984 /* YangMingShan */,
 				5171ACE81CE9A49B00B72748 /* Products */,
 				3EFA1F921E927E7E00FD8984 /* Frameworks */,
 			);
@@ -373,6 +363,8 @@
 			isa = PBXGroup;
 			children = (
 				5171AD1E1CE9B2F100B72748 /* YMSPhotoPicker */,
+				3EFA1F6C1E927DAE00FD8984 /* YangMingShan.h */,
+				3EFA1F6D1E927DAE00FD8984 /* Info.plist */,
 			);
 			name = YangMingShan;
 			sourceTree = "<group>";
