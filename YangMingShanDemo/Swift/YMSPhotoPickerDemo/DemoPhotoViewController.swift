@@ -6,6 +6,9 @@
 //  Licensed under the terms of the BSD license. Please see LICENSE file in the project root for terms.
 //
 
+import UIKit
+import YangMingShan
+
 class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
     let cellIdentifier = "imageCellIdentifier"
