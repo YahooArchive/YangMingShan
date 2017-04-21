@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22F307111EA9DDFE00D27109 /* YangMingShan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */; };
+		22F307121EA9DDFE00D27109 /* YangMingShan.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EFA1F6E1E927DAE00FD8984 /* YangMingShan.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EFA1F6C1E927DAE00FD8984 /* YangMingShan.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EFA1F711E927DAE00FD8984 /* YangMingShan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */; };
 		3EFA1F721E927DAE00FD8984 /* YangMingShan.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -94,6 +96,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		22F307131EA9DDFE00D27109 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5171ACDF1CE9A49B00B72748 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3EFA1F691E927DAE00FD8984;
+			remoteInfo = YangMingShan;
+		};
 		3EFA1F6F1E927DAE00FD8984 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5171ACDF1CE9A49B00B72748 /* Project object */;
@@ -118,6 +127,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		22F307151EA9DDFE00D27109 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				22F307121EA9DDFE00D27109 /* YangMingShan.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EFA1F761E927DAE00FD8984 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -147,7 +167,6 @@
 		511BC6111D13B33D00738FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = YangMingShanDemo/Swift/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		511BC6121D13B33D00738FD4 /* DemoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoListViewController.swift; path = YangMingShanDemo/Swift/DemoListViewController.swift; sourceTree = SOURCE_ROOT; };
 		511BC6131D13B33D00738FD4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = YangMingShanDemo/Swift/Info.plist; sourceTree = SOURCE_ROOT; };
-		511BC6141D13B33D00738FD4 /* YangMingShanDemo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "YangMingShanDemo-Bridging-Header.h"; path = "YangMingShanDemo/Swift/YangMingShanDemo-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		511BC6161D13B33D00738FD4 /* DemoImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoImageViewCell.swift; sourceTree = "<group>"; };
 		511BC6171D13B33D00738FD4 /* DemoPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPhotoViewController.swift; sourceTree = "<group>"; };
 		511BC61D1D13B39E00738FD4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ObjC/Info.plist; sourceTree = "<group>"; };
@@ -230,6 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F307111EA9DDFE00D27109 /* YangMingShan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +296,6 @@
 				511BC6151D13B33D00738FD4 /* YMSPhotoPickerDemo */,
 				513072FE1D13D02D00C98705 /* Main-swift.storyboard */,
 				511BC6131D13B33D00738FD4 /* Info.plist */,
-				511BC6141D13B33D00738FD4 /* YangMingShanDemo-Bridging-Header.h */,
 			);
 			name = Swift;
 			sourceTree = "<group>";
@@ -517,10 +536,12 @@
 				519140C91D055615002B4C5B /* Sources */,
 				519140CA1D055615002B4C5B /* Frameworks */,
 				519140CB1D055615002B4C5B /* Resources */,
+				22F307151EA9DDFE00D27109 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				22F307141EA9DDFE00D27109 /* PBXTargetDependency */,
 			);
 			name = "YangMingShanDemo-Swift";
 			productName = "YahooUIKitDemo-Swift";
@@ -729,6 +750,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		22F307141EA9DDFE00D27109 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3EFA1F691E927DAE00FD8984 /* YangMingShan */;
+			targetProxy = 22F307131EA9DDFE00D27109 /* PBXContainerItemProxy */;
+		};
 		3EFA1F701E927DAE00FD8984 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3EFA1F691E927DAE00FD8984 /* YangMingShan */;
@@ -997,7 +1023,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemo;
 				PRODUCT_NAME = YangMingShanDemo;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/YangMingShanDemo/Swift/YangMingShanDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1013,7 +1039,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemo;
 				PRODUCT_NAME = YangMingShanDemo;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/YangMingShanDemo/Swift/YangMingShanDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
