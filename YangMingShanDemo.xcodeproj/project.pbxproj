@@ -7,6 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EFA1F6E1E927DAE00FD8984 /* YangMingShan.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EFA1F6C1E927DAE00FD8984 /* YangMingShan.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3EFA1F711E927DAE00FD8984 /* YangMingShan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */; };
+		3EFA1F721E927DAE00FD8984 /* YangMingShan.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EFA1F941E927E7E00FD8984 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA1F931E927E7E00FD8984 /* Photos.framework */; };
+		3EFA1F951E927E9700FD8984 /* YMSPhotoPickerAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51F2EEE81CEC4D5F006DFC4B /* YMSPhotoPickerAssets.xcassets */; };
+		3EFA1FC01E92824600FD8984 /* UIViewController+YMSPhotoHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5130733A1D1B8DC000C98705 /* UIViewController+YMSPhotoHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3EFA1FC11E92824600FD8984 /* YMSPhotoPickerTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 5130733C1D1B8DC000C98705 /* YMSPhotoPickerTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3EFA1FC21E92827700FD8984 /* YMSPhotoPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5130733E1D1B8DC000C98705 /* YMSPhotoPickerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3EFA1FC31E92829000FD8984 /* UIScrollView+YMSAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5130731B1D1B8D9000C98705 /* UIScrollView+YMSAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3EFA1FC41E92829000FD8984 /* UITableViewCell+YMSConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 5130731D1D1B8D9000C98705 /* UITableViewCell+YMSConfig.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3EFA1FC51E92829000FD8984 /* YMSAlbumCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 5130731F1D1B8D9000C98705 /* YMSAlbumCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3EFA1FC61E92829000FD8984 /* YMSAlbumPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 513073221D1B8D9000C98705 /* YMSAlbumPickerViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3EFA1FC71E92829000FD8984 /* YMSCameraCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 513073251D1B8D9000C98705 /* YMSCameraCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3EFA1FC81E92829000FD8984 /* YMSPhotoCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 513073281D1B8D9000C98705 /* YMSPhotoCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3EFA1FC91E92829000FD8984 /* YMSSinglePhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5130732B1D1B8D9000C98705 /* YMSSinglePhotoViewController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3EFA1FD41E92844B00FD8984 /* UIViewController+YMSPhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130733B1D1B8DC000C98705 /* UIViewController+YMSPhotoHelper.m */; };
+		3EFA1FD51E92844B00FD8984 /* UIScrollView+YMSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130731C1D1B8D9000C98705 /* UIScrollView+YMSAdditions.m */; };
+		3EFA1FD61E92844B00FD8984 /* UITableViewCell+YMSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130731E1D1B8D9000C98705 /* UITableViewCell+YMSConfig.m */; };
+		3EFA1FD71E92844B00FD8984 /* YMSPhotoPickerTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130733D1D1B8DC000C98705 /* YMSPhotoPickerTheme.m */; };
+		3EFA1FD81E92844B00FD8984 /* YMSPhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130733F1D1B8DC000C98705 /* YMSPhotoPickerViewController.m */; };
+		3EFA1FD91E92844B00FD8984 /* YMSAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073201D1B8D9000C98705 /* YMSAlbumCell.m */; };
+		3EFA1FDA1E92844B00FD8984 /* YMSAlbumPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073231D1B8D9000C98705 /* YMSAlbumPickerViewController.m */; };
+		3EFA1FDB1E92844B00FD8984 /* YMSCameraCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073261D1B8D9000C98705 /* YMSCameraCell.m */; };
+		3EFA1FDC1E92844B00FD8984 /* YMSPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073291D1B8D9000C98705 /* YMSPhotoCell.m */; };
+		3EFA1FDD1E92844B00FD8984 /* YMSSinglePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5130732C1D1B8D9000C98705 /* YMSSinglePhotoViewController.m */; };
+		3EFA1FDE1E92845300FD8984 /* YMSPhotoPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513073401D1B8DC000C98705 /* YMSPhotoPickerViewController.xib */; };
+		3EFA1FDF1E92845300FD8984 /* YMSAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513073211D1B8D9000C98705 /* YMSAlbumCell.xib */; };
+		3EFA1FE01E92845300FD8984 /* YMSAlbumPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513073241D1B8D9000C98705 /* YMSAlbumPickerViewController.xib */; };
+		3EFA1FE11E92845300FD8984 /* YMSCameraCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 513073271D1B8D9000C98705 /* YMSCameraCell.xib */; };
+		3EFA1FE21E92845300FD8984 /* YMSPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130732A1D1B8D9000C98705 /* YMSPhotoCell.xib */; };
+		3EFA1FE31E92845300FD8984 /* YMSSinglePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5130732D1D1B8D9000C98705 /* YMSSinglePhotoViewController.xib */; };
 		511BC6051D13B27400738FD4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BC6021D13B27400738FD4 /* AppDelegate.m */; };
 		511BC6061D13B27400738FD4 /* DemoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BC6041D13B27400738FD4 /* DemoListViewController.m */; };
 		511BC60F1D13B2C400738FD4 /* DemoImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BC60C1D13B2C400738FD4 /* DemoImageViewCell.m */; };
@@ -63,6 +94,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3EFA1F6F1E927DAE00FD8984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5171ACDF1CE9A49B00B72748 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3EFA1F691E927DAE00FD8984;
+			remoteInfo = YangMingShan;
+		};
 		5171AD011CE9A49C00B72748 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5171ACDF1CE9A49B00B72748 /* Project object */;
@@ -79,7 +117,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3EFA1F761E927DAE00FD8984 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3EFA1F721E927DAE00FD8984 /* YangMingShan.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YangMingShan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EFA1F6C1E927DAE00FD8984 /* YangMingShan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YangMingShan.h; sourceTree = "<group>"; };
+		3EFA1F6D1E927DAE00FD8984 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EFA1F931E927E7E00FD8984 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		511BC6011D13B27400738FD4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ObjC/AppDelegate.h; sourceTree = "<group>"; };
 		511BC6021D13B27400738FD4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ObjC/AppDelegate.m; sourceTree = "<group>"; };
 		511BC6031D13B27400738FD4 /* DemoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoListViewController.h; path = ObjC/DemoListViewController.h; sourceTree = "<group>"; };
@@ -140,10 +196,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3EFA1F661E927DAE00FD8984 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EFA1F941E927E7E00FD8984 /* Photos.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5171ACE41CE9A49B00B72748 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EFA1F711E927DAE00FD8984 /* YangMingShan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +236,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3EFA1F6B1E927DAE00FD8984 /* YangMingShan */ = {
+			isa = PBXGroup;
+			children = (
+				3EFA1F6C1E927DAE00FD8984 /* YangMingShan.h */,
+				3EFA1F6D1E927DAE00FD8984 /* Info.plist */,
+			);
+			path = YangMingShan;
+			sourceTree = "<group>";
+		};
+		3EFA1F921E927E7E00FD8984 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EFA1F931E927E7E00FD8984 /* Photos.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		511BC6071D13B28800738FD4 /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +312,9 @@
 				51FF32261D129D020029197B /* YangMingShanDemo */,
 				5171AD031CE9A49C00B72748 /* YangMingShanDemoTests */,
 				5171AD0E1CE9A49C00B72748 /* YangMingShanDemoUITests */,
+				3EFA1F6B1E927DAE00FD8984 /* YangMingShan */,
 				5171ACE81CE9A49B00B72748 /* Products */,
+				3EFA1F921E927E7E00FD8984 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -241,6 +325,7 @@
 				5171AD001CE9A49C00B72748 /* YangMingShanDemo.xctest */,
 				5171AD0B1CE9A49C00B72748 /* YangMingShanDemo.xctest */,
 				519140CD1D055615002B4C5B /* YangMingShanDemo.app */,
+				3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,7 +415,46 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		3EFA1F671E927DAE00FD8984 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EFA1FC21E92827700FD8984 /* YMSPhotoPickerViewController.h in Headers */,
+				3EFA1F6E1E927DAE00FD8984 /* YangMingShan.h in Headers */,
+				3EFA1FC01E92824600FD8984 /* UIViewController+YMSPhotoHelper.h in Headers */,
+				3EFA1FC11E92824600FD8984 /* YMSPhotoPickerTheme.h in Headers */,
+				3EFA1FC31E92829000FD8984 /* UIScrollView+YMSAdditions.h in Headers */,
+				3EFA1FC41E92829000FD8984 /* UITableViewCell+YMSConfig.h in Headers */,
+				3EFA1FC51E92829000FD8984 /* YMSAlbumCell.h in Headers */,
+				3EFA1FC61E92829000FD8984 /* YMSAlbumPickerViewController.h in Headers */,
+				3EFA1FC71E92829000FD8984 /* YMSCameraCell.h in Headers */,
+				3EFA1FC81E92829000FD8984 /* YMSPhotoCell.h in Headers */,
+				3EFA1FC91E92829000FD8984 /* YMSSinglePhotoViewController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		3EFA1F691E927DAE00FD8984 /* YangMingShan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EFA1F751E927DAE00FD8984 /* Build configuration list for PBXNativeTarget "YangMingShan" */;
+			buildPhases = (
+				3EFA1F651E927DAE00FD8984 /* Sources */,
+				3EFA1F661E927DAE00FD8984 /* Frameworks */,
+				3EFA1F671E927DAE00FD8984 /* Headers */,
+				3EFA1F681E927DAE00FD8984 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YangMingShan;
+			productName = YangMingShan;
+			productReference = 3EFA1F6A1E927DAE00FD8984 /* YangMingShan.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		5171ACE61CE9A49B00B72748 /* YangMingShanDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5171AD141CE9A49C00B72748 /* Build configuration list for PBXNativeTarget "YangMingShanDemo" */;
@@ -338,10 +462,12 @@
 				5171ACE31CE9A49B00B72748 /* Sources */,
 				5171ACE41CE9A49B00B72748 /* Frameworks */,
 				5171ACE51CE9A49B00B72748 /* Resources */,
+				3EFA1F761E927DAE00FD8984 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3EFA1F701E927DAE00FD8984 /* PBXTargetDependency */,
 			);
 			name = YangMingShanDemo;
 			productName = YahooUIKitDemo;
@@ -408,9 +534,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Yahoo;
 				TargetAttributes = {
+					3EFA1F691E927DAE00FD8984 = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
 					5171ACE61CE9A49B00B72748 = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0800;
@@ -447,11 +577,26 @@
 				519140CC1D055615002B4C5B /* YangMingShanDemo-Swift */,
 				5171ACFF1CE9A49C00B72748 /* YangMingShanDemoTests */,
 				5171AD0A1CE9A49C00B72748 /* YangMingShanDemoUITests */,
+				3EFA1F691E927DAE00FD8984 /* YangMingShan */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3EFA1F681E927DAE00FD8984 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EFA1FDE1E92845300FD8984 /* YMSPhotoPickerViewController.xib in Resources */,
+				3EFA1FDF1E92845300FD8984 /* YMSAlbumCell.xib in Resources */,
+				3EFA1FE01E92845300FD8984 /* YMSAlbumPickerViewController.xib in Resources */,
+				3EFA1FE11E92845300FD8984 /* YMSCameraCell.xib in Resources */,
+				3EFA1FE21E92845300FD8984 /* YMSPhotoCell.xib in Resources */,
+				3EFA1FE31E92845300FD8984 /* YMSSinglePhotoViewController.xib in Resources */,
+				3EFA1F951E927E9700FD8984 /* YMSPhotoPickerAssets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5171ACE51CE9A49B00B72748 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -505,6 +650,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3EFA1F651E927DAE00FD8984 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EFA1FD41E92844B00FD8984 /* UIViewController+YMSPhotoHelper.m in Sources */,
+				3EFA1FD51E92844B00FD8984 /* UIScrollView+YMSAdditions.m in Sources */,
+				3EFA1FD61E92844B00FD8984 /* UITableViewCell+YMSConfig.m in Sources */,
+				3EFA1FD71E92844B00FD8984 /* YMSPhotoPickerTheme.m in Sources */,
+				3EFA1FD81E92844B00FD8984 /* YMSPhotoPickerViewController.m in Sources */,
+				3EFA1FD91E92844B00FD8984 /* YMSAlbumCell.m in Sources */,
+				3EFA1FDA1E92844B00FD8984 /* YMSAlbumPickerViewController.m in Sources */,
+				3EFA1FDB1E92844B00FD8984 /* YMSCameraCell.m in Sources */,
+				3EFA1FDC1E92844B00FD8984 /* YMSPhotoCell.m in Sources */,
+				3EFA1FDD1E92844B00FD8984 /* YMSSinglePhotoViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5171ACE31CE9A49B00B72748 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -567,6 +729,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3EFA1F701E927DAE00FD8984 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3EFA1F691E927DAE00FD8984 /* YangMingShan */;
+			targetProxy = 3EFA1F6F1E927DAE00FD8984 /* PBXContainerItemProxy */;
+		};
 		5171AD021CE9A49C00B72748 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5171ACE61CE9A49B00B72748 /* YangMingShanDemo */;
@@ -607,6 +774,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3EFA1F731E927DAE00FD8984 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = YangMingShan/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3EFA1F741E927DAE00FD8984 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = YangMingShan/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		5171AD121CE9A49C00B72748 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -646,7 +863,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -686,7 +903,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -700,6 +917,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/YangMingShanDemo/ObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemo;
 				PRODUCT_NAME = YangMingShanDemo;
@@ -713,6 +931,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/YangMingShanDemo/ObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemo;
 				PRODUCT_NAME = YangMingShanDemo;
@@ -774,10 +993,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/YangMingShanDemo/Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemo;
 				PRODUCT_NAME = YangMingShanDemo;
-				SWIFT_OBJC_BRIDGING_HEADER = "YangMingShanDemo/Swift/YangMingShanDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/YangMingShanDemo/Swift/YangMingShanDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -789,10 +1009,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/YangMingShanDemo/Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemo;
 				PRODUCT_NAME = YangMingShanDemo;
-				SWIFT_OBJC_BRIDGING_HEADER = "YangMingShanDemo/Swift/YangMingShanDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/YangMingShanDemo/Swift/YangMingShanDemo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -800,6 +1021,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3EFA1F751E927DAE00FD8984 /* Build configuration list for PBXNativeTarget "YangMingShan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EFA1F731E927DAE00FD8984 /* Debug */,
+				3EFA1F741E927DAE00FD8984 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5171ACE21CE9A49B00B72748 /* Build configuration list for PBXProject "YangMingShanDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
