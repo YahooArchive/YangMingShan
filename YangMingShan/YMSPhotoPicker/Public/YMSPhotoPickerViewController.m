@@ -405,7 +405,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 
             if (!self.allowsMultipleSelection) {
                 if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
-                    [self.delegate photoPickerViewController:self didFinishPickingImage:image];
+                    [self performSelectorOnMainThread:@selector(didFinishPickingImage:) withObject:image waitUntilDone:YES];
                 }
                 else {
                     [self dismiss:nil];
@@ -428,6 +428,10 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 }
 
 #pragma mark - Privates
+
+-(void)didFinishPickingImage:(UIImage*)image{
+    [self.delegate photoPickerViewController:self didFinishPickingImage:image];
+}
 
 - (void)updateViewWithCollectionItem:(NSDictionary *)collectionItem
 {
