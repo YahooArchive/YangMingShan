@@ -1,15 +1,15 @@
 Pod::Spec.new do |s|
   s.name         = 'YangMingShan'
   s.author       = { "Team" => "yang-ming-shan@yahoo-inc.com" }
-  s.version      = '1.3.0'
+  s.version      = '1.4.0'
   s.summary      = 'The collection of useful UI components that inspired by Yahoo apps.'
   s.homepage     = 'https://github.com/yahoo/YangMingShan'
   s.license      = "Yahoo! Inc. BSD license"
   s.source       = { :git => 'https://github.com/yahoo/YangMingShan.git', :tag => s.version.to_s }
   s.requires_arc = true
   s.frameworks   = ['Foundation', 'UIKit', 'QuartzCore']
-  s.platform     = :ios, '8.0'
-  s.ios.deployment_target = '8.0'
+  s.platform     = :ios, '9.0'
+  s.ios.deployment_target = '9.0'
   s.default_subspec = 'YMSPhotoPicker'
 
   s.subspec 'YMSPhotoPicker' do |ss|
