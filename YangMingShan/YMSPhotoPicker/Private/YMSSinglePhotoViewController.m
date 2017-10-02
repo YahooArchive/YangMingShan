@@ -20,7 +20,6 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
 @property (nonatomic, copy) void (^dismissalHandler)(BOOL);
 @property (nonatomic, strong) PHAsset *currentAsset;
 @property (nonatomic, weak) PHImageManager *imageManager;
-@property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UIView *navigationBarBackgroundView;
 @property (nonatomic, weak) IBOutlet UIImageView *photoImageView;
 @property (nonatomic, weak) IBOutlet UIScrollView *imageContainerView;
@@ -52,16 +51,18 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
     UINavigationItem *navigationItem = [[UINavigationItem alloc] init];
     navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"YMSIconCancel" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] style:UIBarButtonItemStylePlain target:self action:@selector(dismiss:)];
     navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(selectCurrentPhoto:)];
-    self.navigationBar.items = @[navigationItem];
+    
+    self.navigationItem.leftBarButtonItem = navigationItem.leftBarButtonItem;
+    self.navigationItem.rightBarButtonItem = navigationItem.rightBarButtonItem;
 
     if (![[YMSPhotoPickerTheme sharedInstance].navigationBarBackgroundColor isEqual:[UIColor whiteColor]]) {
-        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        [self.navigationBar setShadowImage:[UIImage new]];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setShadowImage:[UIImage new]];
         self.navigationBarBackgroundView.backgroundColor = [YMSPhotoPickerTheme sharedInstance].navigationBarBackgroundColor;
     }
 
     CGFloat scale = [UIScreen mainScreen].scale;
-    CGSize imageSize = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds) * scale, (CGRectGetHeight([UIScreen mainScreen].bounds) - CGRectGetHeight(self.navigationBar.bounds)) * scale);
+    CGSize imageSize = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds) * scale, (CGRectGetHeight([UIScreen mainScreen].bounds) - CGRectGetHeight(self.navigationController.navigationBar.bounds)) * scale);
 
     CGSize targetSize = CGSizeMake(imageSize.width * scale, imageSize.height * scale);
     [self.imageManager requestImageForAsset:self.currentAsset targetSize:targetSize contentMode:PHImageContentModeDefault options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
@@ -111,7 +112,7 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
     if (self.presentationStyle == PresentationStyleDefault) {
         [UIView animateWithDuration:0.15 animations:^{
             self.view.backgroundColor = [UIColor blackColor];
-            self.navigationBar.alpha = 0.0;
+            self.navigationController.navigationBar.alpha = 0.0;
             self.navigationBarBackgroundView.alpha = 0.0;
         } completion:^(BOOL finished) {
             self.presentationStyle = PresentationStyleDark;
@@ -121,7 +122,7 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
     else if (self.presentationStyle == PresentationStyleDark) {
         [UIView animateWithDuration:0.15 animations:^{
             self.view.backgroundColor = [UIColor whiteColor];
-            self.navigationBar.alpha = 1.0;
+            self.navigationController.navigationBar.alpha = 1.0;
             self.navigationBarBackgroundView.alpha = 1.0;
         } completion:^(BOOL finished) {
            self.presentationStyle = PresentationStyleDefault;

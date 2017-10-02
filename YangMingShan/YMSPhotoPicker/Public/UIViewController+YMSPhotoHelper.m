@@ -11,6 +11,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/Photos.h>
 
+#import "YMSNavigationController.h"
+
 @implementation UIViewController (YMSPhotoHelper)
 
 - (void)yms_presentCameraCaptureViewWithDelegate:(id<UIImagePickerControllerDelegate, UINavigationControllerDelegate>)delegate
@@ -67,10 +69,12 @@
 - (void)yms_presentCustomAlbumPhotoView:(YMSPhotoPickerViewController *)pickerViewController delegate:(id<YMSPhotoPickerViewControllerDelegate>)delegate
 {
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
-
+    
+    YMSNavigationController *navigationController = [[YMSNavigationController alloc] initWithRootViewController:pickerViewController];
+    
     if (status == PHAuthorizationStatusAuthorized) {
         pickerViewController.delegate = delegate;
-        [self presentViewController:pickerViewController animated:YES completion:nil];
+        [self presentViewController:navigationController animated:YES completion:nil];
     }
     else if (status == PHAuthorizationStatusDenied
              || status == PHAuthorizationStatusRestricted) {
@@ -83,7 +87,7 @@
             dispatch_async(dispatch_get_main_queue(), ^() {
                 if (status == PHAuthorizationStatusAuthorized) {
                     pickerViewController.delegate = delegate;
-                    [self presentViewController:pickerViewController animated:YES completion:nil];
+                    [self presentViewController:navigationController animated:YES completion:nil];
                 }
                 else {
                     // Access has been denied
