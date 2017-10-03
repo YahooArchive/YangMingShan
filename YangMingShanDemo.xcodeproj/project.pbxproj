@@ -60,8 +60,6 @@
 		5130731A1D13D5A400C98705 /* YangMingShanDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073171D13D59D00C98705 /* YangMingShanDemoUITests.m */; };
 		51FF32391D129D020029197B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51FF32291D129D020029197B /* Assets.xcassets */; };
 		897897DD1F7F72920054FB81 /* YMSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B3BF9F1F7F38DB00DD2C21 /* YMSNavigationController.m */; };
-		897897DE1F7F72930054FB81 /* YMSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B3BF9F1F7F38DB00DD2C21 /* YMSNavigationController.m */; };
-		89B3BFA11F7F38DB00DD2C21 /* YMSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B3BF9F1F7F38DB00DD2C21 /* YMSNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -649,7 +647,6 @@
 				511BC6101D13B2C400738FD4 /* DemoPhotoViewController.m in Sources */,
 				511BC6201D13B39E00738FD4 /* main.m in Sources */,
 				511BC6061D13B27400738FD4 /* DemoListViewController.m in Sources */,
-				89B3BFA11F7F38DB00DD2C21 /* YMSNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,7 +674,6 @@
 				511BC61B1D13B33D00738FD4 /* DemoImageViewCell.swift in Sources */,
 				511BC6191D13B33D00738FD4 /* DemoListViewController.swift in Sources */,
 				511BC61C1D13B33D00738FD4 /* DemoPhotoViewController.swift in Sources */,
-				897897DE1F7F72930054FB81 /* YMSNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
