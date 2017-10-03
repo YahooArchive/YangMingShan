@@ -76,7 +76,13 @@
     [super viewDidLayoutSubviews];
 
     if (!self.footerView) {
-        self.albumListTableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, -self.footerViewHeight, 0.0);
+        if (@available(iOS 11.0, *)) {
+            self.albumListTableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, -self.footerViewHeight, 0.0);
+        }
+        else {
+            self.albumListTableView.contentInset = UIEdgeInsetsMake(CGRectGetMaxY(self.navigationController.navigationBar.frame), 0.0, -self.footerViewHeight, 0.0);
+        }
+        
         self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), self.footerViewHeight)];
         self.footerView.backgroundColor = [UIColor whiteColor];
         self.albumListTableView.tableFooterView = self.footerView;
