@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'YangMingShan'
-  s.author       = { "Team" => "yang-ming-shan@yahoo-inc.com" }
+  s.author       = { "Team" => "yang-ming-shan@oath.com" }
   s.version      = '1.4.0'
   s.summary      = 'The collection of useful UI components that inspired by Yahoo apps.'
   s.homepage     = 'https://github.com/yahoo/YangMingShan'
