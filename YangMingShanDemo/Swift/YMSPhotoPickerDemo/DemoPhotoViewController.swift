@@ -17,7 +17,7 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
     @IBOutlet weak var numberOfPhotoSelectionTextField: UITextField!
 
     @IBAction func presentPhotoPicker(_ sender: AnyObject) {
-        if self.numberOfPhotoSelectionTextField.text!.characters.count > 0
+        if self.numberOfPhotoSelectionTextField.text!.count > 0
         && UInt(self.numberOfPhotoSelectionTextField.text!) != 1 {
             let pickerViewController = YMSPhotoPickerViewController.init()
 
@@ -41,7 +41,7 @@ class DemoPhotoViewController: UIViewController, YMSPhotoPickerViewControllerDel
         }
     }
     
-    func deletePhotoImage(_ sender: UIButton!) {
+    @objc func deletePhotoImage(_ sender: UIButton!) {
         let mutableImages: NSMutableArray! = NSMutableArray.init(array: images)
         mutableImages.removeObject(at: sender.tag)
 

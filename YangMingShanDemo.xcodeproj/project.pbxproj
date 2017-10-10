@@ -59,6 +59,7 @@
 		513073151D13D59100C98705 /* YangMingShanDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073121D13D58400C98705 /* YangMingShanDemoTests.m */; };
 		5130731A1D13D5A400C98705 /* YangMingShanDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073171D13D59D00C98705 /* YangMingShanDemoUITests.m */; };
 		51FF32391D129D020029197B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51FF32291D129D020029197B /* Assets.xcassets */; };
+		897897DD1F7F72920054FB81 /* YMSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B3BF9F1F7F38DB00DD2C21 /* YMSNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +179,8 @@
 		51F2EEE81CEC4D5F006DFC4B /* YMSPhotoPickerAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = YMSPhotoPickerAssets.xcassets; sourceTree = "<group>"; };
 		51FF32291D129D020029197B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51FF322B1D129D020029197B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		89B3BF9E1F7F38DB00DD2C21 /* YMSNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YMSNavigationController.h; path = Private/YMSNavigationController.h; sourceTree = "<group>"; };
+		89B3BF9F1F7F38DB00DD2C21 /* YMSNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = YMSNavigationController.m; path = Private/YMSNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +363,8 @@
 				5130732B1D1B8D9000C98705 /* YMSSinglePhotoViewController.h */,
 				5130732C1D1B8D9000C98705 /* YMSSinglePhotoViewController.m */,
 				5130732D1D1B8D9000C98705 /* YMSSinglePhotoViewController.xib */,
+				89B3BF9E1F7F38DB00DD2C21 /* YMSNavigationController.h */,
+				89B3BF9F1F7F38DB00DD2C21 /* YMSNavigationController.m */,
 			);
 			name = YMSPhotoPicker;
 			path = YangMingShan/YMSPhotoPicker;
@@ -513,7 +518,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = Yahoo;
 				TargetAttributes = {
 					3EFA1F691E927DAE00FD8984 = {
@@ -535,7 +540,7 @@
 					};
 					519140CC1D055615002B4C5B = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0910;
 					};
 				};
 			};
@@ -625,6 +630,7 @@
 				3EFA1FD71E92844B00FD8984 /* YMSPhotoPickerTheme.m in Sources */,
 				3EFA1FD81E92844B00FD8984 /* YMSPhotoPickerViewController.m in Sources */,
 				3EFA1FD91E92844B00FD8984 /* YMSAlbumCell.m in Sources */,
+				897897DD1F7F72920054FB81 /* YMSNavigationController.m in Sources */,
 				3EFA1FDA1E92844B00FD8984 /* YMSAlbumPickerViewController.m in Sources */,
 				3EFA1FDB1E92844B00FD8984 /* YMSCameraCell.m in Sources */,
 				3EFA1FDC1E92844B00FD8984 /* YMSPhotoCell.m in Sources */,
@@ -783,14 +789,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -829,14 +841,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -867,11 +885,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/YangMingShanDemo/ObjC/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemo;
 				PRODUCT_NAME = YangMingShanDemo;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -881,11 +900,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/YangMingShanDemo/ObjC/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemo;
 				PRODUCT_NAME = YangMingShanDemo;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -949,7 +969,8 @@
 				PRODUCT_NAME = YangMingShanDemo;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -964,7 +985,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yahoo.YangMingShanDemo;
 				PRODUCT_NAME = YangMingShanDemo;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

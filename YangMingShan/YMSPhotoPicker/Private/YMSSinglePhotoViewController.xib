@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13526" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13524"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YMSSinglePhotoViewController">
             <connections>
                 <outlet property="imageContainerView" destination="eT2-qL-aPg" id="KI3-18-JyT"/>
-                <outlet property="navigationBar" destination="E7Z-Wo-Xkq" id="7UM-5K-cVl"/>
                 <outlet property="navigationBarBackgroundView" destination="8ns-Xd-1JA" id="zdW-13-Nid"/>
                 <outlet property="photoImageView" destination="UCj-Aa-8PT" id="b0Y-wO-qLL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,10 +24,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="eT2-qL-aPg">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UCj-Aa-8PT">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         </imageView>
                     </subviews>
                     <constraints>
@@ -43,35 +43,25 @@
                     </connections>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ns-Xd-1JA">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <rect key="frame" x="0.0" y="-68" width="375" height="88"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7Z-Wo-Xkq">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="Udo-Dl-J0F">
-                            <variation key="heightClass=compact" constant="32"/>
-                        </constraint>
+                        <constraint firstAttribute="height" constant="88" id="hAf-gP-DbY"/>
                     </constraints>
-                    <items>
-                        <navigationItem id="QSQ-6O-8Rn"/>
-                    </items>
-                </navigationBar>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="8ns-Xd-1JA" firstAttribute="top" secondItem="E7Z-Wo-Xkq" secondAttribute="top" id="1GY-gn-bVp"/>
-                <constraint firstItem="E7Z-Wo-Xkq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4pX-5U-QPG"/>
-                <constraint firstAttribute="trailing" secondItem="E7Z-Wo-Xkq" secondAttribute="trailing" id="8mx-0o-oVN"/>
-                <constraint firstItem="8ns-Xd-1JA" firstAttribute="leading" secondItem="E7Z-Wo-Xkq" secondAttribute="leading" id="ICR-r3-VNr"/>
-                <constraint firstItem="eT2-qL-aPg" firstAttribute="top" secondItem="E7Z-Wo-Xkq" secondAttribute="bottom" id="Rhc-25-16K"/>
-                <constraint firstItem="8ns-Xd-1JA" firstAttribute="trailing" secondItem="E7Z-Wo-Xkq" secondAttribute="trailing" id="YY4-lh-3uB"/>
+                <constraint firstAttribute="trailing" secondItem="8ns-Xd-1JA" secondAttribute="trailing" id="jWf-jU-7dz"/>
+                <constraint firstItem="eT2-qL-aPg" firstAttribute="top" secondItem="Xt4-Rc-tIU" secondAttribute="top" id="khU-GC-pRQ"/>
+                <constraint firstItem="8ns-Xd-1JA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lFM-PP-a3C"/>
                 <constraint firstAttribute="trailing" secondItem="eT2-qL-aPg" secondAttribute="trailing" id="mAe-0S-h8m"/>
                 <constraint firstItem="eT2-qL-aPg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nOf-tD-Xu8"/>
-                <constraint firstItem="8ns-Xd-1JA" firstAttribute="bottom" secondItem="E7Z-Wo-Xkq" secondAttribute="bottom" id="poi-XS-uU0"/>
-                <constraint firstItem="E7Z-Wo-Xkq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rTW-SY-I5h"/>
+                <constraint firstItem="eT2-qL-aPg" firstAttribute="top" secondItem="8ns-Xd-1JA" secondAttribute="bottom" id="qRw-Ek-Mo6"/>
                 <constraint firstAttribute="bottom" secondItem="eT2-qL-aPg" secondAttribute="bottom" id="yUL-dS-p46"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="Xt4-Rc-tIU"/>
+            <point key="canvasLocation" x="43.5" y="76.5"/>
         </view>
     </objects>
 </document>
