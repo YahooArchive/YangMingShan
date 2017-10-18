@@ -69,24 +69,15 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
         self.photoImageView.image = result;
     }];
 
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(switchPresentationStyle:)];
-    [self.imageContainerView addGestureRecognizer:tapGestureRecognizer];
-
+    self.navigationController.hidesBarsOnTap = YES;
+    [self.navigationController.barHideOnTapGestureRecognizer addTarget:self action:@selector(switchPresentationStyle:)];
+    
     self.presentationStyle = PresentationStyleDefault;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return [YMSPhotoPickerTheme sharedInstance].statusBarStyle;
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    if (self.presentationStyle == PresentationStyleDefault
-        && self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassRegular) {
-        return NO;
-    }
-    return YES;
 }
 
 #pragma mark - IBActions
@@ -112,21 +103,17 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
     if (self.presentationStyle == PresentationStyleDefault) {
         [UIView animateWithDuration:0.15 animations:^{
             self.view.backgroundColor = [UIColor blackColor];
-            self.navigationController.navigationBar.alpha = 0.0;
             self.navigationBarBackgroundView.alpha = 0.0;
         } completion:^(BOOL finished) {
             self.presentationStyle = PresentationStyleDark;
-            [self setNeedsStatusBarAppearanceUpdate];
         }];
     }
     else if (self.presentationStyle == PresentationStyleDark) {
         [UIView animateWithDuration:0.15 animations:^{
             self.view.backgroundColor = [UIColor whiteColor];
-            self.navigationController.navigationBar.alpha = 1.0;
             self.navigationBarBackgroundView.alpha = 1.0;
         } completion:^(BOOL finished) {
            self.presentationStyle = PresentationStyleDefault;
-            [self setNeedsStatusBarAppearanceUpdate];
         }];
     }
 }
@@ -140,6 +127,7 @@ typedef NS_ENUM(NSUInteger, PresentationStyle) {
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale
 {
     if (scale <= 1.0 && self.presentationStyle == PresentationStyleDark) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
         [self switchPresentationStyle:nil];
     }
 }
