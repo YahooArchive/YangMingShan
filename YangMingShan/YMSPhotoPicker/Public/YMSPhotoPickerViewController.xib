@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,6 +14,7 @@
             <connections>
                 <outlet property="navigationBar" destination="Hjz-l4-ipX" id="D2j-M2-g4Y"/>
                 <outlet property="navigationBarBackgroundView" destination="QRP-cu-IBQ" id="OjV-S8-cB4"/>
+                <outlet property="navigationBarTopConstraint" destination="wcO-ae-iNw" id="vcP-0V-eqt"/>
                 <outlet property="photoCollectionView" destination="4eg-zN-avL" id="h9q-2l-7iJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -41,9 +43,9 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hjz-l4-ipX">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="cqm-7K-Unv">
+                        <constraint firstAttribute="height" constant="44" id="cqm-7K-Unv">
                             <variation key="heightClass=compact" constant="32"/>
                         </constraint>
                     </constraints>
@@ -59,16 +61,17 @@
             <constraints>
                 <constraint firstItem="QRP-cu-IBQ" firstAttribute="trailing" secondItem="Hjz-l4-ipX" secondAttribute="trailing" id="60y-QB-Mh5"/>
                 <constraint firstItem="Hjz-l4-ipX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CbG-3J-QKQ"/>
-                <constraint firstItem="4eg-zN-avL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="G1o-kN-h3L"/>
+                <constraint firstItem="4eg-zN-avL" firstAttribute="leading" secondItem="sul-zo-VoP" secondAttribute="leading" id="G1o-kN-h3L"/>
                 <constraint firstAttribute="bottom" secondItem="4eg-zN-avL" secondAttribute="bottom" id="HY4-8g-3cg"/>
-                <constraint firstItem="QRP-cu-IBQ" firstAttribute="top" secondItem="Hjz-l4-ipX" secondAttribute="top" id="JqE-Cg-CJi"/>
+                <constraint firstItem="QRP-cu-IBQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JqE-Cg-CJi"/>
                 <constraint firstItem="QRP-cu-IBQ" firstAttribute="bottom" secondItem="Hjz-l4-ipX" secondAttribute="bottom" id="Qg3-GE-X8W"/>
                 <constraint firstAttribute="trailing" secondItem="Hjz-l4-ipX" secondAttribute="trailing" id="TSg-91-hAe"/>
                 <constraint firstItem="4eg-zN-avL" firstAttribute="top" secondItem="Hjz-l4-ipX" secondAttribute="bottom" id="YyS-iM-2Nj"/>
                 <constraint firstItem="QRP-cu-IBQ" firstAttribute="leading" secondItem="Hjz-l4-ipX" secondAttribute="leading" id="feb-Su-kDN"/>
-                <constraint firstAttribute="trailing" secondItem="4eg-zN-avL" secondAttribute="trailing" id="tJj-hI-9JX"/>
-                <constraint firstItem="Hjz-l4-ipX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wcO-ae-iNw"/>
+                <constraint firstItem="sul-zo-VoP" firstAttribute="trailing" secondItem="4eg-zN-avL" secondAttribute="trailing" id="tJj-hI-9JX"/>
+                <constraint firstItem="Hjz-l4-ipX" firstAttribute="top" secondItem="sul-zo-VoP" secondAttribute="top" id="wcO-ae-iNw"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="sul-zo-VoP"/>
         </view>
     </objects>
 </document>

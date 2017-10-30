@@ -30,6 +30,7 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 }
 
 @property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationBarTopConstraint;
 @property (nonatomic, weak) IBOutlet UIView *navigationBarBackgroundView;
 @property (nonatomic, weak) IBOutlet UICollectionView *photoCollectionView;
 @property (nonatomic, strong) PHImageManager *imageManager;
@@ -111,6 +112,8 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     [self updateViewWithCollectionItem:[self.collectionItems firstObject]];
 
     self.cellPortraitSize = self.cellLandscapeSize = CGSizeZero;
+    
+    [self adjustStatusBarSpace];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -129,6 +132,13 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [self.photoCollectionView.collectionViewLayout invalidateLayout];
+    [self adjustStatusBarSpace];
+}
+
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    [self setupCellSize];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -634,7 +644,11 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     self.cellPortraitSize = CGSizeMake(size, size);
 
     // Caculate size for landsacpe mode
-    arrangementLength = MAX(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+    CGFloat safeAreaInsets = 0;
+    if (@available(iOS 11.0, *)) {
+        safeAreaInsets = self.view.safeAreaInsets.left + self.view.safeAreaInsets.right;
+    }
+    arrangementLength = MAX(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) - safeAreaInsets;
     NSUInteger numberOfPhotoColumnsInLandscape = (arrangementLength - sectionInset.left + sectionInset.right)/size;
     totalInteritemSpacing = MAX((numberOfPhotoColumnsInLandscape - 1), 0) * minimumInteritemSpacing;
     totalHorizontalSpacing = totalInteritemSpacing + sectionInset.left + sectionInset.right;
@@ -645,6 +659,14 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
 - (BOOL)shouldOrderSelection
 {
     return self.configuration.sortingType == YMSPhotoPickerSortingTypeSelection;
+}
+
+- (void)adjustStatusBarSpace
+{
+    if (![self.view respondsToSelector:@selector(safeAreaInsets)]) {
+        CGFloat space = UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation) ? 0 : 20;
+        self.navigationBarTopConstraint.constant = space;
+    }
 }
 
 #pragma mark - PHPhotoLibraryChangeObserver

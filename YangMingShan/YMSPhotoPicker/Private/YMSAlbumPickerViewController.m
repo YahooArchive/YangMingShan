@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSArray *collectionItems;
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
 @property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationBarTopConstraint;
 @property (nonatomic, weak) IBOutlet UIView *navigationBarBackgroundView;
 @property (nonatomic, weak) IBOutlet UITableView *albumListTableView;
 @property (nonatomic, strong) UIView *footerView;
@@ -71,6 +72,8 @@
     
     [self.albumListTableView registerNib:cellNib forCellReuseIdentifier:[YMSAlbumCell yms_cellIdentifier]];
     self.footerViewHeight = CGRectGetHeight(self.view.bounds) * 2;
+    
+    [self adjustStatusBarSpace];
 }
 
 - (void)viewDidLayoutSubviews
@@ -89,6 +92,12 @@
         self.headerView.backgroundColor = [UIColor whiteColor];
         self.albumListTableView.tableHeaderView = self.headerView;
     }
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self adjustStatusBarSpace];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -165,6 +174,16 @@
     
     [tableView reloadData];
     [self dismiss:nil];
+}
+
+#pragma mark - Privates
+
+- (void)adjustStatusBarSpace
+{
+    if (![self.view respondsToSelector:@selector(safeAreaInsets)]) {
+        CGFloat space = UIDeviceOrientationIsLandscape(UIDevice.currentDevice.orientation) ? 0 : 20;
+        self.navigationBarTopConstraint.constant = space;
+    }
 }
 
 @end
