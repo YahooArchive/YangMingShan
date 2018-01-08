@@ -95,11 +95,6 @@
     }
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return [YMSPhotoPickerTheme sharedInstance].statusBarStyle;
-}
-
 #pragma mark - IBActions
 
 - (IBAction)dismiss:(id)sender

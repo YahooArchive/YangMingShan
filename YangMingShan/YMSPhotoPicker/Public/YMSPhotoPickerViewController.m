@@ -125,12 +125,6 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
     [self.photoCollectionView.collectionViewLayout invalidateLayout];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return [YMSPhotoPickerTheme sharedInstance].statusBarStyle;
-}
-
-
 - (void)viewSafeAreaInsetsDidChange {
     [super viewSafeAreaInsetsDidChange];
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.photoCollectionView.collectionViewLayout;
