@@ -409,17 +409,18 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
         if (![image isKindOfClass:[UIImage class]]) {
             return;
         }
+        
+        __block NSString *newAssetLocalIdentifier;
 
         // Save the image to Photo Album
         [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
             PHAssetCollection *collection = self.currentCollectionItem[@"collection"];
-            if (collection.assetCollectionType == PHAssetCollectionTypeSmartAlbum) {
-                // Cannot save to smart albums other than "all photos", pick it and dismiss
-                [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-            }
-            else {
-                PHAssetChangeRequest *assetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-                PHObjectPlaceholder *placeholder = [assetRequest placeholderForCreatedAsset];
+            PHAssetChangeRequest *assetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+            PHObjectPlaceholder *placeholder = [assetRequest placeholderForCreatedAsset];
+            newAssetLocalIdentifier = placeholder.localIdentifier;
+            
+            // Cannot save to smart albums other than "all photos", pick it and dismiss
+            if (collection.assetCollectionType != PHAssetCollectionTypeSmartAlbum) {
                 PHAssetCollectionChangeRequest *albumChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:collection assets:self.currentCollectionItem[@"assets"]];
                 [albumChangeRequest addAssets:@[placeholder]];
             }
@@ -429,7 +430,12 @@ static const CGFloat YMSPhotoFetchScaleResizingRatio = 0.75;
             }
 
             if (!self.allowsMultipleSelection) {
-                if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
+                if (NO == self.shouldReturnImageForSingleSelection) {
+                    PHFetchResult *fetchResult = [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[newAssetLocalIdentifier] options:nil];
+                    PHAsset *asset = fetchResult.firstObject;
+                    [self.selectedPhotos addObject:asset];
+                    [self finishPickingPhotos:nil];
+                } else if ([self.delegate respondsToSelector:@selector(photoPickerViewController:didFinishPickingImage:)]) {
                     [self.delegate photoPickerViewController:self didFinishPickingImage:image];
                 }
                 else {
