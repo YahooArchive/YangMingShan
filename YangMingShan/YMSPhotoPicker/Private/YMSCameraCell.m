@@ -102,4 +102,11 @@
     self.previewLayer.connection.videoOrientation = orientation;
 }
 
+#pragma mark - Accessibility
+
+- (NSString *)accessibilityLabel
+{
+    return NSLocalizedString(@"Open camera", nil);
+}
+
 @end

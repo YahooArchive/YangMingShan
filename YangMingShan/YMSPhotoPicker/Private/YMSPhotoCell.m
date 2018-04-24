@@ -158,4 +158,11 @@ static const CGFloat YMSUnhightedAnimationSpringVelocity = 6.0;
     self.animateSelection = NO;
 }
 
+#pragma mark - Accessibility
+
+- (NSString *)accessibilityLabel
+{
+    return NSLocalizedString(@"Select photo", nil);
+}
+
 @end
