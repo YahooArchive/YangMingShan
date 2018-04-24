@@ -8,12 +8,12 @@
 //  Part of this code was derived from code authored by David Robles
 
 #import <Photos/Photos.h>
-#import <UIKit/UIKit.h>
+#import "YMSCollectionViewCell.h"
 
 /**
  * This is the customized UICollectionViewCell for photo picker to display single photo.
  */
-@interface YMSPhotoCell : UICollectionViewCell
+@interface YMSPhotoCell : YMSCollectionViewCell
 
 /**
  * @brief It is the identifier for photo picker to display single photo in current album.

@@ -60,6 +60,8 @@
 		5130731A1D13D5A400C98705 /* YangMingShanDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 513073171D13D59D00C98705 /* YangMingShanDemoUITests.m */; };
 		51FF32391D129D020029197B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51FF32291D129D020029197B /* Assets.xcassets */; };
 		897897DD1F7F72920054FB81 /* YMSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B3BF9F1F7F38DB00DD2C21 /* YMSNavigationController.m */; };
+		F9AD7F1E208EF2DC00B35B4E /* YMSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AD7F1B208EF2DC00B35B4E /* YMSCollectionViewCell.m */; };
+		F9AD7F1F208EF2DC00B35B4E /* YMSCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F9AD7F1C208EF2DC00B35B4E /* YMSCollectionViewCell.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +183,8 @@
 		51FF322B1D129D020029197B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89B3BF9E1F7F38DB00DD2C21 /* YMSNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YMSNavigationController.h; path = Private/YMSNavigationController.h; sourceTree = "<group>"; };
 		89B3BF9F1F7F38DB00DD2C21 /* YMSNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = YMSNavigationController.m; path = Private/YMSNavigationController.m; sourceTree = "<group>"; };
+		F9AD7F1B208EF2DC00B35B4E /* YMSCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSCollectionViewCell.m; path = Private/YMSCollectionViewCell.m; sourceTree = "<group>"; };
+		F9AD7F1C208EF2DC00B35B4E /* YMSCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSCollectionViewCell.h; path = Private/YMSCollectionViewCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +348,8 @@
 				51F2EEE81CEC4D5F006DFC4B /* YMSPhotoPickerAssets.xcassets */,
 				51FF31EB1D129B4C0029197B /* Categories */,
 				5130733C1D1B8DC000C98705 /* YMSPhotoPickerTheme.h */,
+				F9AD7F1C208EF2DC00B35B4E /* YMSCollectionViewCell.h */,
+				F9AD7F1B208EF2DC00B35B4E /* YMSCollectionViewCell.m */,
 				5130733D1D1B8DC000C98705 /* YMSPhotoPickerTheme.m */,
 				5130733E1D1B8DC000C98705 /* YMSPhotoPickerViewController.h */,
 				5130733F1D1B8DC000C98705 /* YMSPhotoPickerViewController.m */,
@@ -411,6 +417,7 @@
 				3EFA1FC51E92829000FD8984 /* YMSAlbumCell.h in Headers */,
 				3EFA1FC61E92829000FD8984 /* YMSAlbumPickerViewController.h in Headers */,
 				3EFA1FC71E92829000FD8984 /* YMSCameraCell.h in Headers */,
+				F9AD7F1F208EF2DC00B35B4E /* YMSCollectionViewCell.h in Headers */,
 				3EFA1FC81E92829000FD8984 /* YMSPhotoCell.h in Headers */,
 				3EFA1FC91E92829000FD8984 /* YMSSinglePhotoViewController.h in Headers */,
 			);
@@ -630,6 +637,7 @@
 				3EFA1FD71E92844B00FD8984 /* YMSPhotoPickerTheme.m in Sources */,
 				3EFA1FD81E92844B00FD8984 /* YMSPhotoPickerViewController.m in Sources */,
 				3EFA1FD91E92844B00FD8984 /* YMSAlbumCell.m in Sources */,
+				F9AD7F1E208EF2DC00B35B4E /* YMSCollectionViewCell.m in Sources */,
 				897897DD1F7F72920054FB81 /* YMSNavigationController.m in Sources */,
 				3EFA1FDA1E92844B00FD8984 /* YMSAlbumPickerViewController.m in Sources */,
 				3EFA1FDB1E92844B00FD8984 /* YMSCameraCell.m in Sources */,

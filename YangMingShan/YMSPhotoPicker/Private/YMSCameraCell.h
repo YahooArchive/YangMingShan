@@ -7,12 +7,12 @@
 //
 
 #import <AVFoundation/AVFoundation.h>
-#import <UIKit/UIKit.h>
+#import "YMSCollectionViewCell.h"
 
 /**
  * This is the customized UICollectionViewCell for photo picker as the camera preview.
  */
-@interface YMSCameraCell : UICollectionViewCell
+@interface YMSCameraCell : YMSCollectionViewCell
 
 /**
  * @brief It is the session for monitoring current camera preview status.
