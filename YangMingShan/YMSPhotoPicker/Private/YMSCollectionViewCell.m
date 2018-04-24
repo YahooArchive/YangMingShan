@@ -17,14 +17,9 @@
     return YES;
 }
 
-- (NSString *)accessibilityLabel
-{
-    return NSLocalizedString(@"Image", nil);
-}
-
 - (UIAccessibilityTraits)accessibilityTraits
 {
-    return UIAccessibilityTraitImage | UIAccessibilityTraitButton;  
+    return UIAccessibilityTraitButton;  
 }
 
 - (void)accessibilityElementDidBecomeFocused
